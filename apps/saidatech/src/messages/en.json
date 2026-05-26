@@ -42,7 +42,9 @@
     "contactForm": "Get in touch",
     "teamGrid": "Our team",
     "eventList": "Upcoming events",
-    "gallery": "Gallery"
+    "gallery": "Gallery",
+    "logoCloud": "Partners & Certifications",
+    "ctaBanner": "Get in touch"
   },
   "blog": {
     "title": "Blog & Insights",
@@ -135,7 +137,8 @@
     "ctaButton": "Contact Us"
   },
   "hero": {
-    "scrollDown": "Scroll down"
+    "scrollDown": "Scroll down",
+    "scroll": "Scroll"
   },
   "a11y": {
     "skipToContent": "Skip to content",

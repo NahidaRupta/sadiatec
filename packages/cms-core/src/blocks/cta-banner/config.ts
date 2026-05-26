@@ -5,8 +5,9 @@ export const CTABannerBlockConfig: Block = {
   interfaceName: 'CTABannerBlock',
   labels: { singular: 'CTA Banner', plural: 'CTA Banners' },
   fields: [
+    { name: 'eyebrow', type: 'text', localized: true },
     { name: 'heading', type: 'text', localized: true, required: true },
-    { name: 'subheading', type: 'text', localized: true },
+    { name: 'body', type: 'text', localized: true },
     {
       name: 'primaryButton',
       type: 'group',
@@ -26,18 +27,18 @@ export const CTABannerBlockConfig: Block = {
     {
       name: 'variant',
       type: 'select',
-      defaultValue: 'filled',
+      defaultValue: 'gradient',
       options: [
-        { label: 'Filled', value: 'filled' },
-        { label: 'Outlined', value: 'outlined' },
-        { label: 'Image background', value: 'image-bg' },
+        { label: 'Gradient (recommended)', value: 'gradient' },
+        { label: 'Solid', value: 'solid' },
+        { label: 'Background image', value: 'image' },
       ],
     },
     {
       name: 'backgroundImage',
       type: 'upload',
       relationTo: 'media',
-      admin: { description: 'Required when variant is image-bg' },
+      admin: { description: 'Required when variant is "Background image"' },
     },
   ],
 }

@@ -1,12 +1,16 @@
+export type BentoLayout = 'standard' | 'asymmetric'
+
 export interface BentoGridItem {
-  heading: string
-  body?: string
-  size: 'large' | 'small'
+  number: string
+  title: string
+  description: string
   icon?: string
-  imageUrl?: string
 }
 
 export interface BentoGridBlockProps {
-  sectionHeading?: string
+  eyebrow: string
+  heading: string
+  intro?: string
   items: BentoGridItem[]
+  layout?: BentoLayout
 }

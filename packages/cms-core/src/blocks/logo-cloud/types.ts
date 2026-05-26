@@ -1,4 +1,14 @@
+export type ScrollSpeed = 'slow' | 'medium' | 'fast'
+
+export interface LogoItem {
+  logoUrl: string
+  name: string
+  caption?: string
+}
+
 export interface LogoCloudBlockProps {
-  sectionHeading?: string
-  scrolling: boolean
+  eyebrow: string
+  heading?: string
+  logos: LogoItem[]
+  scrollSpeed?: ScrollSpeed
 }

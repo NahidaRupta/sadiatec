@@ -5,6 +5,7 @@ export const StatsBlockConfig: Block = {
   interfaceName: 'StatsBlock',
   labels: { singular: 'Stats', plural: 'Stats Blocks' },
   fields: [
+    { name: 'eyebrow', type: 'text', localized: true },
     { name: 'sectionHeading', type: 'text', localized: true },
     {
       name: 'items',

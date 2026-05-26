@@ -1,6 +1,22 @@
+export type ServicesLayout = 'alternating' | 'grid'
+
+export interface ServiceCta {
+  label: string
+  href: string
+}
+
+export interface ServiceItem {
+  title: string
+  subheadline: string
+  description: string
+  imageUrl: string
+  imageName: string
+  cta: ServiceCta
+}
+
 export interface ServicesGridBlockProps {
-  sectionHeading?: string
-  sectionSubheading?: string
-  serviceIds: string[]
-  columns: '3' | '4'
+  eyebrow: string
+  heading: string
+  services: ServiceItem[]
+  layout?: ServicesLayout
 }

@@ -8,33 +8,34 @@ export async function seedServicesPage(payload: Payload): Promise<void> {
     layout: [
       {
         blockType: 'hero',
-        heading: {
+        headline: {
           en: 'Our Services',
           ja: 'サービス一覧',
           bn: 'আমাদের সেবাসমূহ',
         },
-        subheading: {
+        subheadline: {
           en: 'From career placement to visa support and language training — everything you need to build your future in Japan.',
           ja: 'キャリア支援・ビザ申請・日本語研修まで、日本での未来をつくるすべてのサービスを提供します。',
           bn: 'ক্যারিয়ার নিয়োগ থেকে ভিসা সহায়তা এবং ভাষা প্রশিক্ষণ পর্যন্ত — জাপানে আপনার ভবিষ্যৎ গড়তে প্রয়োজনীয় সবকিছু।',
         },
-        ctaPrimary: {
+        primaryCta: {
           label: { en: 'Contact Us', ja: 'お問い合わせ', bn: 'যোগাযোগ করুন' },
           href: '/contact',
         },
-        variant: 'center',
-        minHeight: 'medium',
-        overlayOpacity: 40,
-        transparentHeader: false,
       },
       {
         blockType: 'services-grid',
-        sectionHeading: {
+        eyebrow: {
+          en: 'HR Services',
+          ja: '人材サービス',
+          bn: 'এইচআর সেবা',
+        },
+        heading: {
           en: 'What We Offer',
           ja: 'サービス内容',
           bn: 'আমরা যা অফার করি',
         },
-        columns: '3',
+        layout: 'grid',
       },
       {
         blockType: 'cta-banner',
@@ -47,7 +48,7 @@ export async function seedServicesPage(payload: Payload): Promise<void> {
           label: { en: 'Talk to Us', ja: '相談する', bn: 'কথা বলুন' },
           href: '/contact',
         },
-        variant: 'filled',
+        variant: 'gradient',
       },
     ],
   })

@@ -5,17 +5,11 @@ export const HeroBlockConfig: Block = {
   interfaceName: 'HeroBlock',
   labels: { singular: 'Hero', plural: 'Heroes' },
   fields: [
-    { name: 'tagline', type: 'text', localized: true },
-    { name: 'heading', type: 'text', localized: true, required: true },
-    { name: 'subheading', type: 'textarea', localized: true },
+    { name: 'eyebrow', type: 'text', localized: true },
+    { name: 'headline', type: 'text', localized: true, required: true },
+    { name: 'subheadline', type: 'textarea', localized: true },
     {
-      name: 'highlights',
-      type: 'array',
-      labels: { singular: 'Highlight', plural: 'Highlights' },
-      fields: [{ name: 'text', type: 'text', localized: true, required: true }],
-    },
-    {
-      name: 'ctaPrimary',
+      name: 'primaryCta',
       type: 'group',
       fields: [
         { name: 'label', type: 'text', localized: true, required: true },
@@ -23,21 +17,41 @@ export const HeroBlockConfig: Block = {
       ],
     },
     {
-      name: 'ctaSecondary',
+      name: 'secondaryCta',
       type: 'group',
       fields: [
         { name: 'label', type: 'text', localized: true },
         { name: 'href', type: 'text' },
       ],
     },
-    { name: 'heroImage', type: 'upload', relationTo: 'media', required: true },
     {
-      name: 'floatingBadge',
-      type: 'group',
+      name: 'inlineStats',
+      type: 'array',
+      maxRows: 4,
+      labels: { singular: 'Stat', plural: 'Stats' },
       fields: [
-        { name: 'text', type: 'text', localized: true },
-        { name: 'subtext', type: 'text', localized: true },
+        { name: 'value', type: 'text', localized: true, required: true },
+        { name: 'label', type: 'text', localized: true, required: true },
       ],
+    },
+    {
+      name: 'keywordPills',
+      type: 'array',
+      maxRows: 12,
+      labels: { singular: 'Pill', plural: 'Pills' },
+      fields: [
+        { name: 'text', type: 'text', localized: true, required: true },
+      ],
+    },
+    {
+      name: 'backgroundImage',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
+      name: 'showScrollIndicator',
+      type: 'checkbox',
+      defaultValue: true,
     },
   ],
 }

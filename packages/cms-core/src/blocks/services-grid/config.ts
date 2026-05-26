@@ -5,21 +5,34 @@ export const ServicesGridBlockConfig: Block = {
   interfaceName: 'ServicesGridBlock',
   labels: { singular: 'Services Grid', plural: 'Services Grids' },
   fields: [
-    { name: 'sectionHeading', type: 'text', localized: true },
-    { name: 'sectionSubheading', type: 'text', localized: true },
+    { name: 'eyebrow', type: 'text', localized: true, required: true },
+    { name: 'heading', type: 'text', localized: true, required: true },
     {
       name: 'services',
-      type: 'relationship',
-      relationTo: 'services',
-      hasMany: true,
+      type: 'array',
+      labels: { singular: 'Service', plural: 'Services' },
+      fields: [
+        { name: 'title', type: 'text', localized: true, required: true },
+        { name: 'subheadline', type: 'text', localized: true },
+        { name: 'description', type: 'textarea', localized: true },
+        { name: 'image', type: 'upload', relationTo: 'media' },
+        {
+          name: 'cta',
+          type: 'group',
+          fields: [
+            { name: 'label', type: 'text', localized: true, required: true },
+            { name: 'href', type: 'text', required: true },
+          ],
+        },
+      ],
     },
     {
-      name: 'columns',
+      name: 'layout',
       type: 'select',
-      defaultValue: '3',
+      defaultValue: 'alternating',
       options: [
-        { label: '3 columns', value: '3' },
-        { label: '4 columns', value: '4' },
+        { label: 'Alternating image/text rows', value: 'alternating' },
+        { label: '3-column card grid', value: 'grid' },
       ],
     },
   ],

@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "typecheck": "tsc --noEmit"
-},
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "seed": "RUN_SEED=true tsx --env-file=.env.local src/seed/index.ts"
+  },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.84.1",
     "@payloadcms/db-sqlite": "3.84.1",

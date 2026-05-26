@@ -34,14 +34,14 @@ export const allBlockConfigs: Block[] = [
   HoursLocationBlockConfig,
 ]
 
-export type { HeroBlockProps } from './hero/types'
+export type { HeroBlockProps, HeroInlineStat, HeroKeywordPill, HeroCta } from './hero/types'
 export type { StatsBlockProps, StatItem } from './stats/types'
-export type { ServicesGridBlockProps } from './services-grid/types'
-export type { BentoGridBlockProps } from './bento-grid/types'
+export type { ServicesGridBlockProps, ServiceItem, ServiceCta, ServicesLayout } from './services-grid/types'
+export type { BentoGridBlockProps, BentoGridItem, BentoLayout } from './bento-grid/types'
 export type { CaseStudyCarouselBlockProps } from './case-study-carousel/types'
 export type { TimelineBlockProps } from './timeline/types'
-export type { LogoCloudBlockProps } from './logo-cloud/types'
-export type { CTABannerBlockProps } from './cta-banner/types'
+export type { LogoCloudBlockProps, LogoItem, ScrollSpeed } from './logo-cloud/types'
+export type { CTABannerBlockProps, CTABannerCta, CTABannerVariant } from './cta-banner/types'
 export type { RichTextBlockProps } from './rich-text/types'
 export type { FAQBlockProps } from './faq/types'
 export type { ContactFormBlockProps } from './contact-form/types'

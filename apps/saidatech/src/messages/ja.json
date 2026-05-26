@@ -42,7 +42,9 @@
     "contactForm": "お問い合わせ",
     "teamGrid": "チーム紹介",
     "eventList": "イベント一覧",
-    "gallery": "ギャラリー"
+    "gallery": "ギャラリー",
+    "logoCloud": "パートナー・認定機関",
+    "ctaBanner": "お問い合わせ"
   },
   "blog": {
     "title": "ブログ・インサイト",
@@ -135,7 +137,8 @@
     "ctaButton": "お問い合わせ"
   },
   "hero": {
-    "scrollDown": "下へスクロール"
+    "scrollDown": "下へスクロール",
+    "scroll": "スクロール"
   },
   "a11y": {
     "skipToContent": "コンテンツへスキップ",

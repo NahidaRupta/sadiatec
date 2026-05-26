@@ -6,6 +6,7 @@ export interface StatItem {
 }
 
 export interface StatsBlockProps {
+  eyebrow?: string
   sectionHeading?: string
   items: StatItem[]
 }
