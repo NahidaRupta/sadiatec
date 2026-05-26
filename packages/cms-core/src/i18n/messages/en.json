@@ -1,0 +1,78 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "jobs": "Jobs",
+    "news": "News",
+    "team": "Team",
+    "events": "Events",
+    "seminars": "Seminars",
+    "gallery": "Gallery",
+    "downloads": "Downloads",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "cookie": "Cookie Policy"
+  },
+  "common": {
+    "readMore": "Read more",
+    "viewAll": "View all",
+    "backTo": "Back to {label}",
+    "loading": "Loading…",
+    "notFound": "Page not found",
+    "error": "An error occurred"
+  },
+  "form": {
+    "name": "Full name",
+    "email": "Email address",
+    "phone": "Phone number",
+    "message": "Message",
+    "subject": "Subject",
+    "submit": "Send message",
+    "submitting": "Sending…",
+    "success": "Your message has been sent. We will get back to you soon.",
+    "error": "Something went wrong. Please try again.",
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "resume": "Resume / CV",
+    "coverLetter": "Cover letter",
+    "apply": "Apply now",
+    "turnstileError": "Please complete the verification."
+  },
+  "errors": {
+    "404": "Page not found",
+    "500": "Internal server error",
+    "generic": "Something went wrong"
+  },
+  "blocks": {
+    "hero": {
+      "scrollDown": "Scroll down"
+    },
+    "stats": {
+      "sectionLabel": "By the numbers"
+    },
+    "faq": {
+      "expand": "Expand",
+      "collapse": "Collapse"
+    },
+    "gallery": {
+      "openLightbox": "Open image",
+      "closeLightbox": "Close",
+      "previous": "Previous image",
+      "next": "Next image"
+    },
+    "contactForm": {
+      "contactHeading": "Get in touch",
+      "jobApplyHeading": "Apply for this position"
+    }
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
+    "darkMode": "Toggle dark mode",
+    "languageSelector": "Select language",
+    "externalLink": "Opens in a new tab"
+  }
+}

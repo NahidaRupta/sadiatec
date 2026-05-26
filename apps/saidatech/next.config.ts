@@ -1,0 +1,59 @@
+import createNextIntlPlugin from 'next-intl/plugin'
+import { withPayload } from '@payloadcms/next/withPayload'
+import type { NextConfig } from 'next'
+
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
+
+const r2BucketUrl = process.env['NEXT_PUBLIC_R2_BUCKET_URL']
+
+const nextConfig: NextConfig = {
+  // 1. Force proper frontend/UI bundling for Payload and its styling dependencies
+  transpilePackages: [
+    '@saidatech/cms-core',
+    '@payloadcms/ui',
+    'react-image-crop',
+  ],
+
+  // 2. Keep heavyweight database, system utilities, and backend engines externalized
+  serverExternalPackages: [
+    'payload',
+    '@payloadcms/db-postgres',
+    '@payloadcms/db-sqlite',
+    '@payloadcms/email-resend',
+    'sharp',
+    'drizzle-orm',
+    'drizzle-kit',
+    'pg',
+    'pino',
+    'pino-pretty',
+    'better-sqlite3',
+  ],
+
+  // 3. Media storage bucket structures
+  images: {
+    ...(r2BucketUrl
+      ? { loader: 'custom', loaderFile: './src/lib/image-loader.ts' }
+      : {}),
+    remotePatterns: [
+      { protocol: 'https', hostname: '*.r2.dev' },
+      { protocol: 'https', hostname: '*.r2.cloudflarestorage.com' },
+      { protocol: 'https', hostname: 'imagedelivery.net' },
+    ],
+  },
+
+  // 4. Clean frontend fallbacks (Removes the hacky empty-loader logic entirely)
+  webpack: (config: any, { isServer }: { isServer: boolean }) => {
+    if (!isServer) {
+      config.resolve = config.resolve ?? {}
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+        crypto: false,
+      }
+    }
+    return config
+  },
+}
+
+export default withPayload(withNextIntl(nextConfig))

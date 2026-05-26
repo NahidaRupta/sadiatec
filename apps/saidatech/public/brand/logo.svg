@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" width="240" height="80" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">Saidatech</title>
+  <rect width="240" height="80" fill="#f1f5f9" rx="4"/>
+  <text x="120" y="50" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#1a56db" text-anchor="middle">Saidatech</text>
+</svg>

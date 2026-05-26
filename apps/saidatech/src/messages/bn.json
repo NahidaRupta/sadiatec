@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "home": "হোম",
+    "about": "আমাদের সম্পর্কে",
+    "services": "সেবাসমূহ",
+    "jobs": "চাকরি",
+    "seminars": "সেমিনার",
+    "team": "টিম",
+    "news": "সংবাদ",
+    "contact": "যোগাযোগ",
+    "privacy": "গোপনীয়তা নীতি",
+    "terms": "সেবার শর্তাবলী"
+  },
+  "common": {
+    "readMore": "আরও পড়ুন",
+    "learnMore": "আরও জানুন",
+    "applyNow": "এখনই আবেদন করুন",
+    "contactUs": "যোগাযোগ করুন",
+    "viewAll": "সব দেখুন",
+    "backTo": "{section}-এ ফিরে যান",
+    "loading": "লোড হচ্ছে..."
+  },
+  "form": {
+    "name": "পূর্ণ নাম",
+    "email": "ইমেইল ঠিকানা",
+    "phone": "ফোন নম্বর",
+    "message": "বার্তা",
+    "subject": "বিষয়",
+    "submit": "বার্তা পাঠান",
+    "submitting": "পাঠানো হচ্ছে...",
+    "success": "আপনার বার্তা পাঠানো হয়েছে।",
+    "error": "কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।"
+  },
+  "errors": {
+    "notFound": "পৃষ্ঠাটি পাওয়া যায়নি",
+    "serverError": "কিছু একটা সমস্যা হয়েছে",
+    "required": "এই তথ্যটি আবশ্যক",
+    "invalidEmail": "একটি বৈধ ইমেইল ঠিকানা দিন"
+  },
+  "blocks": {
+    "faq": "সাধারণ জিজ্ঞাসা",
+    "contactForm": "যোগাযোগ করুন",
+    "teamGrid": "আমাদের টিম",
+    "eventList": "আসন্ন ইভেন্ট",
+    "gallery": "গ্যালারি"
+  },
+  "blog": {
+    "title": "ব্লগ ও অন্তর্দৃষ্টি",
+    "backTo": "ব্লগে ফিরুন",
+    "readMore": "নিবন্ধ পড়ুন",
+    "by": "লিখেছেন",
+    "category": "বিভাগ",
+    "allCategories": "সব",
+    "ctaHeading": "জাপানের কর্মসংস্থান পরিস্থিতি সম্পর্কে অবগত থাকুন",
+    "ctaButton": "আমাদের বিশেষজ্ঞের সাথে কথা বলুন"
+  },
+  "caseStudies": {
+    "title": "কেস স্টাডি",
+    "backTo": "কেস স্টাডিতে ফিরুন",
+    "challenge": "চ্যালেঞ্জ",
+    "solution": "সমাধান",
+    "outcome": "ফলাফল",
+    "results": "ফলাফল সারসংক্ষেপ",
+    "ctaHeading": "এরকম ফলাফল পেতে প্রস্তুত?",
+    "ctaButton": "আমাদের টিমের সাথে কথা বলুন",
+    "viewStudy": "কেস স্টাডি দেখুন",
+    "industry": "শিল্প খাত"
+  },
+  "services": {
+    "backToServices": "সেবা তালিকায় ফিরুন",
+    "viewDetails": "বিস্তারিত দেখুন",
+    "ctaHeading": "কোন সেবাটি আপনার জন্য উপযুক্ত তা নিশ্চিত নন?",
+    "ctaButton": "কথা বলুন"
+  },
+  "company": {
+    "title": "কোম্পানি প্রোফাইল",
+    "backTo": "ফিরে যান",
+    "foundedLabel": "প্রতিষ্ঠিত",
+    "capitalLabel": "মূলধন",
+    "employeesLabel": "কর্মচারী",
+    "hqLabel": "সদর দপ্তর",
+    "missionLabel": "আমাদের মিশন",
+    "visionLabel": "আমাদের দৃষ্টিভঙ্গি",
+    "historyLabel": "আমাদের ইতিহাস",
+    "leadershipLabel": "নেতৃত্ব",
+    "ctaHeading": "আমাদের সাথে কাজ করতে প্রস্তুত?",
+    "ctaButton": "যোগাযোগ করুন"
+  },
+  "seminars": {
+    "title": "সেমিনার ও ওয়েবিনার",
+    "backTo": "সেমিনারে ফিরুন",
+    "upcomingTab": "আসন্ন",
+    "pastTab": "অতীত",
+    "viewDetails": "বিস্তারিত দেখুন",
+    "registerNow": "এখনই নিবন্ধন করুন",
+    "speaker": "বক্তা",
+    "online": "অনলাইন",
+    "ctaHeading": "আসন্ন সেমিনার সম্পর্কে জানতে চান?",
+    "ctaButton": "যোগাযোগ করুন",
+    "registrationOpen": "নিবন্ধন খোলা",
+    "registrationClosed": "নিবন্ধন বন্ধ",
+    "fullBooked": "সম্পূর্ণ বুকড",
+    "cancelled": "বাতিল"
+  },
+  "faq": {
+    "title": "সাধারণ জিজ্ঞাসা",
+    "backTo": "ফিরে যান",
+    "general": "সাধারণ",
+    "ctaHeading": "এখনও প্রশ্ন আছে? আমরা সাহায্য করতে এখানে আছি।",
+    "ctaButton": "যোগাযোগ করুন"
+  },
+  "contact": {
+    "title": "যোগাযোগ করুন",
+    "formHeading": "একটি বার্তা পাঠান",
+    "officeHeading": "অফিসের তথ্য",
+    "inquiryGeneral": "সাধারণ জিজ্ঞাসা",
+    "inquiryVisa": "ভিসা ও অভিবাসন",
+    "inquiryRecruitment": "নিয়োগ ও নিয়োগ প্রক্রিয়া",
+    "inquiryOther": "অন্যান্য",
+    "company": "কোম্পানি (ঐচ্ছিক)",
+    "inquiryType": "জিজ্ঞাসার ধরন",
+    "ctaHeading": "যোগাযোগ করার আগে উত্তর খুঁজছেন?",
+    "ctaButton": "সাধারণ জিজ্ঞাসা দেখুন"
+  },
+  "recruit": {
+    "title": "ক্যারিয়ার",
+    "backTo": "ক্যারিয়ারে ফিরুন",
+    "applyNow": "এখনই আবেদন করুন",
+    "allDepartments": "সব বিভাগ",
+    "requirements": "প্রয়োজনীয়তা",
+    "benefits": "সুবিধাসমূহ",
+    "closing": "সময়সীমা",
+    "noOpenings": "বর্তমানে কোনো খালি পদ নেই। শীঘ্রই আবার দেখুন।",
+    "ctaHeading": "সঠিক পদটি দেখতে পাচ্ছেন না? আমরা আপনার কথা শুনতে চাই।",
+    "ctaButton": "যোগাযোগ করুন"
+  },
+  "hero": {
+    "scrollDown": "নিচে স্ক্রোল করুন"
+  },
+  "a11y": {
+    "skipToContent": "মূল বিষয়বস্তুতে যান",
+    "openMenu": "মেনু খুলুন",
+    "closeMenu": "মেনু বন্ধ করুন",
+    "externalLink": "নতুন ট্যাবে খোলে",
+    "required": "আবশ্যক"
+  }
+}

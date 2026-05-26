@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "about": "会社概要",
+    "services": "サービス",
+    "jobs": "求人",
+    "seminars": "セミナー",
+    "team": "チーム",
+    "news": "ニュース",
+    "contact": "お問い合わせ",
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約"
+  },
+  "common": {
+    "readMore": "続きを読む",
+    "learnMore": "詳しく見る",
+    "applyNow": "今すぐ応募",
+    "contactUs": "お問い合わせ",
+    "viewAll": "すべて見る",
+    "backTo": "{section}に戻る",
+    "loading": "読み込み中..."
+  },
+  "form": {
+    "name": "氏名",
+    "email": "メールアドレス",
+    "phone": "電話番号",
+    "message": "メッセージ",
+    "subject": "件名",
+    "submit": "送信する",
+    "submitting": "送信中...",
+    "success": "メッセージが送信されました。",
+    "error": "エラーが発生しました。もう一度お試しください。"
+  },
+  "errors": {
+    "notFound": "ページが見つかりません",
+    "serverError": "エラーが発生しました",
+    "required": "必須項目です",
+    "invalidEmail": "有効なメールアドレスを入力してください"
+  },
+  "blocks": {
+    "faq": "よくある質問",
+    "contactForm": "お問い合わせ",
+    "teamGrid": "チーム紹介",
+    "eventList": "イベント一覧",
+    "gallery": "ギャラリー"
+  },
+  "blog": {
+    "title": "ブログ・インサイト",
+    "backTo": "ブログ一覧に戻る",
+    "readMore": "記事を読む",
+    "by": "著者",
+    "category": "カテゴリー",
+    "allCategories": "すべて",
+    "ctaHeading": "日本の雇用動向を把握しましょう",
+    "ctaButton": "専門家に相談する"
+  },
+  "caseStudies": {
+    "title": "導入事例",
+    "backTo": "導入事例一覧に戻る",
+    "challenge": "課題",
+    "solution": "解決策",
+    "outcome": "成果",
+    "results": "実績サマリー",
+    "ctaHeading": "このような成果を実現しませんか？",
+    "ctaButton": "チームに相談する",
+    "viewStudy": "事例を見る",
+    "industry": "業種"
+  },
+  "services": {
+    "backToServices": "サービス一覧に戻る",
+    "viewDetails": "詳しく見る",
+    "ctaHeading": "どのサービスが合っているか迷っていますか？",
+    "ctaButton": "相談する"
+  },
+  "company": {
+    "title": "会社概要",
+    "backTo": "戻る",
+    "foundedLabel": "設立",
+    "capitalLabel": "資本金",
+    "employeesLabel": "従業員数",
+    "hqLabel": "本社",
+    "missionLabel": "ミッション",
+    "visionLabel": "ビジョン",
+    "historyLabel": "沿革",
+    "leadershipLabel": "経営陣",
+    "ctaHeading": "私たちと一緒に始めませんか？",
+    "ctaButton": "お問い合わせ"
+  },
+  "seminars": {
+    "title": "セミナー・ウェビナー",
+    "backTo": "セミナー一覧に戻る",
+    "upcomingTab": "今後の予定",
+    "pastTab": "過去",
+    "viewDetails": "詳細を見る",
+    "registerNow": "今すぐ登録",
+    "speaker": "講師",
+    "online": "オンライン",
+    "ctaHeading": "今後のセミナー情報をお届けしますか？",
+    "ctaButton": "お問い合わせ",
+    "registrationOpen": "受付中",
+    "registrationClosed": "受付終了",
+    "fullBooked": "満席",
+    "cancelled": "中止"
+  },
+  "faq": {
+    "title": "よくある質問",
+    "backTo": "戻る",
+    "general": "一般",
+    "ctaHeading": "まだご質問がありますか？お気軽にご相談ください。",
+    "ctaButton": "お問い合わせ"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "formHeading": "メッセージを送る",
+    "officeHeading": "会社情報",
+    "inquiryGeneral": "一般的なお問い合わせ",
+    "inquiryVisa": "ビザ・在留資格",
+    "inquiryRecruitment": "採用・人材紹介",
+    "inquiryOther": "その他",
+    "company": "会社名（任意）",
+    "inquiryType": "お問い合わせ種別",
+    "ctaHeading": "お問い合わせ前によくある質問をご覧ください。",
+    "ctaButton": "よくある質問を見る"
+  },
+  "recruit": {
+    "title": "採用情報",
+    "backTo": "採用情報に戻る",
+    "applyNow": "今すぐ応募",
+    "allDepartments": "すべての部署",
+    "requirements": "応募要件",
+    "benefits": "待遇・福利厚生",
+    "closing": "締切",
+    "noOpenings": "現在募集中のポジションはありません。またご確認ください。",
+    "ctaHeading": "ご希望のポジションが見当たりませんか？ぜひご連絡ください。",
+    "ctaButton": "お問い合わせ"
+  },
+  "hero": {
+    "scrollDown": "下へスクロール"
+  },
+  "a11y": {
+    "skipToContent": "コンテンツへスキップ",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "externalLink": "新しいタブで開く",
+    "required": "必須"
+  }
+}

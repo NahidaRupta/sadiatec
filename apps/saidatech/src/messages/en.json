@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "jobs": "Jobs",
+    "seminars": "Seminars",
+    "team": "Team",
+    "news": "News",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "common": {
+    "readMore": "Read more",
+    "learnMore": "Learn more",
+    "applyNow": "Apply now",
+    "contactUs": "Contact us",
+    "viewAll": "View all",
+    "backTo": "Back to {section}",
+    "loading": "Loading..."
+  },
+  "form": {
+    "name": "Full name",
+    "email": "Email address",
+    "phone": "Phone number",
+    "message": "Message",
+    "subject": "Subject",
+    "submit": "Send message",
+    "submitting": "Sending...",
+    "success": "Your message has been sent.",
+    "error": "Something went wrong. Please try again."
+  },
+  "errors": {
+    "notFound": "Page not found",
+    "serverError": "Something went wrong",
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address"
+  },
+  "blocks": {
+    "faq": "Frequently asked questions",
+    "contactForm": "Get in touch",
+    "teamGrid": "Our team",
+    "eventList": "Upcoming events",
+    "gallery": "Gallery"
+  },
+  "blog": {
+    "title": "Blog & Insights",
+    "backTo": "Back to Blog",
+    "readMore": "Read Article",
+    "by": "By",
+    "category": "Category",
+    "allCategories": "All",
+    "ctaHeading": "Stay informed on Japan's employment landscape",
+    "ctaButton": "Talk to Our Experts"
+  },
+  "caseStudies": {
+    "title": "Case Studies",
+    "backTo": "Back to Case Studies",
+    "challenge": "Challenge",
+    "solution": "Solution",
+    "outcome": "Outcome",
+    "results": "Results at a Glance",
+    "ctaHeading": "Ready to see results like these?",
+    "ctaButton": "Talk to Our Team",
+    "viewStudy": "View Case Study",
+    "industry": "Industry"
+  },
+  "services": {
+    "backToServices": "Back to Services",
+    "viewDetails": "View Details",
+    "ctaHeading": "Unsure which service fits you?",
+    "ctaButton": "Talk to Us"
+  },
+  "company": {
+    "title": "Company Profile",
+    "backTo": "Back",
+    "foundedLabel": "Founded",
+    "capitalLabel": "Capital",
+    "employeesLabel": "Employees",
+    "hqLabel": "Headquarters",
+    "missionLabel": "Our Mission",
+    "visionLabel": "Our Vision",
+    "historyLabel": "Our History",
+    "leadershipLabel": "Leadership",
+    "ctaHeading": "Ready to work with us?",
+    "ctaButton": "Get in Touch"
+  },
+  "seminars": {
+    "title": "Seminars & Webinars",
+    "backTo": "Back to Seminars",
+    "upcomingTab": "Upcoming",
+    "pastTab": "Past",
+    "viewDetails": "View Details",
+    "registerNow": "Register Now",
+    "speaker": "Speaker",
+    "online": "Online",
+    "ctaHeading": "Want to be notified about upcoming seminars?",
+    "ctaButton": "Contact Us",
+    "registrationOpen": "Registration Open",
+    "registrationClosed": "Registration Closed",
+    "fullBooked": "Fully Booked",
+    "cancelled": "Cancelled"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "backTo": "Back",
+    "general": "General",
+    "ctaHeading": "Still have questions? We're here to help.",
+    "ctaButton": "Contact Us"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "formHeading": "Send a Message",
+    "officeHeading": "Office Information",
+    "inquiryGeneral": "General Enquiry",
+    "inquiryVisa": "Visa & Immigration",
+    "inquiryRecruitment": "Recruitment & Hiring",
+    "inquiryOther": "Other",
+    "company": "Company (optional)",
+    "inquiryType": "Enquiry Type",
+    "ctaHeading": "Looking for answers before reaching out?",
+    "ctaButton": "View FAQ"
+  },
+  "recruit": {
+    "title": "Careers",
+    "backTo": "Back to Careers",
+    "applyNow": "Apply Now",
+    "allDepartments": "All Departments",
+    "requirements": "Requirements",
+    "benefits": "Benefits",
+    "closing": "Closing",
+    "noOpenings": "No open positions at the moment. Check back soon.",
+    "ctaHeading": "Don't see the right role? We'd love to hear from you.",
+    "ctaButton": "Contact Us"
+  },
+  "hero": {
+    "scrollDown": "Scroll down"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "externalLink": "Opens in new tab",
+    "required": "Required"
+  }
+}
