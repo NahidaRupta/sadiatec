@@ -12,7 +12,7 @@ const siteConfig: SiteConfig = {
   },
 
   brand: {
-    logoFile: 'logo.svg',
+    logoFile: 'null',
     faviconFile: 'favicon.ico',
     ogImageFile: 'og-image.jpg',
     colors: {

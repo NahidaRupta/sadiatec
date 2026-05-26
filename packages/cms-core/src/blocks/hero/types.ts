@@ -1,8 +1,8 @@
 export interface HeroBlockProps {
   blockType?: 'hero'
   heading: string
-  tagline?: string
-  subheading?: string
+  tagline?: string | undefined          // ← Explicitly allow undefined
+  subheading?: string | undefined
   highlights?: string[]
   ctaPrimary?: {
     label: string
@@ -12,18 +12,13 @@ export interface HeroBlockProps {
     label: string
     href: string
   }
-  heroImageUrl?: string
+  heroImageUrl?: string | undefined
   floatingBadge?: {
     text: string
-    subtext: string
-  }
-  
-  // Previous additions
+    subtext?: string | undefined
+  } | undefined
   overlayOpacity?: number
-  variant?: 'center' | 'left' | string
-  minHeight?: 'small' | 'medium' | 'large' | string
-  backgroundImageUrl?: string
-
-  // ADD THIS LINE TO FIX THE LAST ERROR:
+  variant?: string
+  minHeight?: string
   transparentHeader?: boolean
 }

@@ -1,38 +1,33 @@
-"use client" // CRUCIAL: Tells Next.js to load Framer Motion securely on the client side
+"use client"
 
 import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import type { HeroBlockProps } from './types'
 
-// Staggered orchestration animation container
+// Animation orchestration configurations
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
+    transition: {框架staggerChildren: 0.12, delayChildren: 0.1 },
   },
 }
 
-// Staggered slide-up item animation
 const itemVariants = {
-  hidden: { opacity: 0, y: 25 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }, // Smooth custom ease-out cubic
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
   },
 }
 
-// Floating animations for the right-hand tags
 const floatVariants = (delay: number) => ({
   animate: {
-    y: [0, -6, 0],
+    y: [0, -8, 0],
     transition: {
-      duration: 4,
+      duration: 5,
       repeat: Infinity,
       repeatType: "reverse" as const,
       ease: "easeInOut",
@@ -45,133 +40,138 @@ export const HeroBlock = ({
   heading,
   subheading,
   tagline,
-  highlights,
+  highlights = [],
   ctaPrimary,
   ctaSecondary,
   heroImageUrl,
 }: HeroBlockProps) => {
 
+  const defaultImageUrl = '/images/hero/hero.png'
+  const imageUrl = heroImageUrl || defaultImageUrl
+
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative flex min-h-svh items-start overflow-hidden bg-[#0a192f]"
+      className="relative flex min-h-screen w-full items-center overflow-hidden bg-navy-950"
     >
-      {/* Background radial gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a192f] via-[#112240] to-[#1e3a8a]" />
-      
-      {/* Background Factory image layout */}
+      {/* 1. Corrected Core Background Gradient */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-luminosity"
-        style={{
-          backgroundImage: `url('${typeof heroImageUrl === 'object' && heroImageUrl !== null
-              ? (heroImageUrl as any).url
-              : (heroImageUrl || '/images/hero/hero.png')
-            }')`
-        }}
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-br from-[#0a192f] via-[#112240] to-[#1a365d]"
+      />
+      
+      {/* 2. Dynamic Factory image overlay with clean absolute opacity rules */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-cover bg-center mix-blend-luminosity opacity-20 pointer-events-none"
+        style={{ backgroundImage: `url('${imageUrl}')` }}
       />
 
-      {/* Center glowing light flare orb */}
-      <div className="absolute -top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-blue-500/10 blur-[120px] pointer-events-none" />
+      {/* 3. Deep Radial glow flare */}
+      <div
+        aria-hidden="true"
+        className="absolute -top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-blue-500/10 blur-[120px] pointer-events-none"
+      />
 
-      {/* Content Container */}
-      <div className="max-w-7xl relative w-full mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40 flex justify-between items-center">
+      {/* Content Grid Layout */}
+      <div className="max-w-7xl relative w-full mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        {/* Left Column: Core Hero Text Fields */}
+        {/* Left Column Content Section */}
         <motion.div 
-          className="max-w-3xl z-10"
+          className="lg:col-span-7 z-10"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {tagline && (
-            <motion.span 
-              variants={itemVariants}
-              className="inline-block mb-4 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-amber-400"
-            >
-              {tagline}
-            </motion.span>
-          )}
-
           <motion.h1 
             id="hero-heading" 
             variants={itemVariants}
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-amber-400 leading-[1.15]"
+            className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight text-white leading-[1.2]"
           >
-            {heading || 'Study and Work -'}
+            <span className="text-amber-400 block mb-2">
+              {heading ? heading.split('-')[0]?.trim() + ' -' : 'Study and Work -'}
+            </span>
+            <span className="block font-bold">
+              {heading && heading.includes('-') 
+                ? heading.split('-').slice(1).join('-').trim() 
+                : 'Navigating to connect Human Resources'}
+            </span>
           </motion.h1>
 
           <motion.p 
             variants={itemVariants}
-            className="mt-6 max-w-xl text-lg text-white/70 leading-relaxed"
+            className="mt-6 max-w-xl text-base sm:text-lg text-white/80 font-normal leading-relaxed"
           >
-            {subheading || "SadiaTec is one of the Japan's largest comprehensive human resources companies..."}
+            {subheading}
           </motion.p>
 
-          {/* Action Buttons Row */}
-          <motion.div variants={itemVariants} className="mt-10 flex flex-col sm:flex-row gap-4">
-            <Link
-              href={ctaPrimary?.href || '/contact'}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-amber-500/20 transition-all duration-200 hover:bg-amber-600 hover:-translate-y-0.5"
-            >
-              {ctaPrimary?.label || 'Get Started'} <span> →</span>
-            </Link>
+          {/* Core Action Navigation Callouts */}
+          <motion.div variants={itemVariants} className="mt-10 flex flex-wrap gap-4">
+            {ctaPrimary && (
+              <Link
+                href={ctaPrimary.href}
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-6 py-3.5 text-base font-bold text-white shadow-lg shadow-black/20 transition-all duration-200 hover:bg-[#c6710b] hover:-translate-y-0.5"
+              >
+                {ctaPrimary.label} <span className="text-lg">→</span>
+              </Link>
+            )}
             
-            {ctaSecondary?.href && (
+            {ctaSecondary && (
               <Link
                 href={ctaSecondary.href}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 bg-white/10 px-6 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:-translate-y-0.5"
               >
-                {ctaSecondary.label || 'Learn More'}
+                {ctaSecondary.label}
               </Link>
             )}
           </motion.div>
 
-          {/* Dynamic Highlights Section */}
+          {/* Highlights Metrics Array Mapping */}
           {highlights && highlights.length > 0 && (
-            <motion.div variants={itemVariants} className="mt-14 flex flex-wrap gap-x-12 gap-y-4 text-left">
+            <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-x-12 gap-y-6 text-left">
               {highlights.map((highlightItem, idx) => {
                 const text = typeof highlightItem === 'object' && highlightItem !== null
-                  ? (highlightItem as any).text
+                  ? (highlightItem as any).text || highlightItem
                   : highlightItem;
 
-                if (!text || typeof text !== 'string') return null;
+                if (!text) return null;
 
-                const parts = text.split(':')
-                const displayValue = parts[0]?.trim() || text
-                const displayLabel = parts[1]?.trim() || ''
+                const match = text.match(/^([0-9%,\+\/\-]+)\s+(.*)$/);
+                const displayValue = match ? match[1] : text;
+                const displayLabel = match ? match[2] : "";
 
                 return (
-                  <div key={idx} className="space-y-0.5">
-                    <p className="text-3xl font-bold text-white tracking-tight">
+                  <div key={idx} className="flex flex-col max-w-sm">
+                    <span className={`${match ? "text-4xl sm:text-[40px] font-extrabold" : "text-xl sm:text-2xl font-bold"} text-white tracking-tight leading-tight`}>
                       {displayValue}
-                    </p>
+                    </span>
                     {displayLabel && (
-                      <p className="text-sm font-medium text-white/50">
+                      <span className="text-sm font-medium text-white/60 mt-2 tracking-normal">
                         {displayLabel}
-                      </p>
+                      </span>
                     )}
                   </div>
-                )
+                );
               })}
             </motion.div>
           )}
         </motion.div>
 
-        {/* Right Column: Desktop Floating Staggered Keyword Badges */}
+        {/* Right Column: Floating Staggered Keyword Badges */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-          className="hidden xl:flex flex-col items-end gap-3 max-w-xl z-10 transform translate-y-6"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          className="hidden lg:col-span-5 lg:flex flex-col gap-4 pl-4 z-10"
         >
           {/* Row 1 */}
-          <div className="flex gap-3 justify-end">
+          <div className="flex gap-3 justify-start lg:justify-end mr-6">
             {["Human Resource", "Study Permit"].map((tag, idx) => (
               <motion.span 
                 key={tag} 
-                variants={floatVariants(idx * 0.2)}
+                variants={floatVariants(idx * 0.25)}
                 animate="animate"
-                className="rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-5 py-2 text-sm text-white/90 shadow-md transition-all duration-300 hover:bg-white/10 hover:border-white/40 whitespace-nowrap"
+                className="rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-5 py-2.5 text-sm font-medium text-white shadow-md transition-all duration-300 hover:bg-white/20 whitespace-nowrap"
               >
                 {tag}
               </motion.span>
@@ -179,13 +179,13 @@ export const HeroBlock = ({
           </div>
 
           {/* Row 2 */}
-          <div className="flex gap-3 justify-end">
+          <div className="flex gap-3 justify-start lg:justify-end -mr-2">
             {["Student Program", "Scholarship", "Language Training"].map((tag, idx) => (
               <motion.span 
                 key={tag} 
-                variants={floatVariants(idx * 0.3)}
+                variants={floatVariants((idx + 2) * 0.2)}
                 animate="animate"
-                className="rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-5 py-2 text-sm text-white/90 shadow-md transition-all duration-300 hover:bg-white/10 hover:border-white/40 whitespace-nowrap"
+                className="rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-5 py-2.5 text-sm font-medium text-white shadow-md transition-all duration-300 hover:bg-white/20 whitespace-nowrap"
               >
                 {tag}
               </motion.span>
@@ -193,29 +193,28 @@ export const HeroBlock = ({
           </div>
 
           {/* Row 3 */}
-          <div className="flex gap-3 justify-end">
+          <div className="flex gap-3 justify-start lg:justify-end mr-4">
             {["SDC", "Work in Japan", "Future", "Global"].map((tag, idx) => (
               <motion.span 
                 key={tag} 
-                variants={floatVariants(idx * 0.4)}
+                variants={floatVariants((idx + 4) * 0.15)}
                 animate="animate"
-                className="rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-5 py-2 text-sm text-white/90 shadow-md transition-all duration-300 hover:bg-white/10 hover:border-white/40 whitespace-nowrap"
+                className="rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-5 py-2.5 text-sm font-medium text-white shadow-md transition-all duration-300 hover:bg-white/20 whitespace-nowrap"
               >
                 {tag}
               </motion.span>
             ))}
           </div>
         </motion.div>
-
       </div>
 
-      {/* Animated Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5">
-        <span className="text-xs text-white/30 tracking-widest uppercase selection:bg-none">Scroll</span>
+      {/* Downward Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+        <span className="text-[10px] text-white/40 tracking-[0.2em] uppercase font-bold select-none">Scroll</span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-          className="h-5 w-px bg-gradient-to-b from-white/60 to-transparent"
+          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+          className="h-6 w-px bg-gradient-to-b from-white/70 to-transparent"
         />
       </div>
     </section>

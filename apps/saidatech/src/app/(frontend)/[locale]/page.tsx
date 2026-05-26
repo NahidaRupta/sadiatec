@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { getCachedPayload } from '@/lib/payload'
 import { blockRegistry } from '@saidatech/cms-core/blocks'
+export const revalidate = 0 // Forces Next.js to fetch fresh data on every single request
 
 const SUPPORTED_LOCALES = ['en', 'ja', 'bn'] as const
 type SupportedLocale = (typeof SUPPORTED_LOCALES)[number]
