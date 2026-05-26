@@ -1,10 +1,29 @@
 'use client'
-// Client boundary: useScroll (parallax) + keyword pill scroll strip
+// Client boundary: useScroll (parallax) + floating pill animations
 
 import Link from 'next/link'
 import { motion, useScroll } from 'framer-motion'
 import { staggerContainer, fadeInUp, useHeroParallax } from '../../lib/motion'
 import type { HeroBlockProps } from './types'
+
+// Staggered float delays for each pill so they bob independently
+const FLOAT_DELAYS = [0, 0.5, 1.0, 0.25, 0.75, 1.25, 0.4, 0.9, 0.15, 0.65, 1.1, 0.35]
+
+// Pre-computed scattered positions for up to 12 pills in the right panel
+const PILL_POSITIONS = [
+  'top-[4%]  left-[30%]',
+  'top-[4%]  right-[4%]',
+  'top-[26%] left-[4%]',
+  'top-[24%] right-[8%]',
+  'top-[48%] left-[22%]',
+  'top-[50%] right-[2%]',
+  'top-[70%] left-[6%]',
+  'top-[72%] right-[18%]',
+  'top-[14%] left-[55%]',
+  'top-[40%] left-[46%]',
+  'top-[62%] left-[48%]',
+  'top-[86%] left-[28%]',
+]
 
 export function HeroBlock({
   eyebrow,
@@ -25,7 +44,7 @@ export function HeroBlock({
   const { scrollY } = useScroll()
   const parallaxY = useHeroParallax(scrollY)
 
-  // Support legacy field names used by inner-page hero instances
+  // Support legacy field names
   const resolvedHeadline = headline ?? heading ?? ''
   const resolvedSubheadline = subheadline ?? subheading
   const resolvedBgImage = backgroundImageUrl ?? heroImageUrl
@@ -34,12 +53,11 @@ export function HeroBlock({
 
   const headlineParts = resolvedHeadline.split('\n')
   const pills = keywordPills ?? []
-  const doubledPills = [...pills, ...pills]
 
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative flex min-h-[70vh] md:min-h-[80vh] w-full items-center overflow-hidden bg-[var(--color-neutral-900)]"
+      className="relative flex min-h-screen w-full items-center overflow-hidden bg-[var(--color-neutral-900)]"
     >
       {/* Layered background */}
       <div
@@ -53,121 +71,174 @@ export function HeroBlock({
           style={{ backgroundImage: `url('${resolvedBgImage}')` }}
         />
       )}
+      {/* Ambient glow — left/centre */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-1/4 left-1/2 h-[900px] w-[900px] -translate-x-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[120px]"
+        className="pointer-events-none absolute -top-1/4 left-1/3 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]"
+      />
+      {/* Ambient glow — right */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-1/4 h-[500px] w-[500px] rounded-full bg-[var(--color-accent)]/5 blur-[80px]"
       />
 
-      {/* Parallax content */}
+      {/* Parallax wrapper */}
       <motion.div
         {...(parallaxY ? { style: { y: parallaxY } } : {})}
         className="relative w-full"
       >
-        <div className="mx-auto max-w-4xl px-4 py-24 text-center sm:px-6 lg:px-8 lg:py-32">
-          <motion.div variants={staggerContainer} initial="hidden" animate="visible">
+        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[3fr_2fr] lg:gap-16">
 
-            {/* Eyebrow */}
-            {eyebrow && (
-              <motion.p
-                variants={fadeInUp}
-                className="mb-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-accent)]"
-              >
-                {eyebrow}
-              </motion.p>
-            )}
-
-            {/* Headline — splits on \n */}
-            <motion.h1
-              id="hero-heading"
-              variants={fadeInUp}
-              className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
+            {/* ── Left column: text content ── */}
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-col"
             >
-              {headlineParts.map((part, i) => (
-                <span key={i}>
-                  {i > 0 && <br />}
-                  {i === 0
-                    ? <span className="text-[var(--color-accent)]">{part}</span>
-                    : part
-                  }
-                </span>
-              ))}
-            </motion.h1>
+              {/* Eyebrow / tagline */}
+              {/* {eyebrow && (
+                <motion.p
+                  variants={fadeInUp}
+                  className="mb-5 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-widest text-[var(--color-accent)]"
+                >
+                  <span className="inline-block h-px w-6 bg-[var(--color-accent)]" aria-hidden="true" />
+                  {eyebrow}
+                </motion.p>
+              )} */}
 
-            {/* Subheadline */}
-            {resolvedSubheadline && (
-              <motion.p
+              {/* Headline — first segment in accent colour, rest in white */}
+              <motion.h1
+                id="hero-heading"
                 variants={fadeInUp}
-                className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70 md:text-xl"
+                className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl xl:text-6xl"
               >
-                {resolvedSubheadline}
-              </motion.p>
-            )}
-
-            {/* CTAs */}
-            {(resolvedPrimaryCta || resolvedSecondaryCta) && (
-              <motion.div
-                variants={fadeInUp}
-                className="mt-10 flex flex-wrap justify-center gap-4"
-              >
-                {resolvedPrimaryCta && (
-                  <Link
-                    href={resolvedPrimaryCta.href}
-                    className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md bg-[var(--color-primary)] px-7 py-3.5 text-base font-semibold text-white transition-opacity duration-150 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
-                  >
-                    {resolvedPrimaryCta.label}
-                  </Link>
-                )}
-                {resolvedSecondaryCta && (
-                  <Link
-                    href={resolvedSecondaryCta.href}
-                    className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md border border-white/30 bg-white/10 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-colors duration-150 hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                  >
-                    {resolvedSecondaryCta.label}
-                  </Link>
-                )}
-              </motion.div>
-            )}
-
-            {/* Inline stats */}
-            {inlineStats && inlineStats.length > 0 && (
-              <motion.div
-                variants={fadeInUp}
-                className="mt-12 flex flex-col justify-center gap-8 sm:flex-row sm:gap-12"
-              >
-                {inlineStats.map((stat, i) => (
-                  <div key={i} className="flex flex-col items-center">
-                    <span className="text-3xl font-bold tracking-tight text-white">
-                      {stat.value}
-                    </span>
-                    <span className="mt-1 text-sm uppercase tracking-wider text-white/50">
-                      {stat.label}
-                    </span>
-                  </div>
+                {headlineParts.map((part, i) => (
+                  <span key={i}>
+                    {i > 0 && <br />}
+                    {i === 0
+                      ? <span className="text-[var(--color-accent)]">{part}</span>
+                      : part}
+                  </span>
                 ))}
-              </motion.div>
-            )}
+              </motion.h1>
 
-            {/* Keyword pills — reuses .logo-track CSS (globals.css) for infinite scroll */}
-            {pills.length > 0 && (
-              <motion.div
-                variants={fadeInUp}
-                className="mt-10 overflow-hidden"
-                aria-hidden="true"
-              >
-                <div className="logo-track gap-3">
-                  {doubledPills.map((pill, i) => (
+              {/* Subheadline */}
+              {resolvedSubheadline && (
+                <motion.p
+                  variants={fadeInUp}
+                  className="mt-6 max-w-xl text-base leading-relaxed text-white/70 md:text-lg"
+                >
+                  {resolvedSubheadline}
+                </motion.p>
+              )}
+
+              {/* CTAs */}
+              {(resolvedPrimaryCta || resolvedSecondaryCta) && (
+                <motion.div
+                  variants={fadeInUp}
+                  className="mt-9 flex flex-wrap gap-4"
+                >
+                  {resolvedPrimaryCta && (
+                    <Link
+                      href={resolvedPrimaryCta.href}
+                      className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md bg-[var(--color-primary)] px-7 py-3.5 text-base font-semibold text-white transition-opacity duration-150 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
+                    >
+                      {resolvedPrimaryCta.label}
+                    </Link>
+                  )}
+                  {resolvedSecondaryCta && (
+                    <Link
+                      href={resolvedSecondaryCta.href}
+                      className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md border border-white/30 bg-white/10 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-colors duration-150 hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    >
+                      {resolvedSecondaryCta.label}
+                    </Link>
+                  )}
+                </motion.div>
+              )}
+
+              {/* Inline stats */}
+              {inlineStats && inlineStats.length > 0 && (
+                <motion.div
+                  variants={fadeInUp}
+                  className="mt-10 flex flex-wrap gap-8"
+                >
+                  {inlineStats.map((stat, i) => (
+                    <div key={i} className="flex flex-col">
+                      <span className="text-3xl font-bold tracking-tight text-white">
+                        {stat.value}
+                      </span>
+                      <span className="mt-1 text-sm uppercase tracking-wider text-white/50">
+                        {stat.label}
+                      </span>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+
+              {/* Mobile pill cloud — flex-wrap strip, shown only on small screens */}
+              {pills.length > 0 && (
+                <motion.div
+                  variants={fadeInUp}
+                  className="mt-10 flex flex-wrap gap-3 lg:hidden"
+                  aria-hidden="true"
+                >
+                  {pills.map((pill, i) => (
                     <span
                       key={i}
-                      className="inline-flex shrink-0 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm"
+                      className="inline-flex rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-md"
                     >
                       {pill.text}
                     </span>
                   ))}
-                </div>
-              </motion.div>
+                </motion.div>
+              )}
+            </motion.div>
+
+            {/* ── Right column: floating glassmorphic pill cloud (desktop only) ── */}
+            {pills.length > 0 && (
+              <div
+                aria-hidden="true"
+                className="relative hidden h-[420px] w-full lg:block"
+              >
+                {pills.slice(0, PILL_POSITIONS.length).map((pill, i) => {
+                  const pos = PILL_POSITIONS[i] ?? 'top-[50%] left-[50%]'
+                  const floatDelay = FLOAT_DELAYS[i % FLOAT_DELAYS.length] ?? 0
+
+                  return (
+                    <motion.div
+                      key={i}
+                      className={`absolute ${pos}`}
+                      initial={{ opacity: 0, scale: 0.75 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        delay: 0.25 + i * 0.09,
+                        duration: 0.55,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                    >
+                      <motion.span
+                        animate={{ y: [0, -9, 0] }}
+                        transition={{
+                          repeat: Infinity,
+                          duration: 3.8,
+                          ease: 'easeInOut',
+                          delay: floatDelay,
+                        }}
+                        whileHover={{ scale: 1.07, y: -11 }}
+                        className="inline-flex cursor-default select-none items-center whitespace-nowrap rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white shadow-[0_4px_24px_rgba(0,0,0,0.25)] backdrop-blur-md transition-[border-color,background-color,box-shadow] duration-300 hover:border-white/40 hover:bg-white/15 hover:shadow-[0_4px_32px_rgba(255,255,255,0.1)]"
+                      >
+                        {pill.text}
+                      </motion.span>
+                    </motion.div>
+                  )
+                })}
+              </div>
             )}
 
-          </motion.div>
+          </div>
         </div>
       </motion.div>
 
