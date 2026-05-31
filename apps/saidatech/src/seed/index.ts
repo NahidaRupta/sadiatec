@@ -18,18 +18,18 @@ async function seed() {
     return;
   }
 
-  const payload = await getPayload({ config });
-
-  const existingHome = await payload.find({
-    collection: 'pages',
-    where: { slug: { equals: 'home' } },
-    limit: 1,
-  });
-
-  const shouldSeed = existingHome.totalDocs === 0 || process.env.RUN_SEED === 'true' || process.env.FORCE_SEED === 'true';
+  // 🛑 CHANGE HERE: Seeding will ONLY run if you explicitly demand it in your terminal command
+  const shouldSeed = process.env.RUN_SEED === 'true' || process.env.FORCE_SEED === 'true';
 
   if (shouldSeed) {
-    payload.logger.info('🌱 Seeding initial data...');
+    const payload = await getPayload({ config });
+    payload.logger.info('🌱 Terminal flag detected. Seeding initial data...');
+
+    const existingHome = await payload.find({
+      collection: 'pages',
+      where: { slug: { equals: 'home' } },
+      limit: 1,
+    });
 
     // Seed collections BEFORE pages so home.ts can query their IDs
     await seedCaseStudies(payload);
@@ -37,8 +37,16 @@ async function seed() {
     await seedDownloads();
     await seedNews(payload);
 
-    // Pages (home queries blog IDs seeded above)
-    await seedHome(payload);
+    // Homepage Layout Guard
+    const homeDoc = existingHome.docs[0];
+    const hasHomeLayout = homeDoc && (homeDoc.layout && homeDoc.layout.length > 0);
+    
+    if (!hasHomeLayout) {
+      await seedHome(payload);
+    } else {
+      payload.logger.info('⏭️ Skipping home page seed — layout blocks already configured.');
+    }
+
     await seedServicesPage(payload);
     await seedServices(payload);
 
@@ -48,11 +56,17 @@ async function seed() {
     await seedFAQs(payload);
 
     await upsertGlobal(payload, 'company-info', { /* your data */ });
-    await upsertGlobal(payload, 'header', { /* your data */ });
-
+    
+    // Header Layout Guard
+    const existingHeader = await payload.findGlobal({ slug: 'header' });
+    if (!existingHeader || !existingHeader.navItems?.length) {
+      await upsertGlobal(payload, 'header', { /* your initial mock data */ });
+    }
+    
     payload.logger.info('✅ Seed completed successfully.');
   } else {
-    payload.logger.info('⏭️ Skipping seed — content already exists in database.');
+    // This will now print silently on standard restarts without touching your data!
+    console.log('⏭️ Skipping seed — No terminal seed command provided.');
   }
 }
 

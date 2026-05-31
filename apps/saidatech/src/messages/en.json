@@ -2,6 +2,14 @@
   "nav": {
     "home": "Home",
     "about": "About",
+    "aboutLinks": {
+      "about": "About",
+      "ceoMessage": "Message From The CEO",
+      "overview": "Organization Overview",
+      "business": "Business Contents",
+      "gallery": "Gallery",
+      "history": "History"
+    },
     "services": "Services",
     "jobs": "Jobs",
     "seminars": "Seminars",

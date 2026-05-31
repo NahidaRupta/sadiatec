@@ -22,7 +22,7 @@ function AlternatingRow({ service, index }: AlternatingRowProps) {
       whileInView="visible"
       viewport={{ once: true, margin: '-60px' }}
       className={[
-        'flex flex-col items-center gap-8 md:gap-12',
+        'flex flex-col items-center gap-10 lg:gap-16', // Slightly wider gap for cleaner separation
         imageRight ? 'md:flex-row-reverse' : 'md:flex-row',
       ].join(' ')}
     >
@@ -34,34 +34,44 @@ function AlternatingRow({ service, index }: AlternatingRowProps) {
           <img
             src={service.imageUrl}
             alt={service.imageName}
-            className="aspect-[4/3] w-full rounded-2xl object-cover"
+            className="aspect-[16/10] w-full rounded-2xl object-cover shadow-sm border border-neutral-100" // Changed to elegant 16/10 aspect ratio
           />
         ) : (
-          <div className="aspect-[4/3] w-full rounded-2xl bg-(--color-neutral-100)" />
+          <div className="aspect-[16/10] w-full rounded-2xl bg-(--color-neutral-100)" />
         )}
       </div>
 
       {/* Content */}
-      <div className="w-full md:w-1/2">
+      <div className="w-full md:w-1/2 text-left space-y-3">
         {service.subheadline && (
-          <p className="mb-2 text-sm font-semibold text-(--color-primary)">
+          <p className="text-[11px] font-bold uppercase tracking-widest text-(--color-primary)">
             {service.subheadline}
           </p>
         )}
-        <h3 className="text-2xl font-bold text-(--color-text) md:text-3xl">{service.title}</h3>
+        {/* Balanced row heading scale */}
+        <h3 className="text-2xl font-extrabold tracking-tight text-(--color-text) lg:text-3xl">
+          {service.title}
+        </h3>
         {service.description && (
-          <p className="mt-4 text-base leading-relaxed text-(--color-muted)">
+          <p className="text-sm md:text-base leading-relaxed text-(--color-muted)">
             {service.description}
           </p>
         )}
         {service.cta.label && (
-          <Link
-            href={service.cta.href}
-            className="mt-6 inline-flex min-h-[44px] items-center gap-1 text-base font-semibold text-(--color-primary) hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-primary)"
-          >
-            {service.cta.label}
-            <span aria-hidden="true" className="text-lg">→</span>
-          </Link>
+          <div className="pt-2">
+            <Link
+              href={service.cta.href}
+              className="inline-flex items-center gap-1.5 text-sm font-bold text-(--color-primary) hover:underline group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-primary)"
+            >
+              <span>{service.cta.label}</span>
+              <svg 
+                className="h-4 w-4 transform transition-transform duration-200 group-hover:translate-x-1 stroke-[2.5]" 
+                fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </div>
         )}
       </div>
     </motion.div>
@@ -76,36 +86,48 @@ function GridCard({ service }: GridCardProps) {
   return (
     <motion.article
       variants={fadeInUp}
-      className="flex flex-col overflow-hidden rounded-2xl border border-(--color-neutral-200) bg-white"
+      className="flex flex-col overflow-hidden rounded-2xl border border-(--color-neutral-200) bg-white shadow-sm hover:shadow-md transition-shadow duration-300"
     >
       {service.imageUrl ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={service.imageUrl}
           alt={service.imageName}
-          className="aspect-[4/3] w-full object-cover"
+          className="aspect-[16/10] w-full object-cover" // 16/10 golden ratio looks much leaner than boxy 4/3
         />
       ) : (
-        <div className="aspect-[4/3] w-full bg-(--color-neutral-100)" />
+        <div className="aspect-[16/10] w-full bg-(--color-neutral-100)" />
       )}
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-6 text-left">
         {service.subheadline && (
-          <p className="mb-1 text-sm font-semibold text-(--color-primary)">{service.subheadline}</p>
+          <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-(--color-primary)">
+            {service.subheadline}
+          </p>
         )}
-        <h3 className="text-xl font-bold text-(--color-text)">{service.title}</h3>
+        {/* Toned card heading size down from xl to text-lg */}
+        <h3 className="text-lg font-bold tracking-tight text-(--color-text)">
+          {service.title}
+        </h3>
         {service.description && (
-          <p className="mt-3 flex-1 text-sm leading-relaxed text-(--color-muted)">
+          <p className="mt-2 flex-1 text-xs md:text-sm leading-relaxed text-(--color-muted)">
             {service.description}
           </p>
         )}
         {service.cta.label && (
-          <Link
-            href={service.cta.href}
-            className="mt-4 inline-flex min-h-[44px] items-center gap-1 text-sm font-semibold text-(--color-primary) hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-primary)"
-          >
-            {service.cta.label}
-            <span aria-hidden="true">→</span>
-          </Link>
+          <div className="mt-4 pt-3 border-t border-neutral-50">
+            <Link
+              href={service.cta.href}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-(--color-primary) hover:underline group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-primary)"
+            >
+              <span>{service.cta.label}</span>
+              <svg 
+                className="h-3.5 w-3.5 transform transition-transform duration-200 group-hover:translate-x-1 stroke-[2.5]" 
+                fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </div>
         )}
       </div>
     </motion.article>
@@ -121,16 +143,20 @@ export function ServicesGridBlock({
   if (services.length === 0) return null
 
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-20 md:py-28 bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
         {/* Section header */}
-        <div className="mb-16 text-center">
+        <div className="mb-16 md:mb-24 text-center max-w-3xl mx-auto space-y-3">
           <SectionEyebrow>{eyebrow}</SectionEyebrow>
-          <h2 className="mt-4 text-3xl font-bold text-(--color-text) md:text-4xl">{heading}</h2>
+          {/* Main header toned down to text-3xl with text-4xl on desktop */}
+          <h2 className="text-3xl font-extrabold tracking-tight text-(--color-text) md:text-4xl">
+            {heading}
+          </h2>
         </div>
 
         {layout === 'alternating' ? (
-          <div className="space-y-20 md:space-y-28">
+          <div className="space-y-24 md:space-y-32">
             {services.map((service, i) => (
               <AlternatingRow key={i} service={service} index={i} />
             ))}

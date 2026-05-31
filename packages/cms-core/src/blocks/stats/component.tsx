@@ -44,12 +44,14 @@ function StatCounter({ item, reducedMotion }: StatCounterProps) {
   }, [isInView, item.value, reducedMotion])
 
   return (
-    <div ref={ref} className="flex flex-col items-center text-center">
-      <span className="text-4xl font-bold tracking-tight text-(--color-primary) md:text-5xl lg:text-6xl">
+    <div ref={ref} className="flex flex-col items-center text-center px-4 py-3 md:py-0">
+      {/* Scaled down count text for a cleaner presentation */}
+      <span className="text-3xl font-extrabold tracking-tight text-(--color-primary) md:text-4xl lg:text-5xl">
         {count.toLocaleString()}
-        <span className="text-3xl md:text-4xl">{item.suffix ?? '+'}</span>
+        <span className="text-2xl font-bold ml-0.5 md:text-3xl">{item.suffix ?? '+'}</span>
       </span>
-      <span className="mt-3 text-sm font-medium uppercase tracking-wider text-(--color-muted)">
+      {/* Swapped uppercase tracking-wider for sleek descriptive typography */}
+      <span className="mt-2 text-xs md:text-sm font-medium text-(--color-muted) tracking-tight">
         {item.label}
       </span>
     </div>
@@ -62,20 +64,23 @@ export function StatsBlock({ eyebrow, sectionHeading, items }: StatsBlockProps) 
   if (items.length === 0) return null
 
   return (
-    <section className="bg-(--color-surface) py-20 md:py-24">
+    <section className="bg-(--color-surface) py-20 md:py-24 border-y border-neutral-100/50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        {/* Section header */}
         {(eyebrow || sectionHeading) && (
-          <div className="mb-12 text-center">
+          <div className="mb-16 text-center max-w-3xl mx-auto space-y-3">
             {eyebrow && <SectionEyebrow>{eyebrow}</SectionEyebrow>}
             {sectionHeading && (
-              <p className="mx-auto mt-3 max-w-2xl text-3xl font-bold text-(--color-text) md:text-4xl">
+              <p className="text-2xl font-extrabold tracking-tight text-(--color-text) md:text-3xl lg:text-4xl">
                 {sectionHeading}
               </p>
             )}
           </div>
         )}
 
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+        {/* Clean Grid Layout with crisp line borders for a professional structure */}
+        <div className="grid grid-cols-2 gap-y-8 divide-y divide-neutral-200/60 md:grid-cols-4 md:divide-y-0 md:divide-x">
           {items.map((item, i) => (
             <StatCounter key={i} item={item} reducedMotion={reducedMotion} />
           ))}

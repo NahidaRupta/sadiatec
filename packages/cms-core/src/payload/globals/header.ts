@@ -12,17 +12,77 @@ export const HeaderGlobal: GlobalConfig = {
       type: 'array',
       label: 'Navigation items',
       fields: [
-        { name: 'labelKey', type: 'text', required: true, admin: { description: 'i18n key, e.g. nav.services' } },
+        { 
+          name: 'label', 
+          type: 'text', 
+          required: true, 
+          localized: true, // 👈 Shifted to native CMS localization
+          admin: { description: 'The text displayed in the navigation item' } 
+        },
         { name: 'href', type: 'text', required: true },
         {
           name: 'children',
           type: 'array',
           label: 'Dropdown items',
+          admin: { description: 'Used for simple dropdown menus (e.g. About)' },
           fields: [
-            { name: 'labelKey', type: 'text', required: true },
+            { 
+              name: 'label', 
+              type: 'text', 
+              required: true, 
+              localized: true // 👈 Shifted to native CMS localization
+            },
             { name: 'href', type: 'text', required: true },
           ],
         },
+        {
+          name: 'megaMenu',
+          type: 'checkbox',
+          label: 'Use mega menu layout',
+          defaultValue: false,
+          admin: { description: 'Enable for wide multi-column dropdown panels (e.g. Services)' },
+        },
+        // Add description inside megaColumns -> items
+        {
+          name: 'megaColumns',
+          type: 'array',
+          label: 'Mega menu columns',
+          admin: {
+            condition: (_data, siblingData) => Boolean(siblingData?.megaMenu),
+          },
+          fields: [
+            {
+              name: 'heading',
+              type: 'text',
+              localized: true,
+            },
+            {
+              name: 'items',
+              type: 'array',
+              fields: [
+                { name: 'label', type: 'text', required: true, localized: true },
+                { name: 'href', type: 'text', required: true },
+                {
+                  name: 'description',
+                  type: 'textarea', // 👈 Added for the sub-text details
+                  localized: true,
+                  admin: { description: 'Sub-text description for the service' }
+                },
+              ],
+            },
+          ],
+        },
+        // Add an optional side image to the top-level nav item layout
+        {
+          name: 'featuredImage',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Mega Menu Featured Image',
+          admin: {
+            condition: (_data, siblingData) => Boolean(siblingData?.megaMenu),
+            description: 'Image displayed on the left side of the mega menu (e.g., classroom image)'
+          }
+        }
       ],
     },
     {

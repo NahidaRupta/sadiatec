@@ -20,21 +20,29 @@ function BentoCard({ item, index, layout }: BentoCardProps) {
     <motion.article
       variants={fadeInUp}
       className={[
-        'relative rounded-2xl border border-(--color-neutral-200) bg-white p-8',
-        'transition-all duration-200 hover:-translate-y-1 hover:shadow-lg',
+        'relative rounded-2xl border border-(--color-neutral-200) bg-white p-6 md:p-8 text-left',
+        'transition-all duration-300 hover:border-(--color-primary)/30 hover:shadow-md',
         spanClass,
       ]
         .filter(Boolean)
         .join(' ')}
     >
-      <span className="text-2xl font-bold text-(--color-primary)" aria-hidden="true">
+      {/* Refined into a premium badge token layout */}
+      <span 
+        className="inline-flex items-center justify-center rounded-md bg-(--color-primary)/5 px-2 py-0.5 text-xs font-mono font-bold tracking-wider text-(--color-primary)" 
+        aria-hidden="true"
+      >
         {item.number}
       </span>
-      <h3 className="mt-4 text-xl font-semibold text-(--color-text) md:text-2xl">
+      
+      {/* Downscaled heading for clean presentation */}
+      <h3 className="mt-4 text-lg font-bold tracking-tight text-(--color-text) md:text-xl">
         {item.title}
       </h3>
+      
+      {/* Tighter description text scale */}
       {item.description && (
-        <p className="mt-3 text-base leading-relaxed text-(--color-muted)">
+        <p className="mt-2 text-xs md:text-sm leading-relaxed text-(--color-muted) font-normal">
           {item.description}
         </p>
       )}
@@ -59,24 +67,29 @@ export function BentoGridBlock({
       : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
 
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-20 md:py-28 bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
-        <div className="mx-auto mb-12 max-w-3xl text-center">
+        
+        {/* Balanced and structured Section header */}
+        <div className="mx-auto mb-16 max-w-3xl text-center space-y-3">
           <SectionEyebrow>{eyebrow}</SectionEyebrow>
-          <h2 className="mt-4 text-3xl font-bold text-(--color-text) md:text-4xl">{heading}</h2>
+          <h2 className="text-3xl font-extrabold tracking-tight text-(--color-text) md:text-4xl">
+            {heading}
+          </h2>
           {intro && (
-            <p className="mt-4 text-lg leading-relaxed text-(--color-muted)">{intro}</p>
+            <p className="mx-auto max-w-2xl text-sm md:text-base leading-relaxed text-(--color-muted)">
+              {intro}
+            </p>
           )}
         </div>
 
-        {/* Bento grid */}
+        {/* Bento grid assembly */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          className={`grid gap-6 ${gridClass}`}
+          className={`grid gap-5 md:gap-6 ${gridClass}`}
         >
           {items.map((item, i) => (
             <BentoCard key={i} item={item} index={i} layout={layout} />

@@ -38,6 +38,13 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: '*.r2.dev' },
       { protocol: 'https', hostname: '*.r2.cloudflarestorage.com' },
       { protocol: 'https', hostname: 'imagedelivery.net' },
+      // 🔌 👈 Added to authorize local media file serving routes through next/image
+      { 
+        protocol: 'http', 
+        hostname: 'localhost', 
+        port: '3000', 
+        pathname: '/api/media/**' 
+      },
     ],
   },
 

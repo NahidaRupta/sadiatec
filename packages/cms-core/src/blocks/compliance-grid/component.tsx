@@ -19,16 +19,18 @@ const ICON_PATHS: Record<ComplianceIcon, string> = {
 
 function LicenseIcon({ icon }: { icon: ComplianceIcon }) {
   return (
-    <svg
-      aria-hidden="true"
-      className="h-6 w-6 text-(--color-primary)"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d={ICON_PATHS[icon]} />
-    </svg>
+    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#0a1629] text-amber-500">
+      <svg
+        aria-hidden="true"
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d={ICON_PATHS[icon]} />
+      </svg>
+    </div>
   )
 }
 
@@ -43,72 +45,94 @@ export function ComplianceGridBlock({
   if (licenses.length === 0 && commitments.length === 0) return null
 
   return (
-    <section aria-labelledby="compliance-heading" className="py-20 md:py-28">
+    <section 
+      aria-labelledby="compliance-heading" 
+      className="bg-slate-50/50 py-20 md:py-28 text-center"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section header — left-aligned */}
-        <div className="mb-12 max-w-3xl">
+        
+        {/* Section header — perfectly centered */}
+        <div className="mx-auto mb-16 max-w-3xl space-y-3">
           {eyebrow && <SectionEyebrow>{eyebrow}</SectionEyebrow>}
           {heading && (
             <h2
               id="compliance-heading"
-              className="mt-4 text-3xl font-bold text-(--color-text) md:text-4xl"
+              className="text-3xl font-extrabold tracking-tight text-(--color-text) md:text-4xl"
             >
               {heading}
             </h2>
           )}
           {intro && (
-            <p className="mt-4 text-base leading-relaxed text-(--color-muted)">{intro}</p>
+            <p className="mx-auto max-w-2xl text-sm md:text-base leading-relaxed text-(--color-muted)">
+              {intro}
+            </p>
           )}
         </div>
 
-        {/* License cards grid */}
+        {/* 4-Column Card Grid based on image_9814c1.png */}
         {licenses.length > 0 && (
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
-            className="grid grid-cols-1 gap-6 md:grid-cols-2"
+            className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
           >
             {licenses.map((card, i) => (
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                className="rounded-xl border border-(--color-neutral-200) bg-white p-6"
+                className="flex flex-col justify-between rounded-2xl border border-neutral-200/70 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
               >
-                {card.icon && <LicenseIcon icon={card.icon} />}
-                <h3 className="mt-4 text-lg font-semibold text-(--color-text)">{card.title}</h3>
-                {card.issuer && (
-                  <p className="mt-2 text-sm text-(--color-muted)">{card.issuer}</p>
-                )}
+                <div className="space-y-4">
+                  {card.icon && <LicenseIcon icon={card.icon} />}
+                  <h3 className="text-sm font-bold tracking-tight text-(--color-text) px-2">
+                    {card.title}
+                  </h3>
+                  {card.issuer && (
+                    <p className="text-xs text-(--color-muted) font-medium leading-normal">
+                      {card.issuer}
+                    </p>
+                  )}
+                </div>
                 {card.licenseNumber && (
-                  <p className="mt-1 font-mono text-xs text-(--color-muted)">{card.licenseNumber}</p>
+                  <p className="mt-4 font-mono text-[10px] tracking-wider text-(--color-muted)/70 uppercase">
+                    No. {card.licenseNumber}
+                  </p>
                 )}
               </motion.div>
             ))}
           </motion.div>
         )}
 
-        {/* Commitments list */}
+        {/* Dark Commitments Container Box Panel */}
         {commitments.length > 0 && (
-          <div className="mt-16">
+          <div className="mt-12 overflow-hidden rounded-2xl bg-[#0a1629] p-8 md:p-12 text-left shadow-xl">
             {commitmentsHeading && (
-              <h3 className="mb-6 text-2xl font-bold text-(--color-text)">{commitmentsHeading}</h3>
+              <h3 className="mb-8 text-base font-bold tracking-wider text-white uppercase">
+                {commitmentsHeading}
+              </h3>
             )}
-            <ul className="space-y-1" role="list">
+            <ul className="grid grid-cols-1 gap-x-12 gap-y-5 md:grid-cols-2" role="list">
               {commitments.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 py-2">
+                <li key={i} className="flex items-start gap-3">
+                  {/* Subtle amber shield/check list decorator */}
                   <svg
                     aria-hidden="true"
-                    className="mt-0.5 h-5 w-5 shrink-0 text-(--color-primary)"
+                    className="mt-0.5 h-4 w-4 shrink-0 text-amber-500 stroke-[2.5]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
-                    strokeWidth={2}
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" 
+                    />
                   </svg>
-                  <span className="text-base text-(--color-text)">{item}</span>
+                  <span className="text-xs md:text-sm leading-relaxed font-normal text-slate-300">
+                    {item}
+                  </span>
                 </li>
               ))}
             </ul>

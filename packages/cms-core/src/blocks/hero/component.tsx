@@ -109,20 +109,48 @@ export function HeroBlock({
               )} */}
 
               {/* Headline — first segment in accent colour, rest in white */}
-              <motion.h1
-                id="hero-heading"
-                variants={fadeInUp}
-                className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl xl:text-6xl"
-              >
-                {headlineParts.map((part, i) => (
-                  <span key={i}>
-                    {i > 0 && <br />}
-                    {i === 0
-                      ? <span className="text-[var(--color-accent)]">{part}</span>
-                      : part}
-                  </span>
-                ))}
-              </motion.h1>
+              {/* 🛠️ Dynamic parsing logic to isolate the headline accent */}
+              {(() => {
+                // Join parts if it's an array, or just grab the raw text string
+                const fullText = Array.isArray(headlineParts) ? headlineParts.join(' ') : headlineParts;
+
+                // Find where your phrase splits
+                const targetPhrase = "Study and Work";
+                const hasTarget = fullText.includes(targetPhrase);
+
+                if (hasTarget) {
+                  const remainder = fullText.replace(targetPhrase, '').trim();
+                  // Clean up any dangling hyphens or colons at the beginning of the remaining string
+                  const cleanRemainder = remainder.replace(/^[\s\-\:\—]+/, '');
+
+                  return (
+                    <motion.h1
+                      id="hero-heading"
+                      variants={fadeInUp}
+                      className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl xl:text-6xl"
+                    >
+                      <span className="text-amber-500">{targetPhrase}</span>
+                      {cleanRemainder && (
+                        <>
+                          <br />
+                          <span className="text-white">{cleanRemainder}</span>
+                        </>
+                      )}
+                    </motion.h1>
+                  );
+                }
+
+                // Fallback if the headline changes inside the admin panel completely
+                return (
+                  <motion.h1
+                    id="hero-heading"
+                    variants={fadeInUp}
+                    className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl xl:text-6xl"
+                  >
+                    {fullText}
+                  </motion.h1>
+                );
+              })()}
 
               {/* Subheadline */}
               {resolvedSubheadline && (
