@@ -22,6 +22,25 @@ export const FooterGlobal: GlobalConfig = {
         },
       ],
     },
+    { 
+      name: 'contactEmail', 
+      type: 'text', 
+      label: 'Contact Email',
+      admin: {
+        description: 'The operational contact email address displayed in the footer info card.',
+        placeholder: 'info@sadiatec.com'
+      }
+    },
+    { 
+      name: 'officeAddress', 
+      type: 'textarea', 
+      label: 'Office Address',
+      localized: true,
+      admin: {
+        description: 'The physical corporate office address. Line breaks will be preserved on the frontend layout.',
+        placeholder: '〒101-0021, Tokyo, Chiyoda-ku,\nSotokanda 4-5-5, Akiba-\nMitakikan 5F'
+      }
+    },
     { name: 'copyrightText', type: 'text', localized: true },
   ],
 }

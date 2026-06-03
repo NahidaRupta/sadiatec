@@ -17,6 +17,8 @@ interface FooterColumn {
 interface FooterGlobalData {
   columns?: FooterColumn[]
   copyrightText?: string
+  contactEmail?: string  // Dynamic Admin Panel Email Field
+  officeAddress?: string // Dynamic Admin Panel Address Field
 }
 
 interface FooterProps {
@@ -63,6 +65,14 @@ function TwitterXIcon() {
   )
 }
 
+function YouTubeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
+      <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+    </svg>
+  )
+}
+
 const socialIconMap: Record<string, React.FC> = {
   linkedin: LinkedInIcon,
   instagram: InstagramIcon,
@@ -70,6 +80,14 @@ const socialIconMap: Record<string, React.FC> = {
   line: LineIcon,
   twitter: TwitterXIcon,
   x: TwitterXIcon,
+  youtube: YouTubeIcon,
+}
+
+// Brand-specific color styling mapping for original icon colors
+const brandColorMap: Record<string, string> = {
+  instagram: 'text-[#E1306C] hover:text-[#C13584]',
+  facebook: 'text-[#1877F2] hover:text-[#166FE5]',
+  youtube: 'text-[#FF0000] hover:text-[#CC0000]',
 }
 
 export async function Footer({ locale }: FooterProps) {
@@ -91,83 +109,170 @@ export async function Footer({ locale }: FooterProps) {
   const copyrightText =
     footerData.copyrightText ?? `© ${currentYear} ${siteConfig.site.name}. All rights reserved.`
 
-  return (
-    <footer className="bg-neutral-950 text-neutral-50">
-      {/* Main columns */}
-      {columns.length > 0 && (
-        <div className="border-b border-neutral-800">
-          <Container>
-            <div className="py-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {columns.map((column, idx) => (
-                <div key={idx}>
-                  {column.heading && (
-                    <p className="text-sm font-semibold text-neutral-300 uppercase tracking-wider mb-4">
-                      {column.heading}
-                    </p>
-                  )}
-                  <ul role="list" className="flex flex-col gap-2">
-                    {(column.links ?? []).map((link, linkIdx) => (
-                      <li key={linkIdx}>
-                        <Link
-                          href={link.href}
-                          className="text-sm text-neutral-400 hover:text-neutral-50 transition-colors
-                            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]
-                            rounded-sm"
-                        >
-                          {link.label ?? link.href}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </div>
-      )}
+  // Setup admin panel fields with standard hardcoded design defaults
+  const dynamicEmail = footerData.contactEmail || 'info@sadiatec.com'
+  const dynamicAddress = footerData.officeAddress || (
+    <>
+      〒101-0021, Tokyo, Chiyoda-ku,<br />
+      Sotokanda 4-5-5, Akiba-<br />
+      Mitakikan 5F
+    </>
+  )
 
-      {/* Social links */}
-      {siteConfig.nav.socialLinks.length > 0 && (
-        <div className="border-b border-neutral-800">
-          <Container>
-            <div className="py-6 flex items-center gap-4">
-              {siteConfig.nav.socialLinks.map((social) => {
-                const Icon = socialIconMap[social.platform]
+  return (
+    <footer className="bg-neutral-950 text-neutral-50 border-t border-neutral-900">
+      <Container>
+        {/* Main Section: Brand & Newsletter Stack + Links Columns Grid */}
+        <div className="py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+          
+          {/* Left Column: Kept exactly as lg:col-span-4 to preserve original design */}
+          <div className="lg:col-span-4 flex flex-col space-y-8">
+            
+            {/* 1. Brand Logo - Text Design Only */}
+            <Link href="/" className="inline-block select-none focus:outline-none">
+              <span className="text-2xl tracking-wide">
+                <span className="font-light text-white">Sadia</span>
+                <span className="font-extrabold text-amber-500 italic ml-0.5">tec</span>
+              </span>
+            </Link>
+            
+            {/* 2. Newsletter Subscription Header Box */}
+            <div className="space-y-4">
+              <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight max-w-sm leading-snug">
+                {locale === 'ja'
+                  ? '最新情報やニュースをお届けします。ぜひご登録ください。'
+                  : locale === 'bn'
+                  ? 'সর্বশেষ আপডেট এবং খবরের জন্য সাবস্ক্রাইব করে যুক্ত থাকুন।'
+                  : 'Subscribe to stay in touch with the latest updates and news.'}
+              </h3>
+              <div className="w-full max-w-sm">
+                <input
+                  type="email"
+                  placeholder={locale === 'ja' ? 'メールアドレス' : locale === 'bn' ? 'ইমেইল' : 'Email'}
+                  className="w-full bg-[#1A1A1A] border border-neutral-800 rounded-full px-5 py-3 text-sm text-neutral-200 placeholder-neutral-500 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all"
+                />
+              </div>
+            </div>
+
+            {/* 3. Structural Contact Information Cards */}
+            <div className="space-y-6 max-w-sm">
+              
+              {/* Reach us Email segment - Rendered dynamically with Admin panel field value */}
+              <div className="flex items-center justify-between group cursor-pointer">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-full bg-[#182621] text-[#00A86B] shrink-0">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-white tracking-wide">
+                      {locale === 'ja' ? 'お問い合わせ' : locale === 'bn' ? 'যোগাযোগ করুন' : 'Reach us at'}
+                    </h4>
+                    <p className="text-neutral-300 text-sm font-medium mt-0.5">
+                      {dynamicEmail}
+                    </p>
+                  </div>
+                </div>
+                {/* Right side pointer arrow indicator */}
+                <div className="text-neutral-400 group-hover:text-white transition-colors pr-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Corporate Office Address segment - Rendered dynamically with Admin panel textarea field value */}
+              <div className="flex items-start gap-4">
+                <div className="flex items-center justify-center h-12 w-12 rounded-full bg-[#182621] text-[#00A86B] shrink-0 mt-0.5">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white tracking-wide">
+                    {locale === 'ja' ? '本社所在地' : locale === 'bn' ? 'কর্পোরেট অফিস' : 'Corporate Office'}
+                  </h4>
+                  <div className="text-neutral-400 text-sm leading-relaxed mt-1 tracking-wide font-light whitespace-pre-line">
+                    {dynamicAddress}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* 4. Rounded Square Social Network Blocks with original brand colors */}
+            <div className="flex items-center gap-3 pt-2">
+              {['instagram', 'facebook', 'youtube'].map((platform) => {
+                const Icon = socialIconMap[platform]
                 if (!Icon) return null
+                
+                const linkMatch = siteConfig.nav.socialLinks.find(s => s.platform === platform)
+                const targetUrl = linkMatch ? linkMatch.url : '#'
+                const brandColorClass = brandColorMap[platform] ?? 'text-neutral-400 hover:text-white'
+
                 return (
                   <a
-                    key={social.platform}
-                    href={social.url}
+                    key={platform}
+                    href={targetUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={social.platform}
-                    className="text-neutral-400 hover:text-neutral-50 transition-colors
-                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]
-                      rounded-sm p-1"
+                    aria-label={platform}
+                    className={`flex items-center justify-center h-11 w-11 bg-neutral-900 border border-neutral-800 rounded-xl hover:bg-neutral-800 hover:scale-105 transition-all shadow-sm ${brandColorClass}`}
                   >
                     <Icon />
                   </a>
                 )
               })}
             </div>
-          </Container>
-        </div>
-      )}
 
-      {/* Bottom bar: copyright + legal */}
-      <Container>
-        <div className="py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <Text as="span" variant="caption" className="text-neutral-500">
+          </div>
+
+          {/* Right Columns: Kept exactly as lg:col-span-8 and ml-15 to preserve design */}
+          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-8 ml-15">
+            {columns.map((column, idx) => (
+              <div key={idx} className="flex flex-col">
+                {column.heading && (
+                  <p className="text-xs font-bold text-neutral-200 uppercase tracking-widest mb-5">
+                    {column.heading}
+                  </p>
+                )}
+                <ul role="list" className="flex flex-col gap-3">
+                  {(column.links ?? []).map((link, linkIdx) => (
+                    <li key={linkIdx}>
+                      <Link
+                        href={link.href}
+                        className="text-[14px] text-neutral-400 hover:text-amber-500 transition-colors
+                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-sm"
+                      >
+                        {link.label ?? link.href}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+        </div>
+
+        {/* Horizontal Line separating main area from bottom metadata */}
+        <div className="border-t border-neutral-900" />
+
+        {/* Bottom Bar: Copyright and Legal Anchors */}
+        <div className="py-8 flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
+          <Text as="span" variant="caption" className="text-sm text-neutral-500">
             {copyrightText}
           </Text>
-          <ul role="list" className="flex items-center gap-4 flex-wrap">
+          
+          <ul role="list" className="flex items-center gap-6 flex-wrap">
             {siteConfig.nav.legalLinks.map((link) => (
               <li key={link.slug}>
                 <Link
                   href={link.slug}
                   className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors
-                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]
-                    rounded-sm"
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-sm"
                 >
                   {link.labelKey}
                 </Link>
