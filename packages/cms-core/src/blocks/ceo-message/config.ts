@@ -5,7 +5,7 @@ export const CEOMessageBlockConfig: Block = {
   interfaceName: 'CEOMessageBlock',
   labels: { singular: 'CEO / Leader Message', plural: 'CEO / Leader Messages' },
   fields: [
-    { name: 'portrait', type: 'upload', relationTo: 'media', required: true },
+    { name: 'portrait', type: 'upload', relationTo: 'media' },
     { name: 'portraitAlt', type: 'text', required: true, localized: true, admin: { description: 'Max 150 characters' } },
     { name: 'name', type: 'text', required: true, localized: true, admin: { description: 'Max 100 characters' } },
     { name: 'title', type: 'text', required: true, localized: true, admin: { description: 'Max 100 characters' } },

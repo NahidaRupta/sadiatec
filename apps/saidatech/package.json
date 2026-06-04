@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "seed": "RUN_SEED=true tsx --env-file=.env.local src/seed/index.ts"
+    "seed": "RUN_SEED=true tsx --env-file=.env.local src/seed/index.ts",
+    "seed:about": "tsx --env-file=.env.local src/seed/about-section.seed.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.84.1",

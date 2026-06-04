@@ -5,7 +5,7 @@ export const ImageTextSplitBlockConfig: Block = {
   interfaceName: 'ImageTextSplitBlock',
   labels: { singular: 'Image and Text Side by Side', plural: 'Image and Text Side by Side Blocks' },
   fields: [
-    { name: 'image', type: 'upload', relationTo: 'media', required: true },
+    { name: 'image', type: 'upload', relationTo: 'media' },
     { name: 'imageAlt', type: 'text', required: true, localized: true, admin: { description: 'Max 150 characters' } },
     {
       name: 'imagePosition',

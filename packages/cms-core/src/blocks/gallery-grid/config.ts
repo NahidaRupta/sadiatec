@@ -24,7 +24,7 @@ export const GalleryGridBlockConfig: Block = {
       required: true,
       minRows: 1,
       fields: [
-        { name: 'image', type: 'upload', relationTo: 'media', required: true },
+        { name: 'image', type: 'upload', relationTo: 'media' },
         { name: 'caption', type: 'text', localized: true, admin: { description: 'Max 200 characters' } },
         { name: 'category', type: 'text', admin: { description: 'Must match a category slug above' } },
       ],

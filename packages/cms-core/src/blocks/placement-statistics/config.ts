@@ -54,7 +54,7 @@ export const PlacementStatisticsBlockConfig: Block = {
       minRows: 1,
       maxRows: 20,
       fields: [
-        { name: 'name', type: 'text', required: true, admin: { description: 'Max 60 characters, e.g. "AICHI"' } },
+        { name: 'name', type: 'text', required: true, localized: true, admin: { description: 'Max 60 characters, e.g. "AICHI"' } },
         { name: 'value', type: 'number', required: true, min: 0, admin: { description: 'Numeric count of placements' } },
       ],
     },
