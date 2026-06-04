@@ -1,0 +1,402 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications alt+T"
+    - navigation [ref=e3]:
+      - generic [ref=e5]:
+        - link [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img [ref=e8]
+        - generic [ref=e9]:
+          - generic [ref=e10]:
+            - button [ref=e11] [cursor=pointer]:
+              - generic "English" [ref=e12]:
+                - img [ref=e13]
+            - button [ref=e43] [cursor=pointer]:
+              - generic "Japanese" [ref=e44]:
+                - img [ref=e45]
+            - button [ref=e50] [cursor=pointer]:
+              - generic "Bengali" [ref=e51]:
+                - img [ref=e52]
+          - button "Open main menu" [ref=e57] [cursor=pointer]:
+            - generic [ref=e58]: Open main menu
+            - img [ref=e59]
+      - generic [ref=e61]:
+        - link "会社概要" [ref=e63] [cursor=pointer]:
+          - /url: /about
+          - generic [ref=e64]:
+            - text: 会社概要
+            - img [ref=e65]
+        - link "サービス" [ref=e68] [cursor=pointer]:
+          - /url: /about
+          - generic [ref=e69]:
+            - text: サービス
+            - img [ref=e70]
+        - link "求職者の方へ" [ref=e73] [cursor=pointer]:
+          - /url: /job-seekers
+          - generic [ref=e74]: 求職者の方へ
+        - link "採用担当者の方へ" [ref=e76] [cursor=pointer]:
+          - /url: /employers
+          - generic [ref=e77]: 採用担当者の方へ
+        - link "ニュース・更新情報" [ref=e79] [cursor=pointer]:
+          - /url: /news-events
+          - generic [ref=e80]: ニュース・更新情報
+        - button "Contact" [ref=e81] [cursor=pointer]
+    - generic [ref=e83]:
+      - generic [ref=e87]:
+        - generic [ref=e88]:
+          - heading "私たちのストーリー 情熱と革新" [level=1] [ref=e89]:
+            - generic [ref=e90]: 私たちのストーリー
+            - generic [ref=e91]: 情熱と革新
+          - paragraph [ref=e92]: 私たちは、人々のテクノロジー体験を変革することを使命としています。2005年に設立されて以来、私たちの歩みは創造性、 献身、そして卓越性を追求し続ける姿勢によって形づくられてきました。
+          - generic [ref=e93]:
+            - button "私たちのミッション" [ref=e94] [cursor=pointer]
+            - button "私たちのチームをご紹介します" [ref=e95] [cursor=pointer]
+        - generic [ref=e97]:
+          - generic [ref=e98]: Since 2005
+          - generic [ref=e99]:
+            - heading "Corporate Profile" [level=2] [ref=e100]
+            - generic [ref=e101]:
+              - paragraph [ref=e102]: "Corporate Name: Sadiatec Co., Ltd."
+              - paragraph [ref=e103]: "Corporate Type: Private Company"
+              - paragraph [ref=e104]: "Established: April 7th, 2005"
+              - paragraph [ref=e105]: "Capital: 30,000,000 Yen"
+              - paragraph [ref=e106]: "President & CEO: Md Sanaul Haque"
+      - generic [ref=e108]:
+        - generic [ref=e110]:
+          - img [ref=e112]
+          - heading "Partners & Certifications" [level=2] [ref=e114]
+        - generic [ref=e115]:
+          - generic [ref=e116]:
+            - img "Partner's Logo" [ref=e118]
+            - img "Partner's Logo" [ref=e120]
+            - img "Partner's Logo" [ref=e122]
+            - img "Partner's Logo" [ref=e124]
+            - img "Partner's Logo" [ref=e126]
+            - img "Partner's Logo" [ref=e128]
+            - img "Partner's Logo" [ref=e130]
+            - img "Partner's Logo" [ref=e132]
+            - img "Partner's Logo" [ref=e515]
+            - img "Partner's Logo" [ref=e516]
+            - img "Partner's Logo" [ref=e517]
+            - generic [ref=e136]:
+              - img "Partner's Logo"
+            - generic [ref=e137]:
+              - img "Partner's Logo"
+            - generic [ref=e138]:
+              - img "Partner's Logo"
+            - generic [ref=e139]:
+              - img "Partner's Logo"
+            - generic [ref=e140]:
+              - img "Partner's Logo"
+            - generic [ref=e141]:
+              - img "Partner's Logo"
+            - generic [ref=e142]:
+              - img "Partner's Logo"
+            - generic [ref=e143]:
+              - img "Partner's Logo"
+          - generic [ref=e144]:
+            - img "Partner's Logo" [ref=e146]
+            - img "Partner's Logo" [ref=e148]
+            - img "Partner's Logo" [ref=e150]
+            - img "Partner's Logo" [ref=e152]
+            - img "Partner's Logo" [ref=e154]
+            - img "Partner's Logo" [ref=e156]
+            - img "Partner's Logo" [ref=e158]
+            - img "Partner's Logo" [ref=e160]
+            - generic [ref=e161]:
+              - img "Partner's Logo"
+            - generic [ref=e162]:
+              - img "Partner's Logo"
+            - generic [ref=e163]:
+              - img "Partner's Logo"
+            - generic [ref=e164]:
+              - img "Partner's Logo"
+            - generic [ref=e165]:
+              - img "Partner's Logo"
+            - generic [ref=e166]:
+              - img "Partner's Logo"
+            - generic [ref=e167]:
+              - img "Partner's Logo"
+            - generic [ref=e168]:
+              - img "Partner's Logo"
+            - generic [ref=e169]:
+              - img "Partner's Logo"
+            - generic [ref=e170]:
+              - img "Partner's Logo"
+            - generic [ref=e171]:
+              - img "Partner's Logo"
+      - generic [ref=e173]:
+        - heading "Sadiatecは、技術および通信分野におけるIT人材の採用とタレントマネジメントに強く焦点を当てた、国際的なHRソリューションプロバイダーです。通信製品、インターネットベースのマーケットプラットフォーム、輸出入、出版、アパレル製造、非営利団体の取り組みなど、多岐にわたるポートフォリオを展開していますが、当社の中核はHRの専門知識にあります。2005年の設立以来、世界中のクライアントに向けて、優秀な人材の発掘・育成・配属に尽力してきました。" [level=3] [ref=e174]
+        - generic [ref=e175]:
+          - link "会社概要（英語）" [ref=e176] [cursor=pointer]:
+            - /url: https://sadiatec.com/wp-content/uploads/2022/03/20220205_Sadiatec_Company_Profile-Feb-2022-v1.1.pdf
+            - button "会社概要（英語）" [ref=e177]
+          - link "会社概要（日本語）" [ref=e178] [cursor=pointer]:
+            - /url: https://sadiatec.com/wp-content/uploads/2022/03/20220215_JPSadiatec_Company_Profile-Feb-2022-v1.1-.pdf
+            - button "会社概要（日本語）" [ref=e179]
+      - generic [ref=e182]:
+        - img "CEO's Image" [ref=e184]
+        - generic [ref=e185]:
+          - paragraph [ref=e186]: ようこそ！Sadiatec Co. Ltd.では、長年にわたる成功と伝統は、健全な企業統治、倫理、誠実さ、敬意の原則に基づいて築かれてきました。私たちは相互利益のために働いています。取締役会は、会社の管理と従業員を監督し、事業と株主の長期的な最善の利益に沿って業務が行われていることを確認します。取締役会の役割、ガバナンスポリシー、指針、慣行は、『コーポレート・ガバナンス・ガイドライン』で定義されています。これらのガイドラインは、意思決定の効果を最大化するという取締役会の継続的な取り組みを反映しています。すべての従業員は、当社の倫理規範に強化された最高の倫理基準に従って業務を行うことが求められています。これらの原則は、世界中のすべての拠点、従業員、役員、取締役に適用されます。私たちは、通信分野においてスマートで最新のサービスを提供することを目指しています。この分野で既に大きな成功を収めています。ガバナンス、誠実性、責任、説明責任の最高水準を維持することは、今後の長期的な成長と成功にとって重要です。これらの価値観こそが、Sadiatec Co. Ltd.が築かれた基盤であり、今後も私たちを前進させる原動力です。引き続きのご関心とご支援に感謝いたします！
+          - heading "Md Sanaul Haque President & CEO" [level=3] [ref=e187]:
+            - text: Md Sanaul Haque
+            - text: President & CEO
+      - generic [ref=e188]:
+        - heading "Success Story Backed by Data" [level=1] [ref=e190]:
+          - generic [ref=e191]: Success Story
+          - generic [ref=e192]: Backed by Data
+        - generic [ref=e193]:
+          - generic [ref=e195]:
+            - img [ref=e197]
+            - heading "Placements Across Industries" [level=2] [ref=e199]
+          - generic [ref=e202]:
+            - img [ref=e203]:
+              - generic [ref=e204]:
+                - generic [ref=e518]:
+                  - img [ref=e520]
+                  - img [ref=e522]
+                  - img [ref=e524]
+                  - img [ref=e526]
+                  - img [ref=e528]
+                  - img [ref=e530]
+                  - img [ref=e532]
+                  - img [ref=e534]
+                  - img [ref=e536]
+                - generic [ref=e224]:
+                  - generic [ref=e226]: 53%
+                  - generic [ref=e228]: 30%
+                  - generic [ref=e230]: 11%
+                  - generic [ref=e232]: 2%
+            - list [ref=e234]:
+              - listitem [ref=e235]:
+                - img [ref=e236]
+                - text: Construction Industry
+              - listitem [ref=e238]:
+                - img [ref=e239]
+                - text: Food Manufacturing Industry
+              - listitem [ref=e241]:
+                - img [ref=e242]
+                - text: Manufacturing industry
+              - listitem [ref=e244]:
+                - img [ref=e245]
+                - text: Interior Decoration Industry
+              - listitem [ref=e247]:
+                - img [ref=e248]
+                - text: Construction and Horticulture Industry
+              - listitem [ref=e250]:
+                - img [ref=e251]
+                - text: Industrial Furnace Construction Industry
+              - listitem [ref=e253]:
+                - img [ref=e254]
+                - text: Automotive Industry
+              - listitem [ref=e256]:
+                - img [ref=e257]
+                - text: Logistics Industry
+              - listitem [ref=e259]:
+                - img [ref=e260]
+                - text: Agriculture Industry
+        - generic [ref=e262]:
+          - generic [ref=e264]:
+            - img [ref=e266]
+            - heading "Placements Across Regions" [level=2] [ref=e268]
+          - generic [ref=e271]:
+            - img [ref=e272]:
+              - generic [ref=e277]:
+                - generic [ref=e538]: AICHI
+                - generic [ref=e540]: TOCHIGI
+                - generic [ref=e542]: IBARAKI
+                - generic [ref=e544]: FUKUOKA
+              - generic [ref=e287]:
+                - generic [ref=e289]: "0"
+                - generic [ref=e291]: "15"
+                - generic [ref=e293]: "30"
+                - generic [ref=e295]: "45"
+                - generic [ref=e297]: "60"
+            - list [ref=e330]:
+              - listitem [ref=e331]:
+                - img [ref=e332]
+                - text: value
+      - generic [ref=e336]:
+        - generic [ref=e337]:
+          - heading "私たちの使命は明確です" [level=3] [ref=e338]
+          - paragraph [ref=e339]: 効率性、正確性、持続可能性を推進し、より明るい金融の未来のために貸付体験を再定義することです。
+        - generic [ref=e341]:
+          - heading "私たちの影響力は世界に広がっています" [level=3] [ref=e342]
+          - paragraph [ref=e343]: 賑やかな大都市から世界の隅々まで、私たちのソリューションは地理的な障壁を超えています。
+          - link "もっと詳しく" [ref=e349] [cursor=pointer]:
+            - /url: /about
+            - button "もっと詳しく" [ref=e350]
+      - generic [ref=e352]:
+        - generic [ref=e353]:
+          - heading "成功事例" [level=2] [ref=e354]
+          - button "申請プロセス" [ref=e356] [cursor=pointer]
+        - generic [ref=e357]:
+          - generic [ref=e358]:
+            - img "経験と成功率" [ref=e360]
+            - heading "経験と成功率" [level=3] [ref=e361]
+            - paragraph [ref=e362]: 私たちの豊富な経験と高い成功るい未来を切り開くために、優れ 「た成果を確実に提供してきた実 「績があります。
+          - generic [ref=e363]:
+            - img "成功体験" [ref=e365]
+            - heading "成功体験" [level=3] [ref=e366]
+            - paragraph [ref=e367]: 特にバングラデシュ山身の多くの学生や社会人が、私たちのサービスを通じて人生を大きく変え 「ることに成功しています。彼らの成功と成長の物 「語は、私たちの実績の証です。
+          - generic [ref=e368]:
+            - img "合法で信頼できるプロセス" [ref=e370]
+            - heading "合法で信頼できるプロセス" [level=3] [ref=e371]
+            - paragraph [ref=e372]: 法的に信頼できる手続き「私たちは法的基準を厳守し、あらゆる段階で 「信頼性が高く透明なプロセスを実施していま 「す。これにより、皆さまの移行が円滑かつ安全に、すべての規制に準拠して行われることを保証します。
+        - link "今すぐ申請を始める" [ref=e374] [cursor=pointer]:
+          - /url: /contact
+          - button "今すぐ申請を始める" [ref=e375]
+    - generic [ref=e378]:
+      - heading "日本で理想の仕事を見つけましょう" [level=2] [ref=e379]
+      - paragraph [ref=e380]: 革新の力を実際に体験し、Betaのソリューションがどのようにあなたの融資プロセスを革命的に変えることができるかを発見してください。高度な機械学習アルゴリズムとクラウドベースのプラットフォームがどのように動作するかを見るために、個別のデモを今すぐスケジュールしましょう。
+      - generic [ref=e381]:
+        - link "申し込みを始める" [ref=e382] [cursor=pointer]:
+          - /url: /contact
+          - button "申し込みを始める" [ref=e383]
+        - paragraph [ref=e384]:
+          - img [ref=e385]
+          - text: すでに2200人の学生が登録しています
+    - contentinfo [ref=e389]:
+      - generic [ref=e390]:
+        - generic [ref=e391]:
+          - generic [ref=e392]:
+            - link [ref=e394] [cursor=pointer]:
+              - /url: /
+              - img [ref=e395]
+            - heading "最新の更新情報とニュースを受け取るために登録してください。" [level=3] [ref=e396]
+            - generic [ref=e397]:
+              - textbox "Email" [ref=e398]
+              - button "Subscribe" [ref=e399] [cursor=pointer]:
+                - img [ref=e400]
+              - generic [ref=e404]:
+                - generic [ref=e405]:
+                  - img [ref=e408]
+                  - generic [ref=e411]:
+                    - heading "Reach us at" [level=3] [ref=e412]
+                    - paragraph [ref=e413]: info@sadiatec.com
+                - generic [ref=e414]:
+                  - img [ref=e417]
+                  - generic [ref=e420]:
+                    - heading "Corporate Office" [level=3] [ref=e421]
+                    - paragraph [ref=e422]: 〒101-0021, Tokyo, Chiyoda-ku, Sotokanda 4-5-5, Akiba-Mitakikan 5F
+          - generic [ref=e423]:
+            - generic [ref=e424]:
+              - generic [ref=e425]:
+                - heading "私たちのサービス" [level=4] [ref=e426]
+                - separator [ref=e427]
+              - list [ref=e428]:
+                - listitem [ref=e429]:
+                  - link "サディア日本語トレーニングセンター" [ref=e430] [cursor=pointer]:
+                    - /url: /services/sadia-nihongo-training-center
+                - listitem [ref=e431]:
+                  - link "日本留学・就労プログラム" [ref=e432] [cursor=pointer]:
+                    - /url: /services/study-work-japan
+                - listitem [ref=e433]:
+                  - link "輸出入業務" [ref=e434] [cursor=pointer]:
+                    - /url: /services/export-import
+                - listitem [ref=e435]:
+                  - link "SDCコレクション" [ref=e436] [cursor=pointer]:
+                    - /url: /services/sdc-collection
+                - listitem [ref=e437]:
+                  - link "国際テレフォンカード" [ref=e438] [cursor=pointer]:
+                    - /url: /services/international-calling-cards
+                - listitem [ref=e439]:
+                  - link "ポケットWiFi・データSIM" [ref=e440] [cursor=pointer]:
+                    - /url: /services/pocket-wifi-data-sim
+            - generic [ref=e441]:
+              - generic [ref=e442]:
+                - heading "その他のサービス" [level=4] [ref=e443]
+                - separator [ref=e444]
+              - list [ref=e445]:
+                - listitem [ref=e446]:
+                  - link "モバイルSIM" [ref=e447] [cursor=pointer]:
+                    - /url: /services/mobile-sim
+                - listitem [ref=e448]:
+                  - link "VoIPサービス" [ref=e449] [cursor=pointer]:
+                    - /url: /services/voip-services
+                - listitem [ref=e450]:
+                  - link "NPOドシュディク" [ref=e451] [cursor=pointer]:
+                    - /url: /services/npo-doshdik
+                - listitem [ref=e452]:
+                  - link "ドシュディクTV" [ref=e453] [cursor=pointer]:
+                    - /url: /services/doshdik-tv
+                - listitem [ref=e454]:
+                  - link "ドシュディクメディア" [ref=e455] [cursor=pointer]:
+                    - /url: https://doshdik.com/
+            - generic [ref=e456]:
+              - generic [ref=e457]:
+                - heading "会社情報" [level=4] [ref=e458]
+                - separator [ref=e459]
+              - list [ref=e460]:
+                - listitem [ref=e461]:
+                  - link "会社概要" [ref=e462] [cursor=pointer]:
+                    - /url: /about
+                - listitem [ref=e463]:
+                  - link "お問い合わせ" [ref=e464] [cursor=pointer]:
+                    - /url: /contact
+                - listitem [ref=e465]:
+                  - link "プライバシーポリシー" [ref=e466] [cursor=pointer]:
+                    - /url: /privacy-policy
+                - listitem [ref=e467]:
+                  - link "利用規約" [ref=e468] [cursor=pointer]:
+                    - /url: /terms-conditions
+                - listitem [ref=e469]:
+                  - link "サディア日本語トレーニングセンター" [ref=e470] [cursor=pointer]:
+                    - /url: /news-events
+            - generic [ref=e471]:
+              - generic [ref=e472]:
+                - heading "求人情報" [level=4] [ref=e473]
+                - separator [ref=e474]
+              - list [ref=e475]:
+                - listitem [ref=e476]:
+                  - link "IT・技術インターン" [ref=e477] [cursor=pointer]:
+                    - /url: /about
+                - listitem [ref=e478]:
+                  - link "小売スタッフ" [ref=e479] [cursor=pointer]:
+                    - /url: /about
+                - listitem [ref=e480]:
+                  - link "ホスピタリティスタッフ" [ref=e481] [cursor=pointer]:
+                    - /url: /about
+                - listitem [ref=e482]:
+                  - link "教師アシスタント" [ref=e483] [cursor=pointer]:
+                    - /url: /about
+                - listitem [ref=e484]:
+                  - link "英語講師" [ref=e485] [cursor=pointer]:
+                    - /url: /about
+            - generic [ref=e486]:
+              - generic [ref=e487]:
+                - heading "雇用主向け" [level=4] [ref=e488]
+                - separator [ref=e489]
+              - list [ref=e490]:
+                - listitem [ref=e491]:
+                  - link "採用" [ref=e492] [cursor=pointer]:
+                    - /url: /about
+                - listitem [ref=e493]:
+                  - link "求人を投稿する" [ref=e494] [cursor=pointer]:
+                    - /url: /about
+                - listitem [ref=e495]:
+                  - link "人材を雇う" [ref=e496] [cursor=pointer]:
+                    - /url: /about
+                - listitem [ref=e497]:
+                  - link "雇用主向けサービス" [ref=e498] [cursor=pointer]:
+                    - /url: /employers
+                - listitem [ref=e499]:
+                  - link "スタッフ配置" [ref=e500] [cursor=pointer]:
+                    - /url: /about
+        - generic [ref=e501]:
+          - generic [ref=e502]:
+            - link "Instagram" [ref=e503] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e504]
+            - link "Facebook" [ref=e506] [cursor=pointer]:
+              - /url: https://facebook.com/sadiatec
+              - img [ref=e507]
+            - link "YouTube" [ref=e509] [cursor=pointer]:
+              - /url: https://youtube.com/sadiatec
+              - img [ref=e510]
+          - paragraph [ref=e512]:
+            - text: All rights reserved by Sadiatec. Designed by
+            - link "Weabers" [ref=e513] [cursor=pointer]:
+              - /url: https://weabers.com/
+            - text: .
+  - generic [ref=e514]: OKAYAMA

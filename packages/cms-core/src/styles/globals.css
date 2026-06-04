@@ -150,8 +150,20 @@
     animation-play-state: paused;
   }
 
+  /* Affiliates marquee — reuses same keyframe, speed set via inline style */
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: logoScroll var(--marquee-duration, 40s) linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .logo-track {
+    .logo-track,
+    .animate-marquee {
       animation: none;
     }
   }

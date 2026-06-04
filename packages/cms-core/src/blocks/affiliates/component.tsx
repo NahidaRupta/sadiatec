@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import type { AffiliatesBlockProps, AffiliateItem } from './types'
@@ -12,13 +14,7 @@ function CardItem({ item }: { item: AffiliateItem }) {
   const inner = (
     <div className="flex h-full flex-col items-center gap-4 rounded-2xl border border-[var(--color-neutral-200,#e5e7eb)] bg-[var(--color-surface)] p-6 text-center shadow-sm transition-shadow duration-150 hover:shadow-md">
       {item.logoUrl ? (
-        <Image
-          src={item.logoUrl}
-          alt={item.name}
-          width={120}
-          height={60}
-          className="h-12 w-auto object-contain"
-        />
+        <Image src={item.logoUrl} alt={item.name} width={120} height={60} className="h-12 w-auto object-contain" />
       ) : (
         <div className="flex h-12 w-full items-center justify-center rounded-lg bg-[var(--color-neutral-100,#f5f5f5)]">
           <span className="text-sm font-semibold text-[var(--color-muted)]">{item.name}</span>
@@ -30,15 +26,8 @@ function CardItem({ item }: { item: AffiliateItem }) {
       )}
     </div>
   )
-
   if (item.href) {
-    return (
-      <li>
-        <Link href={item.href} target="_blank" rel="noopener noreferrer">
-          {inner}
-        </Link>
-      </li>
-    )
+    return <li><Link href={item.href} target="_blank" rel="noopener noreferrer">{inner}</Link></li>
   }
   return <li>{inner}</li>
 }
@@ -55,13 +44,10 @@ function LogoItem({ item }: { item: AffiliateItem }) {
   ) : (
     <span className="text-sm font-semibold text-[var(--color-muted)]">{item.name}</span>
   )
-
   if (item.href) {
     return (
       <li className="flex items-center justify-center">
-        <Link href={item.href} target="_blank" rel="noopener noreferrer">
-          {inner}
-        </Link>
+        <Link href={item.href} target="_blank" rel="noopener noreferrer">{inner}</Link>
       </li>
     )
   }
@@ -72,13 +58,7 @@ function ListItem({ item }: { item: AffiliateItem }) {
   const inner = (
     <div className="flex items-start gap-4 py-4 border-b border-[var(--color-neutral-100,#f5f5f5)] last:border-0">
       {item.logoUrl && (
-        <Image
-          src={item.logoUrl}
-          alt={item.name}
-          width={64}
-          height={40}
-          className="h-10 w-16 shrink-0 object-contain"
-        />
+        <Image src={item.logoUrl} alt={item.name} width={64} height={40} className="h-10 w-16 shrink-0 object-contain" />
       )}
       <div className="flex flex-col gap-1">
         <h3 className="text-sm font-bold text-[var(--color-text)]">{item.name}</h3>
@@ -88,17 +68,39 @@ function ListItem({ item }: { item: AffiliateItem }) {
       </div>
     </div>
   )
-
   if (item.href) {
-    return (
-      <li>
-        <Link href={item.href} target="_blank" rel="noopener noreferrer">
-          {inner}
-        </Link>
-      </li>
-    )
+    return <li><Link href={item.href} target="_blank" rel="noopener noreferrer">{inner}</Link></li>
   }
   return <li>{inner}</li>
+}
+
+function MarqueeLogos({ items }: { items: AffiliateItem[] }) {
+  return (
+    <div className="relative overflow-hidden">
+      <ul
+        className="flex gap-12 items-center animate-marquee whitespace-nowrap"
+        aria-label="Partner logos"
+        role="list"
+        style={{ ['--marquee-duration' as string]: `${Math.max(20, items.length * 3)}s` }}
+      >
+        {[...items, ...items].map((item, i) => (
+          <li key={i} className="inline-flex shrink-0 items-center">
+            {item.logoUrl ? (
+              <Image
+                src={item.logoUrl}
+                alt={item.name}
+                width={140}
+                height={70}
+                className="h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-200"
+              />
+            ) : (
+              <span className="text-sm font-semibold text-[var(--color-muted)]">{item.name}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
 }
 
 export function AffiliatesBlock({
@@ -107,10 +109,12 @@ export function AffiliatesBlock({
   items,
   layout = 'cards',
   columns = '3',
+  animation = 'none',
 }: AffiliatesBlockProps) {
   if (items.length === 0) return null
 
   const colsClass = colsMap[columns] ?? colsMap['3']
+  const isMarquee = layout === 'logos' && animation === 'marquee'
 
   return (
     <section className="py-16 md:py-24">
@@ -134,7 +138,11 @@ export function AffiliatesBlock({
           </ul>
         )}
 
-        {layout === 'logos' && (
+        {layout === 'logos' && isMarquee && (
+          <MarqueeLogos items={items} />
+        )}
+
+        {layout === 'logos' && !isMarquee && (
           <ul className={`grid gap-8 ${colsClass}`} role="list">
             {items.map((item, i) => <LogoItem key={i} item={item} />)}
           </ul>

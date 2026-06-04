@@ -12,4 +12,5 @@ export interface AffiliatesBlockProps {
   items: AffiliateItem[]
   layout?: 'cards' | 'logos' | 'list'
   columns?: '2' | '3' | '4'
+  animation?: 'none' | 'marquee'
 }

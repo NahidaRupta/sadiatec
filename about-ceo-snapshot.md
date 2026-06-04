@@ -1,0 +1,209 @@
+- generic [ref=e2]:
+  - region "Notifications alt+T"
+  - navigation [ref=e3]:
+    - generic [ref=e5]:
+      - link [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img [ref=e8]
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - button [ref=e11] [cursor=pointer]:
+            - generic "English" [ref=e12]:
+              - img [ref=e13]
+          - button [ref=e43] [cursor=pointer]:
+            - generic "Japanese" [ref=e44]:
+              - img [ref=e45]
+          - button [ref=e50] [cursor=pointer]:
+            - generic "Bengali" [ref=e51]:
+              - img [ref=e52]
+        - button "Open main menu" [ref=e57] [cursor=pointer]:
+          - generic [ref=e58]: Open main menu
+          - img [ref=e59]
+    - generic [ref=e61]:
+      - link "会社概要" [ref=e63] [cursor=pointer]:
+        - /url: /about/message-from-the-ceo
+        - generic [ref=e64]:
+          - text: 会社概要
+          - img [ref=e65]
+      - link "サービス" [ref=e68] [cursor=pointer]:
+        - /url: /about/message-from-the-ceo
+        - generic [ref=e69]:
+          - text: サービス
+          - img [ref=e70]
+      - link "求職者の方へ" [ref=e73] [cursor=pointer]:
+        - /url: /job-seekers
+        - generic [ref=e74]: 求職者の方へ
+      - link "採用担当者の方へ" [ref=e76] [cursor=pointer]:
+        - /url: /employers
+        - generic [ref=e77]: 採用担当者の方へ
+      - link "ニュース・更新情報" [ref=e79] [cursor=pointer]:
+        - /url: /news-events
+        - generic [ref=e80]: ニュース・更新情報
+      - button "Contact" [ref=e81] [cursor=pointer]
+  - generic [ref=e84]:
+    - heading "Official Publication" [level=1] [ref=e86]
+    - generic [ref=e89]:
+      - img "CEO Image" [ref=e91]
+      - generic [ref=e92]:
+        - heading "CEOメッセージ" [level=2] [ref=e93]
+        - generic [ref=e94]:
+          - paragraph [ref=e95]: ようこそ！サディアテック株式会社では、長年の遺産と成功は、優れた企業統治、健全な倫理観、強い誠実さ、そして敬意の原則に基づいて構築されてきました。私たちは相互利益のために働いています。
+          - paragraph [ref=e96]: 当社の名誉ある取締役会は、サディアテックの経営陣と従業員を監督し、事業と株主の長期的な最善の利益を確保しています。取締役会のガバナンス方針と原則は、あらゆるレベルでの効果的な意思決定への取り組みを反映しています。
+          - paragraph [ref=e97]: サディアテックの従業員は、当社の倫理規定に概説されている最高の倫理基準を守っています。これらの価値観は、当社のビジネスに不可欠であり、世界中で私たちを導き、通信分野でのイノベーションへの取り組みを推進しています。
+          - paragraph [ref=e98]: 誠実さ、説明責任、責任を維持することは、持続的な成功のために不可欠です。これらはサディアテック株式会社が築き上げ、今後も維持していく価値観です。
+        - generic [ref=e99]:
+          - heading "Md Sanaul Haque" [level=3] [ref=e100]
+          - paragraph [ref=e101]: President & CEO
+  - generic [ref=e104]:
+    - heading "日本で理想の仕事を見つけましょう" [level=2] [ref=e105]
+    - paragraph [ref=e106]: 革新の力を実際に体験し、Betaのソリューションがどのようにあなたの融資プロセスを革命的に変えることができるかを発見してください。高度な機械学習アルゴリズムとクラウドベースのプラットフォームがどのように動作するかを見るために、個別のデモを今すぐスケジュールしましょう。
+    - generic [ref=e107]:
+      - link "申し込みを始める" [ref=e108] [cursor=pointer]:
+        - /url: /contact
+        - button "申し込みを始める" [ref=e109]
+      - paragraph [ref=e110]:
+        - img [ref=e111]
+        - text: すでに2200人の学生が登録しています
+  - contentinfo [ref=e115]:
+    - generic [ref=e116]:
+      - generic [ref=e117]:
+        - generic [ref=e118]:
+          - link [ref=e120] [cursor=pointer]:
+            - /url: /
+            - img [ref=e121]
+          - heading "最新の更新情報とニュースを受け取るために登録してください。" [level=3] [ref=e122]
+          - generic [ref=e123]:
+            - textbox "Email" [ref=e124]
+            - button "Subscribe" [ref=e125] [cursor=pointer]:
+              - img [ref=e126]
+            - generic [ref=e130]:
+              - generic [ref=e131]:
+                - img [ref=e134]
+                - generic [ref=e137]:
+                  - heading "Reach us at" [level=3] [ref=e138]
+                  - paragraph [ref=e139]: info@sadiatec.com
+              - generic [ref=e140]:
+                - img [ref=e143]
+                - generic [ref=e146]:
+                  - heading "Corporate Office" [level=3] [ref=e147]
+                  - paragraph [ref=e148]: 〒101-0021, Tokyo, Chiyoda-ku, Sotokanda 4-5-5, Akiba-Mitakikan 5F
+        - generic [ref=e149]:
+          - generic [ref=e150]:
+            - generic [ref=e151]:
+              - heading "私たちのサービス" [level=4] [ref=e152]
+              - separator [ref=e153]
+            - list [ref=e154]:
+              - listitem [ref=e155]:
+                - link "サディア日本語トレーニングセンター" [ref=e156] [cursor=pointer]:
+                  - /url: /services/sadia-nihongo-training-center
+              - listitem [ref=e157]:
+                - link "日本留学・就労プログラム" [ref=e158] [cursor=pointer]:
+                  - /url: /services/study-work-japan
+              - listitem [ref=e159]:
+                - link "輸出入業務" [ref=e160] [cursor=pointer]:
+                  - /url: /services/export-import
+              - listitem [ref=e161]:
+                - link "SDCコレクション" [ref=e162] [cursor=pointer]:
+                  - /url: /services/sdc-collection
+              - listitem [ref=e163]:
+                - link "国際テレフォンカード" [ref=e164] [cursor=pointer]:
+                  - /url: /services/international-calling-cards
+              - listitem [ref=e165]:
+                - link "ポケットWiFi・データSIM" [ref=e166] [cursor=pointer]:
+                  - /url: /services/pocket-wifi-data-sim
+          - generic [ref=e167]:
+            - generic [ref=e168]:
+              - heading "その他のサービス" [level=4] [ref=e169]
+              - separator [ref=e170]
+            - list [ref=e171]:
+              - listitem [ref=e172]:
+                - link "モバイルSIM" [ref=e173] [cursor=pointer]:
+                  - /url: /services/mobile-sim
+              - listitem [ref=e174]:
+                - link "VoIPサービス" [ref=e175] [cursor=pointer]:
+                  - /url: /services/voip-services
+              - listitem [ref=e176]:
+                - link "NPOドシュディク" [ref=e177] [cursor=pointer]:
+                  - /url: /services/npo-doshdik
+              - listitem [ref=e178]:
+                - link "ドシュディクTV" [ref=e179] [cursor=pointer]:
+                  - /url: /services/doshdik-tv
+              - listitem [ref=e180]:
+                - link "ドシュディクメディア" [ref=e181] [cursor=pointer]:
+                  - /url: https://doshdik.com/
+          - generic [ref=e182]:
+            - generic [ref=e183]:
+              - heading "会社情報" [level=4] [ref=e184]
+              - separator [ref=e185]
+            - list [ref=e186]:
+              - listitem [ref=e187]:
+                - link "会社概要" [ref=e188] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e189]:
+                - link "お問い合わせ" [ref=e190] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e191]:
+                - link "プライバシーポリシー" [ref=e192] [cursor=pointer]:
+                  - /url: /privacy-policy
+              - listitem [ref=e193]:
+                - link "利用規約" [ref=e194] [cursor=pointer]:
+                  - /url: /terms-conditions
+              - listitem [ref=e195]:
+                - link "サディア日本語トレーニングセンター" [ref=e196] [cursor=pointer]:
+                  - /url: /news-events
+          - generic [ref=e197]:
+            - generic [ref=e198]:
+              - heading "求人情報" [level=4] [ref=e199]
+              - separator [ref=e200]
+            - list [ref=e201]:
+              - listitem [ref=e202]:
+                - link "IT・技術インターン" [ref=e203] [cursor=pointer]:
+                  - /url: /about/message-from-the-ceo
+              - listitem [ref=e204]:
+                - link "小売スタッフ" [ref=e205] [cursor=pointer]:
+                  - /url: /about/message-from-the-ceo
+              - listitem [ref=e206]:
+                - link "ホスピタリティスタッフ" [ref=e207] [cursor=pointer]:
+                  - /url: /about/message-from-the-ceo
+              - listitem [ref=e208]:
+                - link "教師アシスタント" [ref=e209] [cursor=pointer]:
+                  - /url: /about/message-from-the-ceo
+              - listitem [ref=e210]:
+                - link "英語講師" [ref=e211] [cursor=pointer]:
+                  - /url: /about/message-from-the-ceo
+          - generic [ref=e212]:
+            - generic [ref=e213]:
+              - heading "雇用主向け" [level=4] [ref=e214]
+              - separator [ref=e215]
+            - list [ref=e216]:
+              - listitem [ref=e217]:
+                - link "採用" [ref=e218] [cursor=pointer]:
+                  - /url: /about/message-from-the-ceo
+              - listitem [ref=e219]:
+                - link "求人を投稿する" [ref=e220] [cursor=pointer]:
+                  - /url: /about/message-from-the-ceo
+              - listitem [ref=e221]:
+                - link "人材を雇う" [ref=e222] [cursor=pointer]:
+                  - /url: /about/message-from-the-ceo
+              - listitem [ref=e223]:
+                - link "雇用主向けサービス" [ref=e224] [cursor=pointer]:
+                  - /url: /employers
+              - listitem [ref=e225]:
+                - link "スタッフ配置" [ref=e226] [cursor=pointer]:
+                  - /url: /about/message-from-the-ceo
+      - generic [ref=e227]:
+        - generic [ref=e228]:
+          - link "Instagram" [ref=e229] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e230]
+          - link "Facebook" [ref=e232] [cursor=pointer]:
+            - /url: https://facebook.com/sadiatec
+            - img [ref=e233]
+          - link "YouTube" [ref=e235] [cursor=pointer]:
+            - /url: https://youtube.com/sadiatec
+            - img [ref=e236]
+        - paragraph [ref=e238]:
+          - text: All rights reserved by Sadiatec. Designed by
+          - link "Weabers" [ref=e239] [cursor=pointer]:
+            - /url: https://weabers.com/
+          - text: .

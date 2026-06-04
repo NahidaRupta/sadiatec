@@ -3,7 +3,7 @@ import type { Block } from 'payload'
 export const CEOMessageBlockConfig: Block = {
   slug: 'ceo-message',
   interfaceName: 'CEOMessageBlock',
-  labels: { singular: 'CEO Message', plural: 'CEO Messages' },
+  labels: { singular: 'CEO / Leader Message', plural: 'CEO / Leader Messages' },
   fields: [
     { name: 'portrait', type: 'upload', relationTo: 'media', required: true },
     { name: 'portraitAlt', type: 'text', required: true, localized: true, admin: { description: 'Max 150 characters' } },

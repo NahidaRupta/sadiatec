@@ -3,7 +3,7 @@ import type { Block } from 'payload'
 export const CTABannerBlockConfig: Block = {
   slug: 'cta-banner',
   interfaceName: 'CTABannerBlock',
-  labels: { singular: 'CTA Banner', plural: 'CTA Banners' },
+  labels: { singular: 'Call to Action Banner', plural: 'Call to Action Banners' },
   fields: [
     { name: 'eyebrow', type: 'text', localized: true },
     { name: 'heading', type: 'text', localized: true, required: true },

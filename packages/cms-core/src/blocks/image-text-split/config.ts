@@ -3,7 +3,7 @@ import type { Block } from 'payload'
 export const ImageTextSplitBlockConfig: Block = {
   slug: 'image-text-split',
   interfaceName: 'ImageTextSplitBlock',
-  labels: { singular: 'Image + Text Split', plural: 'Image + Text Splits' },
+  labels: { singular: 'Image and Text Side by Side', plural: 'Image and Text Side by Side Blocks' },
   fields: [
     { name: 'image', type: 'upload', relationTo: 'media', required: true },
     { name: 'imageAlt', type: 'text', required: true, localized: true, admin: { description: 'Max 150 characters' } },

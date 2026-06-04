@@ -1,0 +1,288 @@
+- generic [ref=e2]:
+  - region "Notifications alt+T"
+  - navigation [ref=e3]:
+    - generic [ref=e5]:
+      - link [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img [ref=e8]
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - button [ref=e11] [cursor=pointer]:
+            - generic "English" [ref=e12]:
+              - img [ref=e13]
+          - button [ref=e43] [cursor=pointer]:
+            - generic "Japanese" [ref=e44]:
+              - img [ref=e45]
+          - button [ref=e50] [cursor=pointer]:
+            - generic "Bengali" [ref=e51]:
+              - img [ref=e52]
+        - button "Open main menu" [ref=e57] [cursor=pointer]:
+          - generic [ref=e58]: Open main menu
+          - img [ref=e59]
+    - generic [ref=e61]:
+      - link "会社概要" [ref=e63] [cursor=pointer]:
+        - /url: /about/history
+        - generic [ref=e64]:
+          - text: 会社概要
+          - img [ref=e65]
+      - link "サービス" [ref=e68] [cursor=pointer]:
+        - /url: /about/history
+        - generic [ref=e69]:
+          - text: サービス
+          - img [ref=e70]
+      - link "求職者の方へ" [ref=e73] [cursor=pointer]:
+        - /url: /job-seekers
+        - generic [ref=e74]: 求職者の方へ
+      - link "採用担当者の方へ" [ref=e76] [cursor=pointer]:
+        - /url: /employers
+        - generic [ref=e77]: 採用担当者の方へ
+      - link "ニュース・更新情報" [ref=e79] [cursor=pointer]:
+        - /url: /news-events
+        - generic [ref=e80]: ニュース・更新情報
+      - button "Contact" [ref=e81] [cursor=pointer]
+  - generic [ref=e84]:
+    - heading "私たちの歩み" [level=1] [ref=e85]
+    - generic [ref=e88]:
+      - generic [ref=e91]:
+        - heading "2005" [level=3] [ref=e92]
+        - paragraph [ref=e94]: "- Sadia Intertec Company Limitedが設立されました"
+      - generic [ref=e99]:
+        - heading "2006" [level=3] [ref=e100]
+        - generic [ref=e101]:
+          - paragraph [ref=e102]: "- 会社の資本金が1000万日本円に増資されました"
+          - paragraph [ref=e103]: "- 電気通信事業者としての正式なライセンスを取得"
+          - paragraph [ref=e104]: "- 会社名をSadiatec Co., Ltd.に変更"
+          - paragraph [ref=e105]: "- KDDI株式会社との提携契約"
+          - paragraph [ref=e106]: "- Cosmo Bridgeとの契約"
+      - generic [ref=e111]:
+        - heading "2007" [level=3] [ref=e112]
+        - generic [ref=e113]:
+          - paragraph [ref=e114]: "- ブランドロゴ商標登録証を取得"
+          - paragraph [ref=e115]: "- MCIインターナショナルサービス社との業務提携契約"
+      - generic [ref=e120]:
+        - heading "2008" [level=3] [ref=e121]
+        - generic [ref=e122]:
+          - paragraph [ref=e123]: "- 骨董品販売業ライセンスを取得"
+          - paragraph [ref=e124]: "- NTT Comware株式会社との契約"
+          - paragraph [ref=e125]: "- ISPおよびIPTSPライセンスを取得"
+          - paragraph [ref=e126]: "- テレコムマレーシア（TM）とのビジネス開始"
+          - paragraph [ref=e127]: "- バングラデシュで不動産ビジネスを開始"
+      - generic [ref=e132]:
+        - heading "2009" [level=3] [ref=e133]
+        - generic [ref=e134]:
+          - paragraph [ref=e135]: "- ソフトバンク株式会社との国際電話サービス共同事業を開始"
+          - paragraph [ref=e136]: "- 丸紅テレコム株式会社との契約"
+          - paragraph [ref=e137]: "- NTTコミュニケーションズとの国際電話事業"
+          - paragraph [ref=e138]: "- Fuzion Communications（アイルランド）との契約"
+      - generic [ref=e143]:
+        - heading "2010" [level=3] [ref=e144]
+        - paragraph [ref=e146]: "- 資本金を3000万日本円に増資しました"
+      - generic [ref=e151]:
+        - heading "2011" [level=3] [ref=e152]
+        - generic [ref=e153]:
+          - paragraph [ref=e154]: "- NPO法人Doshdik Japanを設立"
+          - paragraph [ref=e155]: "- Telstra Corporation（オーストラリア）とのインターネットサービス契約"
+          - paragraph [ref=e156]: "- Tata Communications（インド）とのインターネットサービス提携契約"
+      - generic [ref=e161]:
+        - heading "2012" [level=3] [ref=e162]
+        - generic [ref=e163]:
+          - paragraph [ref=e164]: "- REVE Systems（バングラデシュ）との契約"
+          - paragraph [ref=e165]: "- バングラデシュでの採用ライセンスを取得"
+          - paragraph [ref=e166]: "- 採用および日本語教育プログラム（Language Training Center）を開始"
+      - generic [ref=e171]:
+        - heading "2013" [level=3] [ref=e172]
+        - paragraph [ref=e174]: "- Skyvia Telcom Communications Co., Ltd.との業務提携契約を締結"
+      - generic [ref=e179]:
+        - heading "2014" [level=3] [ref=e180]
+        - generic [ref=e181]:
+          - paragraph [ref=e182]: "- Mainberg Ltd.（香港）との国際電話サービス業務提携契約を締結"
+          - paragraph [ref=e183]: "- ECサイト「BIG SALE」の運営を開始"
+      - generic [ref=e188]:
+        - heading "2015" [level=3] [ref=e189]
+        - generic [ref=e190]:
+          - paragraph [ref=e191]: "- 中古車販売代理業を開始"
+          - paragraph [ref=e192]: "- 派遣・紹介ライセンスを取得"
+          - paragraph [ref=e193]: "- 一般労働者派遣事業許可"
+          - paragraph [ref=e194]: "- 有料職業紹介事業許可"
+      - generic [ref=e199]:
+        - heading "2016" [level=3] [ref=e200]
+        - generic [ref=e201]:
+          - paragraph [ref=e202]: "- Songbird Trading Limited（香港）との契約"
+          - paragraph [ref=e203]: "- バングラデシュ政府から大型機械の輸出入ライセンスを取得"
+          - paragraph [ref=e204]: "- バングラデシュにSadiatecファッション工場を設立"
+          - paragraph [ref=e205]: "- バングラデシュに自動車の輸出入ショールームを開設"
+      - generic [ref=e210]:
+        - heading "2017" [level=3] [ref=e211]
+        - generic [ref=e212]:
+          - paragraph [ref=e213]: "- 太鼓機械工業株式会社（日本）との契約"
+          - paragraph [ref=e214]: "- MCIインターナショナルサービス社との再契約"
+          - paragraph [ref=e215]: "- Roots Communication（バングラデシュ）との国際電話業務提携契約を締結"
+      - generic [ref=e220]:
+        - heading "2018" [level=3] [ref=e221]
+        - generic [ref=e222]:
+          - paragraph [ref=e223]: "- ジュピター・テレコム株式会社（J:COM）との契約"
+          - paragraph [ref=e224]: "- Japan Fuji International株式会社との契約"
+      - generic [ref=e229]:
+        - heading "2019" [level=3] [ref=e230]
+        - generic [ref=e231]:
+          - paragraph [ref=e232]: "- 技能実習生および特定技能（SSW）ライセンスを取得"
+          - paragraph [ref=e233]: "- 技能実習生送出機関ライセンス"
+          - paragraph [ref=e234]: "- 特定技能（SSW）登録支援機関ライセンス"
+      - generic [ref=e239]:
+        - heading "2020" [level=3] [ref=e240]
+        - generic [ref=e241]:
+          - paragraph [ref=e242]: "- Language Training Centerの名称をSadia Nihongo Training Centerに変更"
+          - paragraph [ref=e243]: "- FacebookとYouTubeでDoshdikTvを開始"
+  - generic [ref=e248]:
+    - heading "日本で理想の仕事を見つけましょう" [level=2] [ref=e249]
+    - paragraph [ref=e250]: 革新の力を実際に体験し、Betaのソリューションがどのようにあなたの融資プロセスを革命的に変えることができるかを発見してください。高度な機械学習アルゴリズムとクラウドベースのプラットフォームがどのように動作するかを見るために、個別のデモを今すぐスケジュールしましょう。
+    - generic [ref=e251]:
+      - link "申し込みを始める" [ref=e252] [cursor=pointer]:
+        - /url: /contact
+        - button "申し込みを始める" [ref=e253]
+      - paragraph [ref=e254]:
+        - img [ref=e255]
+        - text: すでに2200人の学生が登録しています
+  - contentinfo [ref=e259]:
+    - generic [ref=e260]:
+      - generic [ref=e261]:
+        - generic [ref=e262]:
+          - link [ref=e264] [cursor=pointer]:
+            - /url: /
+            - img [ref=e265]
+          - heading "最新の更新情報とニュースを受け取るために登録してください。" [level=3] [ref=e266]
+          - generic [ref=e267]:
+            - textbox "Email" [ref=e268]
+            - button "Subscribe" [ref=e269] [cursor=pointer]:
+              - img [ref=e270]
+            - generic [ref=e274]:
+              - generic [ref=e275]:
+                - img [ref=e278]
+                - generic [ref=e281]:
+                  - heading "Reach us at" [level=3] [ref=e282]
+                  - paragraph [ref=e283]: info@sadiatec.com
+              - generic [ref=e284]:
+                - img [ref=e287]
+                - generic [ref=e290]:
+                  - heading "Corporate Office" [level=3] [ref=e291]
+                  - paragraph [ref=e292]: 〒101-0021, Tokyo, Chiyoda-ku, Sotokanda 4-5-5, Akiba-Mitakikan 5F
+        - generic [ref=e293]:
+          - generic [ref=e294]:
+            - generic [ref=e295]:
+              - heading "私たちのサービス" [level=4] [ref=e296]
+              - separator [ref=e297]
+            - list [ref=e298]:
+              - listitem [ref=e299]:
+                - link "サディア日本語トレーニングセンター" [ref=e300] [cursor=pointer]:
+                  - /url: /services/sadia-nihongo-training-center
+              - listitem [ref=e301]:
+                - link "日本留学・就労プログラム" [ref=e302] [cursor=pointer]:
+                  - /url: /services/study-work-japan
+              - listitem [ref=e303]:
+                - link "輸出入業務" [ref=e304] [cursor=pointer]:
+                  - /url: /services/export-import
+              - listitem [ref=e305]:
+                - link "SDCコレクション" [ref=e306] [cursor=pointer]:
+                  - /url: /services/sdc-collection
+              - listitem [ref=e307]:
+                - link "国際テレフォンカード" [ref=e308] [cursor=pointer]:
+                  - /url: /services/international-calling-cards
+              - listitem [ref=e309]:
+                - link "ポケットWiFi・データSIM" [ref=e310] [cursor=pointer]:
+                  - /url: /services/pocket-wifi-data-sim
+          - generic [ref=e311]:
+            - generic [ref=e312]:
+              - heading "その他のサービス" [level=4] [ref=e313]
+              - separator [ref=e314]
+            - list [ref=e315]:
+              - listitem [ref=e316]:
+                - link "モバイルSIM" [ref=e317] [cursor=pointer]:
+                  - /url: /services/mobile-sim
+              - listitem [ref=e318]:
+                - link "VoIPサービス" [ref=e319] [cursor=pointer]:
+                  - /url: /services/voip-services
+              - listitem [ref=e320]:
+                - link "NPOドシュディク" [ref=e321] [cursor=pointer]:
+                  - /url: /services/npo-doshdik
+              - listitem [ref=e322]:
+                - link "ドシュディクTV" [ref=e323] [cursor=pointer]:
+                  - /url: /services/doshdik-tv
+              - listitem [ref=e324]:
+                - link "ドシュディクメディア" [ref=e325] [cursor=pointer]:
+                  - /url: https://doshdik.com/
+          - generic [ref=e326]:
+            - generic [ref=e327]:
+              - heading "会社情報" [level=4] [ref=e328]
+              - separator [ref=e329]
+            - list [ref=e330]:
+              - listitem [ref=e331]:
+                - link "会社概要" [ref=e332] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e333]:
+                - link "お問い合わせ" [ref=e334] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e335]:
+                - link "プライバシーポリシー" [ref=e336] [cursor=pointer]:
+                  - /url: /privacy-policy
+              - listitem [ref=e337]:
+                - link "利用規約" [ref=e338] [cursor=pointer]:
+                  - /url: /terms-conditions
+              - listitem [ref=e339]:
+                - link "サディア日本語トレーニングセンター" [ref=e340] [cursor=pointer]:
+                  - /url: /news-events
+          - generic [ref=e341]:
+            - generic [ref=e342]:
+              - heading "求人情報" [level=4] [ref=e343]
+              - separator [ref=e344]
+            - list [ref=e345]:
+              - listitem [ref=e346]:
+                - link "IT・技術インターン" [ref=e347] [cursor=pointer]:
+                  - /url: /about/history
+              - listitem [ref=e348]:
+                - link "小売スタッフ" [ref=e349] [cursor=pointer]:
+                  - /url: /about/history
+              - listitem [ref=e350]:
+                - link "ホスピタリティスタッフ" [ref=e351] [cursor=pointer]:
+                  - /url: /about/history
+              - listitem [ref=e352]:
+                - link "教師アシスタント" [ref=e353] [cursor=pointer]:
+                  - /url: /about/history
+              - listitem [ref=e354]:
+                - link "英語講師" [ref=e355] [cursor=pointer]:
+                  - /url: /about/history
+          - generic [ref=e356]:
+            - generic [ref=e357]:
+              - heading "雇用主向け" [level=4] [ref=e358]
+              - separator [ref=e359]
+            - list [ref=e360]:
+              - listitem [ref=e361]:
+                - link "採用" [ref=e362] [cursor=pointer]:
+                  - /url: /about/history
+              - listitem [ref=e363]:
+                - link "求人を投稿する" [ref=e364] [cursor=pointer]:
+                  - /url: /about/history
+              - listitem [ref=e365]:
+                - link "人材を雇う" [ref=e366] [cursor=pointer]:
+                  - /url: /about/history
+              - listitem [ref=e367]:
+                - link "雇用主向けサービス" [ref=e368] [cursor=pointer]:
+                  - /url: /employers
+              - listitem [ref=e369]:
+                - link "スタッフ配置" [ref=e370] [cursor=pointer]:
+                  - /url: /about/history
+      - generic [ref=e371]:
+        - generic [ref=e372]:
+          - link "Instagram" [ref=e373] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e374]
+          - link "Facebook" [ref=e376] [cursor=pointer]:
+            - /url: https://facebook.com/sadiatec
+            - img [ref=e377]
+          - link "YouTube" [ref=e379] [cursor=pointer]:
+            - /url: https://youtube.com/sadiatec
+            - img [ref=e380]
+        - paragraph [ref=e382]:
+          - text: All rights reserved by Sadiatec. Designed by
+          - link "Weabers" [ref=e383] [cursor=pointer]:
+            - /url: https://weabers.com/
+          - text: .

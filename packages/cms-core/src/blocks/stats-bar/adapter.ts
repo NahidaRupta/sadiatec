@@ -7,11 +7,12 @@ export function adaptStatsBarBlock(raw: unknown): StatsBarBlockProps {
   const items: StatsBarItem[] = rawItems
     .filter((item): item is Record<string, unknown> => typeof item === 'object' && item !== null)
     .map((item) => ({
-      value: typeof item['value'] === 'string' ? item['value'] : '',
+      ...(typeof item['value'] === 'string' && item['value'] ? { value: item['value'] } : {}),
       label: typeof item['label'] === 'string' ? item['label'] : '',
+      ...(typeof item['body'] === 'string' && item['body'] ? { body: item['body'] } : {}),
       ...(typeof item['icon'] === 'string' && item['icon'] ? { icon: item['icon'] } : {}),
     }))
-    .filter((item) => item.value && item.label)
+    .filter((item) => item.label)
 
   const rawBg = data['backgroundStyle']
   const backgroundStyle: StatsBarBlockProps['backgroundStyle'] =

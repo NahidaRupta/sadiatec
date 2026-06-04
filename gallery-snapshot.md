@@ -1,0 +1,202 @@
+- generic [ref=e2]:
+  - region "Notifications alt+T"
+  - navigation [ref=e3]:
+    - generic [ref=e5]:
+      - link [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img [ref=e8]
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - button [ref=e11] [cursor=pointer]:
+            - generic "English" [ref=e12]:
+              - img [ref=e13]
+          - button [ref=e43] [cursor=pointer]:
+            - generic "Japanese" [ref=e44]:
+              - img [ref=e45]
+          - button [ref=e50] [cursor=pointer]:
+            - generic "Bengali" [ref=e51]:
+              - img [ref=e52]
+        - button "Open main menu" [ref=e57] [cursor=pointer]:
+          - generic [ref=e58]: Open main menu
+          - img [ref=e59]
+    - generic [ref=e61]:
+      - link "会社概要" [ref=e63] [cursor=pointer]:
+        - /url: /gallery
+        - generic [ref=e64]:
+          - text: 会社概要
+          - img [ref=e65]
+      - link "サービス" [ref=e68] [cursor=pointer]:
+        - /url: /gallery
+        - generic [ref=e69]:
+          - text: サービス
+          - img [ref=e70]
+      - link "求職者の方へ" [ref=e73] [cursor=pointer]:
+        - /url: /job-seekers
+        - generic [ref=e74]: 求職者の方へ
+      - link "採用担当者の方へ" [ref=e76] [cursor=pointer]:
+        - /url: /employers
+        - generic [ref=e77]: 採用担当者の方へ
+      - link "ニュース・更新情報" [ref=e79] [cursor=pointer]:
+        - /url: /news-events
+        - generic [ref=e80]: ニュース・更新情報
+      - button "Contact" [ref=e81] [cursor=pointer]
+  - generic [ref=e85]:
+    - img "Gallery Image 1" [ref=e87]
+    - img "Gallery Image 2" [ref=e89]
+    - img "Gallery Image 3" [ref=e91]
+    - img "Gallery Image 4" [ref=e93]
+    - img "Gallery Image 5" [ref=e95]
+    - img "Gallery Image 6" [ref=e97]
+  - generic [ref=e100]:
+    - heading "日本で理想の仕事を見つけましょう" [level=2] [ref=e101]
+    - paragraph [ref=e102]: 革新の力を実際に体験し、Betaのソリューションがどのようにあなたの融資プロセスを革命的に変えることができるかを発見してください。高度な機械学習アルゴリズムとクラウドベースのプラットフォームがどのように動作するかを見るために、個別のデモを今すぐスケジュールしましょう。
+    - generic [ref=e103]:
+      - link "申し込みを始める" [ref=e104] [cursor=pointer]:
+        - /url: /contact
+        - button "申し込みを始める" [ref=e105]
+      - paragraph [ref=e106]:
+        - img [ref=e107]
+        - text: すでに2200人の学生が登録しています
+  - contentinfo [ref=e111]:
+    - generic [ref=e112]:
+      - generic [ref=e113]:
+        - generic [ref=e114]:
+          - link [ref=e116] [cursor=pointer]:
+            - /url: /
+            - img [ref=e117]
+          - heading "最新の更新情報とニュースを受け取るために登録してください。" [level=3] [ref=e118]
+          - generic [ref=e119]:
+            - textbox "Email" [ref=e120]
+            - button "Subscribe" [ref=e121] [cursor=pointer]:
+              - img [ref=e122]
+            - generic [ref=e126]:
+              - generic [ref=e127]:
+                - img [ref=e130]
+                - generic [ref=e133]:
+                  - heading "Reach us at" [level=3] [ref=e134]
+                  - paragraph [ref=e135]: info@sadiatec.com
+              - generic [ref=e136]:
+                - img [ref=e139]
+                - generic [ref=e142]:
+                  - heading "Corporate Office" [level=3] [ref=e143]
+                  - paragraph [ref=e144]: 〒101-0021, Tokyo, Chiyoda-ku, Sotokanda 4-5-5, Akiba-Mitakikan 5F
+        - generic [ref=e145]:
+          - generic [ref=e146]:
+            - generic [ref=e147]:
+              - heading "私たちのサービス" [level=4] [ref=e148]
+              - separator [ref=e149]
+            - list [ref=e150]:
+              - listitem [ref=e151]:
+                - link "サディア日本語トレーニングセンター" [ref=e152] [cursor=pointer]:
+                  - /url: /services/sadia-nihongo-training-center
+              - listitem [ref=e153]:
+                - link "日本留学・就労プログラム" [ref=e154] [cursor=pointer]:
+                  - /url: /services/study-work-japan
+              - listitem [ref=e155]:
+                - link "輸出入業務" [ref=e156] [cursor=pointer]:
+                  - /url: /services/export-import
+              - listitem [ref=e157]:
+                - link "SDCコレクション" [ref=e158] [cursor=pointer]:
+                  - /url: /services/sdc-collection
+              - listitem [ref=e159]:
+                - link "国際テレフォンカード" [ref=e160] [cursor=pointer]:
+                  - /url: /services/international-calling-cards
+              - listitem [ref=e161]:
+                - link "ポケットWiFi・データSIM" [ref=e162] [cursor=pointer]:
+                  - /url: /services/pocket-wifi-data-sim
+          - generic [ref=e163]:
+            - generic [ref=e164]:
+              - heading "その他のサービス" [level=4] [ref=e165]
+              - separator [ref=e166]
+            - list [ref=e167]:
+              - listitem [ref=e168]:
+                - link "モバイルSIM" [ref=e169] [cursor=pointer]:
+                  - /url: /services/mobile-sim
+              - listitem [ref=e170]:
+                - link "VoIPサービス" [ref=e171] [cursor=pointer]:
+                  - /url: /services/voip-services
+              - listitem [ref=e172]:
+                - link "NPOドシュディク" [ref=e173] [cursor=pointer]:
+                  - /url: /services/npo-doshdik
+              - listitem [ref=e174]:
+                - link "ドシュディクTV" [ref=e175] [cursor=pointer]:
+                  - /url: /services/doshdik-tv
+              - listitem [ref=e176]:
+                - link "ドシュディクメディア" [ref=e177] [cursor=pointer]:
+                  - /url: https://doshdik.com/
+          - generic [ref=e178]:
+            - generic [ref=e179]:
+              - heading "会社情報" [level=4] [ref=e180]
+              - separator [ref=e181]
+            - list [ref=e182]:
+              - listitem [ref=e183]:
+                - link "会社概要" [ref=e184] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e185]:
+                - link "お問い合わせ" [ref=e186] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e187]:
+                - link "プライバシーポリシー" [ref=e188] [cursor=pointer]:
+                  - /url: /privacy-policy
+              - listitem [ref=e189]:
+                - link "利用規約" [ref=e190] [cursor=pointer]:
+                  - /url: /terms-conditions
+              - listitem [ref=e191]:
+                - link "サディア日本語トレーニングセンター" [ref=e192] [cursor=pointer]:
+                  - /url: /news-events
+          - generic [ref=e193]:
+            - generic [ref=e194]:
+              - heading "求人情報" [level=4] [ref=e195]
+              - separator [ref=e196]
+            - list [ref=e197]:
+              - listitem [ref=e198]:
+                - link "IT・技術インターン" [ref=e199] [cursor=pointer]:
+                  - /url: /gallery
+              - listitem [ref=e200]:
+                - link "小売スタッフ" [ref=e201] [cursor=pointer]:
+                  - /url: /gallery
+              - listitem [ref=e202]:
+                - link "ホスピタリティスタッフ" [ref=e203] [cursor=pointer]:
+                  - /url: /gallery
+              - listitem [ref=e204]:
+                - link "教師アシスタント" [ref=e205] [cursor=pointer]:
+                  - /url: /gallery
+              - listitem [ref=e206]:
+                - link "英語講師" [ref=e207] [cursor=pointer]:
+                  - /url: /gallery
+          - generic [ref=e208]:
+            - generic [ref=e209]:
+              - heading "雇用主向け" [level=4] [ref=e210]
+              - separator [ref=e211]
+            - list [ref=e212]:
+              - listitem [ref=e213]:
+                - link "採用" [ref=e214] [cursor=pointer]:
+                  - /url: /gallery
+              - listitem [ref=e215]:
+                - link "求人を投稿する" [ref=e216] [cursor=pointer]:
+                  - /url: /gallery
+              - listitem [ref=e217]:
+                - link "人材を雇う" [ref=e218] [cursor=pointer]:
+                  - /url: /gallery
+              - listitem [ref=e219]:
+                - link "雇用主向けサービス" [ref=e220] [cursor=pointer]:
+                  - /url: /employers
+              - listitem [ref=e221]:
+                - link "スタッフ配置" [ref=e222] [cursor=pointer]:
+                  - /url: /gallery
+      - generic [ref=e223]:
+        - generic [ref=e224]:
+          - link "Instagram" [ref=e225] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e226]
+          - link "Facebook" [ref=e228] [cursor=pointer]:
+            - /url: https://facebook.com/sadiatec
+            - img [ref=e229]
+          - link "YouTube" [ref=e231] [cursor=pointer]:
+            - /url: https://youtube.com/sadiatec
+            - img [ref=e232]
+        - paragraph [ref=e234]:
+          - text: All rights reserved by Sadiatec. Designed by
+          - link "Weabers" [ref=e235] [cursor=pointer]:
+            - /url: https://weabers.com/
+          - text: .

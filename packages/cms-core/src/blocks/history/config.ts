@@ -3,7 +3,7 @@ import type { Block } from 'payload'
 export const HistoryBlockConfig: Block = {
   slug: 'history',
   interfaceName: 'HistoryBlock',
-  labels: { singular: 'Company History', plural: 'Company Histories' },
+  labels: { singular: 'Company History Timeline', plural: 'Company History Timelines' },
   fields: [
     { name: 'heading', type: 'text', localized: true, admin: { description: 'Max 100 characters' } },
     { name: 'intro', type: 'textarea', localized: true, admin: { description: 'Max 300 characters' } },

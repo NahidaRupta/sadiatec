@@ -3,7 +3,7 @@ import type { Block } from 'payload'
 export const BusinessLineListBlockConfig: Block = {
   slug: 'business-line-list',
   interfaceName: 'BusinessLineListBlock',
-  labels: { singular: 'Business Line List', plural: 'Business Line Lists' },
+  labels: { singular: 'Business Services List', plural: 'Business Services Lists' },
   fields: [
     { name: 'heading', type: 'text', localized: true, admin: { description: 'Max 100 characters' } },
     { name: 'intro', type: 'textarea', localized: true, admin: { description: 'Max 300 characters' } },

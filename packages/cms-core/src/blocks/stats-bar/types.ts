@@ -1,6 +1,7 @@
 export interface StatsBarItem {
-  value: string
+  value?: string
   label: string
+  body?: string
   icon?: string
 }
 

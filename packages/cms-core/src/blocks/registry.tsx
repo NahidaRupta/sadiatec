@@ -44,30 +44,22 @@ import { NewsListBlock } from './news-list/component'
 import { adaptNewsListBlock } from './news-list/adapter'
 import { PageHeroBlock } from './page-hero/component'
 import { adaptPageHeroBlock } from './page-hero/adapter'
-import { InternalSubNavBlock } from './internal-sub-nav/component'
-import { adaptInternalSubNavBlock } from './internal-sub-nav/adapter'
 import { ImageTextSplitBlock } from './image-text-split/component'
 import { adaptImageTextSplitBlock } from './image-text-split/adapter'
 import { StatsBarBlock } from './stats-bar/component'
 import { adaptStatsBarBlock } from './stats-bar/adapter'
-import { CompanyProfileTableBlock } from './company-profile-table/component'
-import { adaptCompanyProfileTableBlock } from './company-profile-table/adapter'
 import { CEOMessageBlock } from './ceo-message/component'
 import { adaptCEOMessageBlock } from './ceo-message/adapter'
-import { PullQuoteBlock } from './pull-quote/component'
-import { adaptPullQuoteBlock } from './pull-quote/adapter'
 import { AffiliatesBlock } from './affiliates/component'
 import { adaptAffiliatesBlock } from './affiliates/adapter'
-import { MapEmbedBlock } from './map-embed/component'
-import { adaptMapEmbedBlock } from './map-embed/adapter'
-import { OrgChartBlock } from './org-chart/component'
-import { adaptOrgChartBlock } from './org-chart/adapter'
 import { BusinessLineListBlock } from './business-line-list/component'
 import { adaptBusinessLineListBlock } from './business-line-list/adapter'
 import { GalleryGridBlock } from './gallery-grid/component'
 import { adaptGalleryGridBlock } from './gallery-grid/adapter'
 import { HistoryBlock } from './history/component'
 import { adaptHistoryBlock } from './history/adapter'
+import { PlacementStatisticsBlock } from './placement-statistics/component'
+import { adaptPlacementStatisticsBlock } from './placement-statistics/adapter'
 
 export type BlockRenderer = (raw: unknown) => ReactNode
 
@@ -93,17 +85,13 @@ export const blockRegistry: Record<string, BlockRenderer> = {
   'downloads-grid':      (raw) => <DownloadsGridBlock      {...adaptDownloadsGridBlock(raw)} />,
   'blog-teaser':         (raw) => <BlogTeaserBlock         {...adaptBlogTeaserBlock(raw)} />,
   'news-list':           (raw) => <NewsListBlock             {...adaptNewsListBlock(raw)} />,
-  'page-hero':           (raw) => <PageHeroBlock             {...adaptPageHeroBlock(raw)} />,
-  'internal-sub-nav':    (raw) => <InternalSubNavBlock       {...adaptInternalSubNavBlock(raw)} />,
-  'image-text-split':    (raw) => <ImageTextSplitBlock       {...adaptImageTextSplitBlock(raw)} />,
-  'stats-bar':           (raw) => <StatsBarBlock             {...adaptStatsBarBlock(raw)} />,
-  'company-profile-table': (raw) => <CompanyProfileTableBlock {...adaptCompanyProfileTableBlock(raw)} />,
-  'ceo-message':         (raw) => <CEOMessageBlock           {...adaptCEOMessageBlock(raw)} />,
-  'pull-quote':          (raw) => <PullQuoteBlock            {...adaptPullQuoteBlock(raw)} />,
-  'affiliates':          (raw) => <AffiliatesBlock           {...adaptAffiliatesBlock(raw)} />,
-  'map-embed':           (raw) => <MapEmbedBlock             {...adaptMapEmbedBlock(raw)} />,
-  'org-chart':           (raw) => <OrgChartBlock             {...adaptOrgChartBlock(raw)} />,
-  'business-line-list':  (raw) => <BusinessLineListBlock     {...adaptBusinessLineListBlock(raw)} />,
-  'gallery-grid':        (raw) => <GalleryGridBlock          {...adaptGalleryGridBlock(raw)} />,
-  'history':             (raw) => <HistoryBlock              {...adaptHistoryBlock(raw)} />,
+  'page-hero':               (raw) => <PageHeroBlock               {...adaptPageHeroBlock(raw)} />,
+  'image-text-split':        (raw) => <ImageTextSplitBlock         {...adaptImageTextSplitBlock(raw)} />,
+  'stats-bar':               (raw) => <StatsBarBlock               {...adaptStatsBarBlock(raw)} />,
+  'ceo-message':             (raw) => <CEOMessageBlock             {...adaptCEOMessageBlock(raw)} />,
+  'affiliates':              (raw) => <AffiliatesBlock             {...adaptAffiliatesBlock(raw)} />,
+  'business-line-list':      (raw) => <BusinessLineListBlock       {...adaptBusinessLineListBlock(raw)} />,
+  'gallery-grid':            (raw) => <GalleryGridBlock            {...adaptGalleryGridBlock(raw)} />,
+  'history':                 (raw) => <HistoryBlock                {...adaptHistoryBlock(raw)} />,
+  'placement-statistics':    (raw) => <PlacementStatisticsBlock    {...adaptPlacementStatisticsBlock(raw)} />,
 }

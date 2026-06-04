@@ -3,7 +3,7 @@ import type { Block } from 'payload'
 export const AffiliatesBlockConfig: Block = {
   slug: 'affiliates',
   interfaceName: 'AffiliatesBlock',
-  labels: { singular: 'Affiliates', plural: 'Affiliates Blocks' },
+  labels: { singular: 'Partners / Certifications Strip', plural: 'Partners / Certifications Strips' },
   fields: [
     { name: 'heading', type: 'text', localized: true, admin: { description: 'Max 100 characters' } },
     { name: 'body', type: 'textarea', localized: true, admin: { description: 'Max 300 characters' } },
@@ -12,7 +12,7 @@ export const AffiliatesBlockConfig: Block = {
       type: 'array',
       required: true,
       minRows: 1,
-      maxRows: 12,
+      maxRows: 40,
       fields: [
         { name: 'logo', type: 'upload', relationTo: 'media' },
         { name: 'name', type: 'text', required: true, localized: true, admin: { description: 'Max 100 characters' } },
@@ -39,6 +39,18 @@ export const AffiliatesBlockConfig: Block = {
         { label: '3 columns', value: '3' },
         { label: '4 columns', value: '4' },
       ],
+    },
+    {
+      name: 'animation',
+      type: 'select',
+      defaultValue: 'none',
+      options: [
+        { label: 'None (static grid)', value: 'none' },
+        { label: 'Marquee (logos scroll automatically)', value: 'marquee' },
+      ],
+      admin: {
+        description: 'Marquee applies only when layout is "Logos only". Other layouts are always static.',
+      },
     },
   ],
 }

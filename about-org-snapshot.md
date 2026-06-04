@@ -1,0 +1,227 @@
+- generic [ref=e2]:
+  - region "Notifications alt+T"
+  - navigation [ref=e3]:
+    - generic [ref=e5]:
+      - link [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img [ref=e8]
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - button [ref=e11] [cursor=pointer]:
+            - generic "English" [ref=e12]:
+              - img [ref=e13]
+          - button [ref=e43] [cursor=pointer]:
+            - generic "Japanese" [ref=e44]:
+              - img [ref=e45]
+          - button [ref=e50] [cursor=pointer]:
+            - generic "Bengali" [ref=e51]:
+              - img [ref=e52]
+        - button "Open main menu" [ref=e57] [cursor=pointer]:
+          - generic [ref=e58]: Open main menu
+          - img [ref=e59]
+    - generic [ref=e61]:
+      - link "会社概要" [ref=e63] [cursor=pointer]:
+        - /url: /about/organization-overview
+        - generic [ref=e64]:
+          - text: 会社概要
+          - img [ref=e65]
+      - link "サービス" [ref=e68] [cursor=pointer]:
+        - /url: /about/organization-overview
+        - generic [ref=e69]:
+          - text: サービス
+          - img [ref=e70]
+      - link "求職者の方へ" [ref=e73] [cursor=pointer]:
+        - /url: /job-seekers
+        - generic [ref=e74]: 求職者の方へ
+      - link "採用担当者の方へ" [ref=e76] [cursor=pointer]:
+        - /url: /employers
+        - generic [ref=e77]: 採用担当者の方へ
+      - link "ニュース・更新情報" [ref=e79] [cursor=pointer]:
+        - /url: /news-events
+        - generic [ref=e80]: ニュース・更新情報
+      - button "Contact" [ref=e81] [cursor=pointer]
+  - generic [ref=e83]:
+    - generic [ref=e85]:
+      - generic [ref=e86]:
+        - heading "日本でのキャリアと機会を支援" [level=2] [ref=e87]
+        - paragraph [ref=e88]: Sadiatec株式会社は、グローバル人材と日本の活気ある労働市場との橋渡しを目的とした、革新的な人材サービス企業です。2005年に設立され、日本での留学や就労の機会を支援することで高い評価を得ています。日本、バングラデシュ、マレーシアに拠点を持ち、国際的なネットワークを活かして企業と人材のニーズに応える包括的なソリューションを提供しています。
+      - img "Technology Innovation" [ref=e90]
+    - generic [ref=e92]:
+      - img "Team Collaboration" [ref=e94]
+      - generic [ref=e95]:
+        - heading "私たちの使命" [level=2] [ref=e96]
+        - paragraph [ref=e97]: Sadiatecの使命は、グローバル人材が日本の競争的な産業で成功できるように道を開くことです。バングラデシュやその他の国々の優秀な人材を日本企業と結びつけ、異文化の協働と相互成長を促進しています。人材紹介、コンサルティング、トレーニングを通じて、求職者のキャリア実現と日本の労働力の発展に貢献します。
+    - generic [ref=e98]:
+      - heading "私たちの基本的価値観" [level=2] [ref=e99]
+      - generic [ref=e100]:
+        - generic [ref=e101]:
+          - heading "人材紹介サービス" [level=3] [ref=e102]
+          - paragraph [ref=e103]: 一般労働者、技能実習生、特定技能労働者向けの採用サービス。
+        - generic [ref=e104]:
+          - heading "ビザ申請サポート" [level=3] [ref=e105]
+          - paragraph [ref=e106]: ビザ取得や書類手続きの全面的な支援。
+        - generic [ref=e107]:
+          - heading "言語サポート" [level=3] [ref=e108]
+          - paragraph [ref=e109]: 日本語研修を通じて就職機会を拡大。
+        - generic [ref=e110]:
+          - heading "企業との連携" [level=3] [ref=e111]
+          - paragraph [ref=e112]: 日本企業のニーズに合った人材の紹介。
+    - generic [ref=e113]:
+      - heading "Sadiatecを選ぶ理由" [level=2] [ref=e114]
+      - generic [ref=e115]: Sadiatecは日本で20年以上の経験を持ち、日本の文化やビジネス習慣に精通しています。NTTコミュニケーションズ、ソフトバンク、J:COM、大幸機械工業などの企業とのパートナーシップは、その信頼の証です。 高品質な人材プールへのアクセス。 多言語対応のスタッフによるスムーズなコミュニケーション。 短期から長期までの柔軟な人材ソリューション。 Sadiatecは、新しい挑戦を求める個人と、優れた人材を必要とする企業にとって信頼できるパートナーです。
+    - generic [ref=e116]:
+      - heading "未来へのビジョン" [level=2] [ref=e117]
+      - generic [ref=e118]: 私たちはWebサイトの再設計と、日本での学習・就労の機会に焦点を当て、さらなる革新と成長を目指します。今後は、最先端技術を採用プロセスに導入し、世界中の人材と日本の産業との結びつきをさらに強化していきます。
+  - generic [ref=e121]:
+    - heading "日本で理想の仕事を見つけましょう" [level=2] [ref=e122]
+    - paragraph [ref=e123]: 革新の力を実際に体験し、Betaのソリューションがどのようにあなたの融資プロセスを革命的に変えることができるかを発見してください。高度な機械学習アルゴリズムとクラウドベースのプラットフォームがどのように動作するかを見るために、個別のデモを今すぐスケジュールしましょう。
+    - generic [ref=e124]:
+      - link "申し込みを始める" [ref=e125] [cursor=pointer]:
+        - /url: /contact
+        - button "申し込みを始める" [ref=e126]
+      - paragraph [ref=e127]:
+        - img [ref=e128]
+        - text: すでに2200人の学生が登録しています
+  - contentinfo [ref=e132]:
+    - generic [ref=e133]:
+      - generic [ref=e134]:
+        - generic [ref=e135]:
+          - link [ref=e137] [cursor=pointer]:
+            - /url: /
+            - img [ref=e138]
+          - heading "最新の更新情報とニュースを受け取るために登録してください。" [level=3] [ref=e139]
+          - generic [ref=e140]:
+            - textbox "Email" [ref=e141]
+            - button "Subscribe" [ref=e142] [cursor=pointer]:
+              - img [ref=e143]
+            - generic [ref=e147]:
+              - generic [ref=e148]:
+                - img [ref=e151]
+                - generic [ref=e154]:
+                  - heading "Reach us at" [level=3] [ref=e155]
+                  - paragraph [ref=e156]: info@sadiatec.com
+              - generic [ref=e157]:
+                - img [ref=e160]
+                - generic [ref=e163]:
+                  - heading "Corporate Office" [level=3] [ref=e164]
+                  - paragraph [ref=e165]: 〒101-0021, Tokyo, Chiyoda-ku, Sotokanda 4-5-5, Akiba-Mitakikan 5F
+        - generic [ref=e166]:
+          - generic [ref=e167]:
+            - generic [ref=e168]:
+              - heading "私たちのサービス" [level=4] [ref=e169]
+              - separator [ref=e170]
+            - list [ref=e171]:
+              - listitem [ref=e172]:
+                - link "サディア日本語トレーニングセンター" [ref=e173] [cursor=pointer]:
+                  - /url: /services/sadia-nihongo-training-center
+              - listitem [ref=e174]:
+                - link "日本留学・就労プログラム" [ref=e175] [cursor=pointer]:
+                  - /url: /services/study-work-japan
+              - listitem [ref=e176]:
+                - link "輸出入業務" [ref=e177] [cursor=pointer]:
+                  - /url: /services/export-import
+              - listitem [ref=e178]:
+                - link "SDCコレクション" [ref=e179] [cursor=pointer]:
+                  - /url: /services/sdc-collection
+              - listitem [ref=e180]:
+                - link "国際テレフォンカード" [ref=e181] [cursor=pointer]:
+                  - /url: /services/international-calling-cards
+              - listitem [ref=e182]:
+                - link "ポケットWiFi・データSIM" [ref=e183] [cursor=pointer]:
+                  - /url: /services/pocket-wifi-data-sim
+          - generic [ref=e184]:
+            - generic [ref=e185]:
+              - heading "その他のサービス" [level=4] [ref=e186]
+              - separator [ref=e187]
+            - list [ref=e188]:
+              - listitem [ref=e189]:
+                - link "モバイルSIM" [ref=e190] [cursor=pointer]:
+                  - /url: /services/mobile-sim
+              - listitem [ref=e191]:
+                - link "VoIPサービス" [ref=e192] [cursor=pointer]:
+                  - /url: /services/voip-services
+              - listitem [ref=e193]:
+                - link "NPOドシュディク" [ref=e194] [cursor=pointer]:
+                  - /url: /services/npo-doshdik
+              - listitem [ref=e195]:
+                - link "ドシュディクTV" [ref=e196] [cursor=pointer]:
+                  - /url: /services/doshdik-tv
+              - listitem [ref=e197]:
+                - link "ドシュディクメディア" [ref=e198] [cursor=pointer]:
+                  - /url: https://doshdik.com/
+          - generic [ref=e199]:
+            - generic [ref=e200]:
+              - heading "会社情報" [level=4] [ref=e201]
+              - separator [ref=e202]
+            - list [ref=e203]:
+              - listitem [ref=e204]:
+                - link "会社概要" [ref=e205] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e206]:
+                - link "お問い合わせ" [ref=e207] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e208]:
+                - link "プライバシーポリシー" [ref=e209] [cursor=pointer]:
+                  - /url: /privacy-policy
+              - listitem [ref=e210]:
+                - link "利用規約" [ref=e211] [cursor=pointer]:
+                  - /url: /terms-conditions
+              - listitem [ref=e212]:
+                - link "サディア日本語トレーニングセンター" [ref=e213] [cursor=pointer]:
+                  - /url: /news-events
+          - generic [ref=e214]:
+            - generic [ref=e215]:
+              - heading "求人情報" [level=4] [ref=e216]
+              - separator [ref=e217]
+            - list [ref=e218]:
+              - listitem [ref=e219]:
+                - link "IT・技術インターン" [ref=e220] [cursor=pointer]:
+                  - /url: /about/organization-overview
+              - listitem [ref=e221]:
+                - link "小売スタッフ" [ref=e222] [cursor=pointer]:
+                  - /url: /about/organization-overview
+              - listitem [ref=e223]:
+                - link "ホスピタリティスタッフ" [ref=e224] [cursor=pointer]:
+                  - /url: /about/organization-overview
+              - listitem [ref=e225]:
+                - link "教師アシスタント" [ref=e226] [cursor=pointer]:
+                  - /url: /about/organization-overview
+              - listitem [ref=e227]:
+                - link "英語講師" [ref=e228] [cursor=pointer]:
+                  - /url: /about/organization-overview
+          - generic [ref=e229]:
+            - generic [ref=e230]:
+              - heading "雇用主向け" [level=4] [ref=e231]
+              - separator [ref=e232]
+            - list [ref=e233]:
+              - listitem [ref=e234]:
+                - link "採用" [ref=e235] [cursor=pointer]:
+                  - /url: /about/organization-overview
+              - listitem [ref=e236]:
+                - link "求人を投稿する" [ref=e237] [cursor=pointer]:
+                  - /url: /about/organization-overview
+              - listitem [ref=e238]:
+                - link "人材を雇う" [ref=e239] [cursor=pointer]:
+                  - /url: /about/organization-overview
+              - listitem [ref=e240]:
+                - link "雇用主向けサービス" [ref=e241] [cursor=pointer]:
+                  - /url: /employers
+              - listitem [ref=e242]:
+                - link "スタッフ配置" [ref=e243] [cursor=pointer]:
+                  - /url: /about/organization-overview
+      - generic [ref=e244]:
+        - generic [ref=e245]:
+          - link "Instagram" [ref=e246] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e247]
+          - link "Facebook" [ref=e249] [cursor=pointer]:
+            - /url: https://facebook.com/sadiatec
+            - img [ref=e250]
+          - link "YouTube" [ref=e252] [cursor=pointer]:
+            - /url: https://youtube.com/sadiatec
+            - img [ref=e253]
+        - paragraph [ref=e255]:
+          - text: All rights reserved by Sadiatec. Designed by
+          - link "Weabers" [ref=e256] [cursor=pointer]:
+            - /url: https://weabers.com/
+          - text: .

@@ -25,18 +25,14 @@ import { DownloadsGridBlockConfig } from '../../blocks/downloads-grid/config'
 import { BlogTeaserBlockConfig } from '../../blocks/blog-teaser/config'
 import { NewsListBlockConfig } from '../../blocks/news-list/config'
 import { PageHeroBlockConfig } from '../../blocks/page-hero/config'
-import { InternalSubNavBlockConfig } from '../../blocks/internal-sub-nav/config'
 import { ImageTextSplitBlockConfig } from '../../blocks/image-text-split/config'
 import { StatsBarBlockConfig } from '../../blocks/stats-bar/config'
-import { CompanyProfileTableBlockConfig } from '../../blocks/company-profile-table/config'
 import { CEOMessageBlockConfig } from '../../blocks/ceo-message/config'
-import { PullQuoteBlockConfig } from '../../blocks/pull-quote/config'
 import { AffiliatesBlockConfig } from '../../blocks/affiliates/config'
-import { MapEmbedBlockConfig } from '../../blocks/map-embed/config'
-import { OrgChartBlockConfig } from '../../blocks/org-chart/config'
 import { BusinessLineListBlockConfig } from '../../blocks/business-line-list/config'
 import { GalleryGridBlockConfig } from '../../blocks/gallery-grid/config'
 import { HistoryBlockConfig } from '../../blocks/history/config'
+import { PlacementStatisticsBlockConfig } from '../../blocks/placement-statistics/config'
 
 function buildAvailableBlocks(siteConfig: SiteConfig): Block[] {
   return [
@@ -61,18 +57,14 @@ function buildAvailableBlocks(siteConfig: SiteConfig): Block[] {
     ...(siteConfig.features.blog ? [BlogTeaserBlockConfig] : []),
     NewsListBlockConfig,
     PageHeroBlockConfig,
-    InternalSubNavBlockConfig,
     ImageTextSplitBlockConfig,
     StatsBarBlockConfig,
-    CompanyProfileTableBlockConfig,
     CEOMessageBlockConfig,
-    PullQuoteBlockConfig,
     AffiliatesBlockConfig,
-    MapEmbedBlockConfig,
-    OrgChartBlockConfig,
     BusinessLineListBlockConfig,
     GalleryGridBlockConfig,
     HistoryBlockConfig,
+    PlacementStatisticsBlockConfig,
   ]
 }
 

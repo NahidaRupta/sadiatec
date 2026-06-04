@@ -3,7 +3,7 @@ import type { Block } from 'payload'
 export const GalleryGridBlockConfig: Block = {
   slug: 'gallery-grid',
   interfaceName: 'GalleryGridBlock',
-  labels: { singular: 'Gallery Grid', plural: 'Gallery Grids' },
+  labels: { singular: 'Photo Gallery Grid', plural: 'Photo Gallery Grids' },
   fields: [
     { name: 'heading', type: 'text', localized: true, admin: { description: 'Max 100 characters' } },
     { name: 'intro', type: 'textarea', localized: true, admin: { description: 'Max 300 characters' } },
