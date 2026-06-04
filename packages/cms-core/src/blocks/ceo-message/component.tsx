@@ -20,37 +20,46 @@ export function CEOMessageBlock({
 
   const portraitEl = (
     <div className="flex-shrink-0">
-      <div className="overflow-hidden rounded-2xl shadow-md w-48 md:w-64 mx-auto">
+      {/* Updated to use a strict perfect square aspect ratio (aspect-square) 
+        and rounded-full to create the exact circular image format from the screenshot 
+      */}
+      <div className="overflow-hidden rounded-full shadow-lg w-64 h-64 md:w-80 md:h-80 mx-auto aspect-square border border-neutral-100">
         <Image
           src={portraitUrl}
           alt={portraitAlt}
-          width={256}
+          width={320}
           height={320}
-          className="h-full w-full object-cover object-top"
+          className="h-full w-full object-cover object-center"
         />
       </div>
     </div>
   )
 
   const textEl = (
-    <div className="flex flex-1 flex-col gap-6">
+    <div className="flex flex-1 flex-col gap-5 text-left">
       <div className="flex flex-col gap-1">
-        <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary)]">
-          {title}
+        {/* CEO'S MESSAGE Subtitle label style */}
+        <p className="text-sm font-bold uppercase tracking-wider text-[#10b981]">
+          {title || "CEO'S MESSAGE"}
         </p>
-        <p className="text-xl font-bold text-[var(--color-text)]">{name}</p>
       </div>
 
-      <blockquote className="space-y-4">
+      <div className="space-y-5">
         {message.split('\n').filter(Boolean).map((para, i) => (
           <p
             key={i}
-            className="text-base leading-relaxed text-[var(--color-muted)]"
+            className="text-base leading-relaxed text-neutral-600 font-normal"
           >
             {para}
           </p>
         ))}
-      </blockquote>
+      </div>
+
+      {/* Name and Title placed cleanly beneath the message blocks */}
+      <div className="mt-2 flex flex-col gap-0.5">
+        <p className="text-lg font-semibold text-[#10b981]">{name}</p>
+        <p className="text-xs font-medium text-neutral-400">President & CEO</p>
+      </div>
 
       {signatureUrl && (
         <div className="mt-2">
@@ -67,9 +76,21 @@ export function CEOMessageBlock({
   )
 
   return (
-    <section className={`py-16 md:py-24 ${bg}`}>
+    /* Added clean structural top padding space (pt-24 md:pt-32) to distance the section away from header block */
+    <section className={`pt-24 pb-16 md:pt-32 md:pb-24 ${bg}`}>
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className={`flex flex-col gap-10 md:flex-row md:items-start md:gap-14 ${portraitPosition === 'right' ? 'md:flex-row-reverse' : ''}`}>
+        
+        {/* Static Title Header matching the visual layout */}
+        <div className="w-full text-center mb-12 md:mb-16">
+          <h2 className="text-3xl font-bold tracking-tight text-neutral-800 md:text-4xl">
+            Official Publication
+          </h2>
+        </div>
+
+        {/* Main Grid Wrapper: Updated to use 'md:items-center' to anchor the circular profile 
+          portrait perfectly center-aligned with the accompanying block text 
+        */}
+        <div className={`flex flex-col gap-12 md:flex-row md:items-center md:gap-16 ${portraitPosition === 'right' ? 'md:flex-row-reverse' : ''}`}>
           {portraitEl}
           {textEl}
         </div>

@@ -1,3 +1,6 @@
+'use client'
+// Client boundary: scroll-triggered fade-up animation
+
 import Link from 'next/link'
 import type { PageHeroBlockProps, PageHeroBreadcrumbItem } from './types'
 
@@ -174,7 +177,8 @@ export function PageHeroBlock({
 
           {/* right: profile card */}
           {hasCard && profileCard && (
-            <aside className="shrink-0 w-full lg:w-72 rounded-2xl bg-[var(--color-neutral-900)]/90 backdrop-blur-sm border border-white/10 p-5 shadow-xl">
+            /* Added 'lg:mt-16' to strictly apply top space on desktop viewports without affecting layout balance */
+            <aside className="shrink-0 w-full lg:w-72 lg:mt-16 rounded-2xl bg-[var(--color-neutral-900)]/90 backdrop-blur-sm border border-white/10 p-5 shadow-xl">
               {profileCard.badgeText && (
                 <span className="mb-3 inline-block rounded-full bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
                   {profileCard.badgeText}

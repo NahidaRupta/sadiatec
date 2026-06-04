@@ -28,8 +28,11 @@ export function LogoCloudBlock({
         )}
       </div>
 
-      {/* Scroll track */}
-      <div className="overflow-hidden">
+      {/* 
+        Scroll track container updated to take 70% width on desktops (max-w-5xl)
+        and centered on the screen with horizontal mask fades on edges like image_304b9e.png
+      */}
+      <div className="relative mx-auto w-full max-w-5xl px-6 overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_15%,white_85%,transparent)]">
         <div
           className="logo-track items-center gap-12 md:gap-16"
           style={{ animationDuration: speedDuration[scrollSpeed] }}
