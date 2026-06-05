@@ -7,5 +7,5 @@ export interface CEOMessageBlockProps {
   message: string
   signatureUrl?: string
   portraitPosition?: 'left' | 'right'
-  backgroundStyle?: 'white' | 'light'
+  backgroundStyle?: 'white' | 'light' | 'black'
 }

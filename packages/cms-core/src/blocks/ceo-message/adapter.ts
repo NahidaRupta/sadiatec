@@ -14,9 +14,10 @@ export function adaptCEOMessageBlock(raw: unknown): CEOMessageBlockProps {
   const portraitPosition: CEOMessageBlockProps['portraitPosition'] =
     rawPosition === 'left' || rawPosition === 'right' ? rawPosition : 'left'
 
+  // UPDATE: Added 'black' to the validation condition so it parses correctly from the admin payload data
   const rawBg = data['backgroundStyle']
   const backgroundStyle: CEOMessageBlockProps['backgroundStyle'] =
-    rawBg === 'white' || rawBg === 'light' ? rawBg : 'white'
+    rawBg === 'white' || rawBg === 'light' || rawBg === 'black' ? rawBg : 'white'
 
   return {
     portraitUrl,

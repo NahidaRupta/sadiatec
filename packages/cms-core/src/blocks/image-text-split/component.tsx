@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 import type { ImageTextSplitBlockProps } from './types'
 
 const bgMap: Record<string, string> = {
@@ -39,8 +42,31 @@ export function ImageTextSplitBlock({
   const cols = splitColsMap[imageSplit] ?? { image: 'lg:col-span-6', text: 'lg:col-span-6' }
   const alignItems = verticalAlign === 'top' ? 'items-start' : 'items-center'
 
+  // Animation variant for the image to gracefully slide in from the right edge
+  const imageVariants = {
+    hidden: { opacity: 0, x: 45 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.75, ease: [0.25, 1, 0.5, 1] }
+    }
+  }
+
+  // Animation variant for the text block to gently approach from the left side
+  const textVariants = {
+    hidden: { opacity: 0, x: -35 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.75, ease: [0.25, 1, 0.5, 1] }
+    }
+  }
+
   const imageCol = (
-    <div className={`${cols.image} overflow-hidden rounded-2xl`}>
+    <motion.div 
+      variants={imageVariants}
+      className={`${cols.image} overflow-hidden rounded-2xl`}
+    >
       <Image
         src={imageUrl}
         alt={imageAlt}
@@ -48,11 +74,14 @@ export function ImageTextSplitBlock({
         height={600}
         className="h-full w-full object-cover"
       />
-    </div>
+    </motion.div>
   )
 
   const textCol = (
-    <div className={`${cols.text} flex flex-col justify-center gap-5 ${textColor}`}>
+    <motion.div 
+      variants={textVariants}
+      className={`${cols.text} flex flex-col justify-center gap-5 ${textColor}`}
+    >
       {eyebrow && (
         <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary)]">
           {eyebrow}
@@ -70,13 +99,20 @@ export function ImageTextSplitBlock({
           {primaryButtonLabel}
         </Link>
       )}
-    </div>
+    </motion.div>
   )
 
   return (
-    <section className={`py-16 md:py-24 ${bg}`}>
+    <section className={`py-16 md:py-24 overflow-hidden ${bg}`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className={`grid grid-cols-1 gap-10 lg:grid-cols-12 ${alignItems}`}>
+        
+        {/* Changed layout wrapper to evaluate animation triggers collectively when viewed */}
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-120px" }}
+          className={`grid grid-cols-1 gap-10 lg:grid-cols-12 ${alignItems}`}
+        >
           {imagePosition === 'left' ? (
             <>
               {imageCol}
@@ -88,7 +124,7 @@ export function ImageTextSplitBlock({
               {imageCol}
             </>
           )}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -1,4 +1,7 @@
+'use client'
+
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 import type { HistoryBlockProps, HistoryEntry } from './types'
 
 const accentDotMap: Record<string, string> = {
@@ -23,6 +26,44 @@ const accentBadgeMap: Record<string, string> = {
   brand: 'bg-[var(--color-primary)] text-white',
   dark: 'bg-[var(--color-neutral-900)] text-white',
   light: 'bg-[var(--color-neutral-200,#e5e7eb)] text-[var(--color-text)]',
+}
+
+// Parent Stagger Preset
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
+  },
+}
+
+// Simple Mobile Fade-Up
+const mobileItemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.215, 0.61, 0.355, 1] },
+  },
+}
+
+// Center Line Scaling preset
+const lineVariants = {
+  hidden: { scaleY: 0 },
+  visible: {
+    scaleY: 1,
+    transition: { duration: 0.8, ease: 'easeInOut' },
+  },
+}
+
+// Spring Dot Preset
+const dotVariants = {
+  hidden: { scale: 0, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: { type: 'spring', stiffness: 200, damping: 15, delay: 0.2 },
+  },
 }
 
 interface EntryCardProps {
@@ -70,7 +111,7 @@ function MobileEntry({ entry, accentColor }: { entry: HistoryEntry; accentColor:
   const badgeClass = accentBadgeMap[accentColor] ?? accentBadgeMap['brand']
 
   return (
-    <li className="relative flex gap-4 pb-8 last:pb-0">
+    <motion.li variants={mobileItemVariants} className="relative flex gap-4 pb-8 last:pb-0">
       <div className="flex flex-col items-center">
         <div className={`mt-1 h-3 w-3 shrink-0 rounded-full ${dotClass}`} />
         <div className={`w-px flex-1 ${accentLineMap[accentColor] ?? ''}`} />
@@ -98,7 +139,7 @@ function MobileEntry({ entry, accentColor }: { entry: HistoryEntry; accentColor:
           />
         )}
       </div>
-    </li>
+    </motion.li>
   )
 }
 
@@ -114,10 +155,18 @@ export function HistoryBlock({
   const lineClass = accentLineMap[accentColor] ?? accentLineMap['brand']
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-16 md:py-24 overflow-hidden">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        
+        {/* Animated Section Header */}
         {(heading || intro) && (
-          <div className="mb-12 text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: -15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-12 text-center"
+          >
             {heading && (
               <h2 className="text-2xl font-bold tracking-tight text-[var(--color-text)] sm:text-3xl">
                 {heading}
@@ -126,49 +175,78 @@ export function HistoryBlock({
             {intro && (
               <p className="mt-4 mx-auto max-w-2xl text-base text-[var(--color-muted)]">{intro}</p>
             )}
-          </div>
+          </motion.div>
         )}
 
-        {/* Mobile: single-column list */}
-        <ul className="lg:hidden">
+        {/* Mobile Layout System */}
+        <motion.ul 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="lg:hidden"
+        >
           {entries.map((entry, i) => (
             <MobileEntry key={i} entry={entry} accentColor={accentColor} />
           ))}
-        </ul>
+        </motion.ul>
 
-        {/* Desktop: alternating / left / right */}
-        <div className="relative hidden lg:block">
-          {/* Centre vertical line */}
-          <div className={`absolute inset-y-0 left-1/2 w-px -translate-x-1/2 ${lineClass}`} />
+        {/* Desktop Layout System */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="relative hidden lg:block"
+        >
+          {/* Animated Center Timeline Line */}
+          <motion.div 
+            variants={lineVariants}
+            className={`absolute inset-y-0 left-1/2 w-px -translate-x-1/2 origin-top ${lineClass}`} 
+          />
 
           <ol className="space-y-12">
             {entries.map((entry, i) => {
               const isRight = layout === 'alternating' ? i % 2 !== 0 : layout === 'right'
+
+              // Directional translation variants depending on layout placement configuration
+              const cardSideVariants = {
+                hidden: { opacity: 0, x: isRight ? 40 : -40 },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  transition: { duration: 0.6, ease: [0.215, 0.61, 0.355, 1] },
+                },
+              }
 
               return (
                 <li key={i} className="relative grid grid-cols-2 gap-8">
                   {isRight ? (
                     <>
                       <div />
-                      <div className="relative pl-8">
+                      <motion.div variants={cardSideVariants} className="relative pl-8">
                         <EntryCard entry={entry} accentColor={accentColor} isRight={false} />
-                      </div>
+                      </motion.div>
                     </>
                   ) : (
                     <>
-                      <div className="relative pr-8">
+                      <motion.div variants={cardSideVariants} className="relative pr-8">
                         <EntryCard entry={entry} accentColor={accentColor} isRight={true} />
-                      </div>
+                      </motion.div>
                       <div />
                     </>
                   )}
-                  {/* Centre dot */}
-                  <div className={`absolute left-1/2 top-1 h-4 w-4 -translate-x-1/2 rounded-full border-2 border-white shadow-sm ${accentDotMap[accentColor] ?? accentDotMap['brand']}`} />
+                  
+                  {/* Animated Springy Center Timeline Dot Marker */}
+                  <motion.div 
+                    variants={dotVariants}
+                    className={`absolute left-1/2 top-1 h-4 w-4 -translate-x-1/2 rounded-full border-2 border-white shadow-sm z-10 ${accentDotMap[accentColor] ?? accentDotMap['brand']}`} 
+                  />
                 </li>
               )
             })}
           </ol>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

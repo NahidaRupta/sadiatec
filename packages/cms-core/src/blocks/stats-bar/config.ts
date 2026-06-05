@@ -35,7 +35,7 @@ export const StatsBarBlockConfig: Block = {
       defaultValue: 'brand',
       options: [
         { label: 'Brand', value: 'brand' },
-        { label: 'Dark', value: 'dark' },
+        { label: 'White', value: 'White' },
         { label: 'Light', value: 'light' },
       ],
     },

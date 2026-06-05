@@ -1,3 +1,6 @@
+'use client'
+
+import { motion } from 'framer-motion'
 import type { PlacementStatisticsBlockProps, IndustrySlice, RegionBar } from './types'
 
 function bgClass(style: string): string {
@@ -61,6 +64,20 @@ function arcPath(cx: number, cy: number, r: number, startAngle: number, endAngle
   return `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} Z`
 }
 
+// Shared list fade-in variants
+const listVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08 }
+  }
+}
+
+const itemFadeVariants = {
+  hidden: { opacity: 0, x: -15 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.4 } }
+}
+
 function PieChart({ industries, labelColor }: { industries: IndustrySlice[]; labelColor: string }) {
   const slices = buildPieSlices(industries)
   const cx = 100
@@ -69,14 +86,31 @@ function PieChart({ industries, labelColor }: { industries: IndustrySlice[]; lab
 
   return (
     <div className="flex flex-col gap-4 items-center">
-      <svg viewBox="0 0 200 200" className="w-48 h-48 md:w-56 md:h-56" aria-hidden="true">
+      {/* Scale-up animation for the main SVG container */}
+      <motion.svg 
+        initial={{ scale: 0.8, opacity: 0, rotate: -20 }}
+        whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        viewBox="0 0 200 200" 
+        className="w-48 h-48 md:w-56 md:h-56" 
+        aria-hidden="true"
+      >
         {slices.map((slice, i) => (
           <path key={i} d={arcPath(cx, cy, r, slice.startAngle, slice.endAngle)} fill={slice.color} />
         ))}
-      </svg>
-      <ul className="flex flex-col gap-1.5 w-full" role="list">
+      </motion.svg>
+      
+      <motion.ul 
+        variants={listVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="flex flex-col gap-1.5 w-full" 
+        role="list"
+      >
         {slices.map((slice, i) => (
-          <li key={i} className="flex items-center gap-2 text-xs">
+          <motion.li key={i} variants={itemFadeVariants} className="flex items-center gap-2 text-xs">
             <span
               className="inline-block h-3 w-3 shrink-0 rounded-sm"
               style={{ backgroundColor: slice.color }}
@@ -84,9 +118,9 @@ function PieChart({ industries, labelColor }: { industries: IndustrySlice[]; lab
             />
             <span className={labelColor}>{slice.name}</span>
             <span className={`ml-auto font-semibold ${labelColor}`}>{slice.percentage}%</span>
-          </li>
+          </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </div>
   )
 }
@@ -95,26 +129,37 @@ function BarChart({ regions, labelColor }: { regions: RegionBar[]; labelColor: s
   const maxVal = Math.max(...regions.map((r) => r.value), 1)
 
   return (
-    <ul className="flex flex-col gap-4 w-full" role="list">
+    <motion.ul 
+      variants={listVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="flex flex-col gap-4 w-full" 
+      role="list"
+    >
       {regions.map((region, i) => {
         const pct = Math.round((region.value / maxVal) * 100)
         return (
-          <li key={i}>
+          <motion.li key={i} variants={itemFadeVariants}>
             <div className="mb-1 flex items-center justify-between gap-2">
               <span className={`text-xs font-medium ${labelColor}`}>{region.name}</span>
               <span className={`text-xs font-semibold ${labelColor}`}>{region.value}</span>
             </div>
             <div className="h-3 w-full overflow-hidden rounded-full bg-white/20">
-              <div
+              {/* Width fill bar layout calculation handled seamlessly with springs */}
+              <motion.div
                 className="h-full rounded-full bg-[var(--color-primary)]"
-                style={{ width: `${pct}%` }}
+                initial={{ width: 0 }}
+                whileInView={{ width: `${pct}%` }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: i * 0.05 }}
                 role="presentation"
               />
             </div>
-          </li>
+          </motion.li>
         )
       })}
-    </ul>
+    </motion.ul>
   )
 }
 
@@ -135,10 +180,16 @@ export function PlacementStatisticsBlock({
   const sColor        = subtitleColor(backgroundStyle)
 
   return (
-    <section className={`py-16 md:py-24 ${bg}`}>
+    <section className={`py-16 md:py-24 ${bg} overflow-hidden`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {(heading || subtitle) && (
-          <div className="mb-12 text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-12 text-center"
+          >
             {heading && (
               <p className={`text-sm font-semibold uppercase tracking-widest ${sColor}`}>
                 {heading}
@@ -149,26 +200,36 @@ export function PlacementStatisticsBlock({
                 {subtitle}
               </h2>
             )}
-          </div>
+          </motion.div>
         )}
 
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
           {industries.length > 0 && (
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
               {industriesHeading && (
                 <h3 className={`mb-6 text-lg font-bold ${hColor}`}>{industriesHeading}</h3>
               )}
               <PieChart industries={industries} labelColor={lColor} />
-            </div>
+            </motion.div>
           )}
 
           {regions.length > 0 && (
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               {regionsHeading && (
                 <h3 className={`mb-6 text-lg font-bold ${hColor}`}>{regionsHeading}</h3>
               )}
               <BarChart regions={regions} labelColor={lColor} />
-            </div>
+            </motion.div>
           )}
         </div>
       </div>

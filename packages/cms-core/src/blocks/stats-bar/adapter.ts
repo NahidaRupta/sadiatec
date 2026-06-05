@@ -16,7 +16,7 @@ export function adaptStatsBarBlock(raw: unknown): StatsBarBlockProps {
 
   const rawBg = data['backgroundStyle']
   const backgroundStyle: StatsBarBlockProps['backgroundStyle'] =
-    rawBg === 'brand' || rawBg === 'dark' || rawBg === 'light' ? rawBg : 'brand'
+    rawBg === 'brand' || rawBg === 'White' || rawBg === 'light' ? rawBg : 'brand'
 
   const rawLayout = data['layout']
   const layout: StatsBarBlockProps['layout'] =

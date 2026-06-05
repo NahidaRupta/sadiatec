@@ -27,6 +27,7 @@ export const CEOMessageBlockConfig: Block = {
       options: [
         { label: 'White', value: 'white' },
         { label: 'Light', value: 'light' },
+        { label: 'black', value: 'black' },
       ],
     },
   ],

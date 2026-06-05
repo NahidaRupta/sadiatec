@@ -2,6 +2,7 @@
 // Client boundary: scroll-triggered fade-up animation
 
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import type { PageHeroBlockProps, PageHeroBreadcrumbItem } from './types'
 
 function minHeightClass(h: string | undefined): string {
@@ -57,6 +58,29 @@ function PageTitleVariant({
   )
 }
 
+// Staggered layout entry animation configs
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+}
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.215, 0.61, 0.355, 1], // Clean cubic-bezier ease out
+    },
+  },
+}
+
 export function PageHeroBlock({
   variant = 'hero',
   heading,
@@ -95,8 +119,11 @@ export function PageHeroBlock({
       className={`relative flex w-full flex-col justify-end overflow-hidden ${mhClass} bg-[var(--color-neutral-900)]`}
     >
       {backgroundImageUrl && (
-        <div
+        <motion.div
           aria-hidden="true"
+          initial={{ scale: 1.05, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('${backgroundImageUrl}')` }}
         />
@@ -111,10 +138,19 @@ export function PageHeroBlock({
       )}
 
       <div className="relative mx-auto w-full max-w-7xl px-4 pb-12 pt-20 sm:px-6 lg:px-8">
-        <div className={`flex flex-col gap-6 ${hasCard ? 'lg:flex-row lg:items-center lg:justify-between' : ''}`}>
+        {/* Changed inner wrapper block to a container motion element */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className={`flex flex-col gap-6 ${hasCard ? 'lg:flex-row lg:items-center lg:justify-between' : ''}`}
+        >
 
-          {/* left: text content */}
-          <div className={`flex flex-col gap-4 ${alignClass} ${hasCard ? 'lg:max-w-xl' : ''}`}>
+          {/* left: text content with smooth fade-up */}
+          <motion.div 
+            variants={fadeUpVariants}
+            className={`flex flex-col gap-4 ${alignClass} ${hasCard ? 'lg:max-w-xl' : ''}`}
+          >
             {showBreadcrumb && breadcrumbItems && breadcrumbItems.length > 0 && (
               <nav aria-label="Breadcrumb">
                 <ol className="flex flex-wrap items-center gap-1 text-sm text-white/70">
@@ -173,12 +209,14 @@ export function PageHeroBlock({
                 )}
               </div>
             )}
-          </div>
+          </motion.div>
 
-          {/* right: profile card */}
+          {/* right: profile card with a staggered elegant entry */}
           {hasCard && profileCard && (
-            /* Added 'lg:mt-16' to strictly apply top space on desktop viewports without affecting layout balance */
-            <aside className="shrink-0 w-full lg:w-72 lg:mt-16 rounded-2xl bg-[var(--color-neutral-900)]/90 backdrop-blur-sm border border-white/10 p-5 shadow-xl">
+            <motion.aside 
+              variants={fadeUpVariants}
+              className="shrink-0 w-full lg:w-72 lg:mt-16 rounded-2xl bg-[var(--color-neutral-900)]/90 backdrop-blur-sm border border-white/10 p-5 shadow-xl"
+            >
               {profileCard.badgeText && (
                 <span className="mb-3 inline-block rounded-full bg-[var(--color-primary)] px-3 py-1 text-xs font-semibold text-white">
                   {profileCard.badgeText}
@@ -197,9 +235,9 @@ export function PageHeroBlock({
                   ))}
                 </dl>
               )}
-            </aside>
+            </motion.aside>
           )}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

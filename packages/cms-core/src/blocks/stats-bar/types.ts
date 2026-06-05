@@ -8,6 +8,6 @@ export interface StatsBarItem {
 export interface StatsBarBlockProps {
   blockType?: 'stats-bar'
   items: StatsBarItem[]
-  backgroundStyle?: 'brand' | 'dark' | 'light'
+  backgroundStyle?: 'brand' | 'White' | 'light'
   layout?: 'row' | 'grid'
 }
