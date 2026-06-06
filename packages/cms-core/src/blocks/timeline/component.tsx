@@ -47,9 +47,10 @@ function JobCard({ job }: { job: JobOpening }) {
         <span className="text-xs font-medium text-slate-400 tabular-nums">
           Posted: {job.postedDate}
         </span>
+        {/* ── 🎯 REFINED DEEP TONED CTA BUTTON ── */}
         <Link
           href={job.applyHref}
-          className="rounded-lg bg-[#00875A] px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-[#006C48] focus:outline-none"
+          className="rounded-lg bg-slate-900 px-4 py-2 text-xs font-bold text-white transition-colors duration-200 hover:bg-slate-800 focus:outline-none shadow-sm"
         >
           Apply Now
         </Link>
@@ -63,7 +64,10 @@ function ProcessStepColumn({ step, isLast }: { step: ProcessStep; isLast: boolea
     <motion.div variants={fadeInUp} className="relative flex-1 group">
       {/* Step Circle & Layout connector bar */}
       <div className="flex items-center w-full mb-5">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#005238] text-sm font-mono font-bold text-white transition-transform duration-300 group-hover:scale-105">
+        <div 
+          style={{ backgroundColor: 'var(--color-primary)' }}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-mono font-bold text-white transition-transform duration-300 group-hover:scale-105"
+        >
           {step.number}
         </div>
         {!isLast && (
@@ -123,10 +127,16 @@ export function OpeningsProcessBlock({
         {processSteps.length > 0 && (
           <div className="border-t border-neutral-100 pt-16 md:pt-20">
             
-            {/* Custom Puzzle Icon Accent Badge */}
+            {/* Custom Puzzle/List Icon Accent Badge */}
             <div className="mb-10 flex justify-start">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#00875A]/40 bg-white py-1.5 pl-2 pr-4 text-xs font-semibold text-[#00875A]">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#00875A] text-white">
+              <div 
+                style={{ borderColor: 'var(--color-primary)', color: 'var(--color-primary)' }}
+                className="inline-flex items-center gap-2 rounded-full border bg-white py-1.5 pl-2 pr-4 text-xs font-semibold"
+              >
+                <div 
+                  style={{ backgroundColor: 'var(--color-primary)' }}
+                  className="flex h-6 w-6 items-center justify-center rounded-full text-white"
+                >
                   <svg className="h-3.5 w-3.5 fill-none stroke-[2.5]" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 9.748V12m0 0v2.25m0-2.25h2.25m-2.25 0H12m0-6.748H4.5A2.25 2.25 0 002.25 7.5v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 19.5v-7.5a2.25 2.25 0 00-2.25-2.25h-5.25z" />
                   </svg>

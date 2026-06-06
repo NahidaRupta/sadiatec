@@ -143,11 +143,12 @@ export function ServicesGridBlock({
   if (services.length === 0) return null
 
   return (
-    <section className="py-20 md:py-28 bg-white overflow-hidden">
+    /* ── 🎯 FIXED: Tuned down section padding top (pt-10 md:pt-14) to maintain an uniform flow serial sequence ── */
+    <section className="pt-10 pb-20 md:pt-14 md:pb-28 bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* Section header */}
-        <div className="mb-16 md:mb-24 text-center max-w-3xl mx-auto space-y-3">
+        {/* ── 🎯 FIXED: Trimmed space below header down from mb-16/24 to mb-10 md:mb-14 ── */}
+        <div className="mb-10 md:mb-14 text-center max-w-3xl mx-auto space-y-3">
           <SectionEyebrow>{eyebrow}</SectionEyebrow>
           {/* Main header toned down to text-3xl with text-4xl on desktop */}
           <h2 className="text-3xl font-extrabold tracking-tight text-(--color-text) md:text-4xl">

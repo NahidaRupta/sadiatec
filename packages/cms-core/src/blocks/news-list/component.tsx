@@ -63,7 +63,7 @@ export function NewsListBlock({
   if (items.length === 0) return null
 
   return (
-    <section aria-labelledby="news-list-heading" className="py-20 md:py-28 bg-white">
+    <section aria-labelledby="news-list-heading" className="pt-5 pb-10 md:pt-10 md:pb-15 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Asymmetric layout container matrix */}

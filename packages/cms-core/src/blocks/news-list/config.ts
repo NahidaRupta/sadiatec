@@ -24,7 +24,7 @@ export const NewsListBlockConfig: Block = {
       min: 1,
       max: 10,
       admin: {
-        condition: (data) => data['source'] === 'collection',
+        condition: (_data, siblingData) => siblingData?.source === 'collection',
         description: 'Number of latest news items to display',
       },
     },
@@ -34,14 +34,14 @@ export const NewsListBlockConfig: Block = {
       relationTo: 'news',
       hasMany: true,
       admin: {
-        condition: (data) => data['source'] === 'collection',
+        condition: (_data, siblingData) => siblingData?.source === 'collection',
         description: 'Leave empty to show latest items by publishedAt',
       },
     },
     {
       name: 'inlineItems',
       type: 'array',
-      admin: { condition: (data) => data['source'] === 'inline' },
+      admin: { condition: (_data, siblingData) => siblingData?.source === 'inline', },
       fields: [
         { name: 'date', type: 'date', required: true },
         { name: 'category', type: 'text', localized: true },

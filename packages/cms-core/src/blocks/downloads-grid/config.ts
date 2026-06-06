@@ -24,7 +24,7 @@ export const DownloadsGridBlockConfig: Block = {
       hasMany: true,
       maxRows: 6,
       admin: {
-        condition: (data) => data['source'] === 'collection',
+        condition: (_data, siblingData) => siblingData?.source === 'collection',
         description: 'Leave empty to show all active downloads (max 6)',
       },
     },
@@ -32,7 +32,7 @@ export const DownloadsGridBlockConfig: Block = {
       name: 'inlineDownloads',
       type: 'array',
       maxRows: 6,
-      admin: { condition: (data) => data['source'] === 'inline' },
+      admin: { condition: (_data, siblingData) => siblingData?.source === 'inline', },
       fields: [
         { name: 'categoryLabel', type: 'text', localized: true },
         { name: 'title', type: 'text', localized: true, required: true },

@@ -67,11 +67,12 @@ export function BentoGridBlock({
       : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
 
   return (
-    <section className="py-20 md:py-28 bg-white overflow-hidden">
+    /* ── 🎯 FIXED: Reduced top padding (pt-10 md:pt-14) & kept standard bottom padding ── */
+    <section className="pt-10 pb-20 md:pt-14 md:pb-28 bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* Balanced and structured Section header */}
-        <div className="mx-auto mb-16 max-w-3xl text-center space-y-3">
+        {/* ── 🎯 FIXED: Trimmed margin bottom under the header text from mb-16 to mb-10 ── */}
+        <div className="mx-auto mb-10 max-w-3xl text-center space-y-3">
           <SectionEyebrow>{eyebrow}</SectionEyebrow>
           <h2 className="text-3xl font-extrabold tracking-tight text-(--color-text) md:text-4xl">
             {heading}

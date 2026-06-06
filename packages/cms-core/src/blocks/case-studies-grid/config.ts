@@ -23,7 +23,7 @@ export const CaseStudiesGridBlockConfig: Block = {
       hasMany: true,
       maxRows: 6,
       admin: {
-        condition: (data) => data['source'] === 'collection',
+         condition: (_data, siblingData) => siblingData?.source === 'collection',
         description: 'Leave empty to show all published case studies (max 6)',
       },
     },
@@ -32,7 +32,7 @@ export const CaseStudiesGridBlockConfig: Block = {
       type: 'array',
       maxRows: 6,
       admin: {
-        condition: (data) => data['source'] === 'inline',
+        condition: (_data, siblingData) => siblingData?.source === 'inline',
       },
       fields: [
         { name: 'name', type: 'text', localized: true, required: true },
