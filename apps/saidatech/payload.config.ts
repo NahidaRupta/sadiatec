@@ -2,6 +2,7 @@ import { buildConfig } from 'payload'
 import { buildCmsConfig } from '@saidatech/cms-core/payload/config-factory'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { s3Storage } from '@payloadcms/storage-s3'
 import siteConfig from './site.config'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -46,6 +47,34 @@ const finalConfig = {
       }
     } : {}),
   },
+}
+
+// ✅ R2 Storage Configuration
+if (
+  process.env.CLOUDFLARE_R2_BUCKET &&
+  process.env.CLOUDFLARE_R2_ACCESS_KEY_ID &&
+  process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY &&
+  process.env.CLOUDFLARE_R2_ENDPOINT
+) {
+  finalConfig.plugins = [
+    ...(finalConfig.plugins || []),
+    s3Storage({
+      collections: {
+        media: true,           // Change this if your media collection name is different
+      },
+      bucket: process.env.CLOUDFLARE_R2_BUCKET,
+      config: {
+        credentials: {
+          accessKeyId: process.env.CLOUDFLARE_R2_ACCESS_KEY_ID,
+          secretAccessKey: process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY,
+        },
+        region: 'auto',
+        endpoint: process.env.CLOUDFLARE_R2_ENDPOINT,
+      },
+    }),
+  ]
+} else {
+  console.log('⚠️ R2 not configured - using local file storage')
 }
 
 // ✅ Type-safe check: Ensure Payload config gets an importMap wrapper if it demands one
