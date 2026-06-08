@@ -10,7 +10,17 @@ export const MediaCollection: CollectionConfig = {
   upload: {
     staticDir: 'public/media',
   },
-  hooks: { afterChange: [() => { revalidateTag('media') }] },
+  hooks: {
+    afterRead: [
+      ({ doc }) => {
+        if (doc?.filename && process.env.NEXT_PUBLIC_R2_PUBLIC_URL) {
+          doc.url = `${process.env.NEXT_PUBLIC_R2_PUBLIC_URL}/${doc.filename}`
+        }
+        return doc
+      },
+    ],
+    afterChange: [() => { revalidateTag('media') }],
+  },
   fields: [
     {
       name: 'alt',

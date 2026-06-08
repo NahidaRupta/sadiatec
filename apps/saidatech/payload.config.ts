@@ -19,7 +19,15 @@ if (!uri) {
 const db =
   uri.startsWith('file:') || uri.endsWith('.db')
     ? sqliteAdapter({ client: { url: uri } })
-    : postgresAdapter({ pool: { connectionString: uri } })
+    : postgresAdapter({ 
+        pool: { 
+          connectionString: uri,
+          max: 3,
+          idleTimeoutMillis: 10000,
+          connectionTimeoutMillis: 10000,
+          ssl: true,
+        } 
+      })
 
 const baseConfig = buildCmsConfig(siteConfig, undefined, db)
 
@@ -31,7 +39,7 @@ const allowedOrigins = [
 
 const finalConfig = {
   ...baseConfig,
-   serverURL: process.env.NEXT_PUBLIC_SERVER_URL ?? 'http://localhost:3000',
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL ?? 'http://localhost:3000',
   cors: allowedOrigins,
   csrf: allowedOrigins,
   admin: {
@@ -60,7 +68,7 @@ if (
     ...(finalConfig.plugins || []),
     s3Storage({
       collections: {
-        media: true,           // Change this if your media collection name is different
+        media: true,
       },
       bucket: process.env.CLOUDFLARE_R2_BUCKET,
       config: {
@@ -77,16 +85,13 @@ if (
   console.log('⚠️ R2 not configured - using local file storage')
 }
 
-// ✅ Type-safe check: Ensure Payload config gets an importMap wrapper if it demands one
+// ✅ Type-safe check
 if ('importMap' in baseConfig) {
   delete (finalConfig as any).importMap
 }
 
-// 🚨 IMPORTANT: Storage Configuration (Local for now)
 finalConfig.upload = {
   ...finalConfig.upload,
-  // Using default local storage (files saved in /public/media)
-  // No s3Storage plugin = local disk storage
 }
 
 export default buildConfig(finalConfig)
