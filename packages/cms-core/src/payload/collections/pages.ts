@@ -33,6 +33,7 @@ import { BusinessLineListBlockConfig } from '../../blocks/business-line-list/con
 import { GalleryGridBlockConfig } from '../../blocks/gallery-grid/config'
 import { HistoryBlockConfig } from '../../blocks/history/config'
 import { PlacementStatisticsBlockConfig } from '../../blocks/placement-statistics/config'
+import { ContactInfoCardBlockConfig } from '../../blocks/contact-info-card/config'
 
 export function buildAvailableBlocks(siteConfig: SiteConfig): Block[] {
   return [
@@ -65,6 +66,7 @@ export function buildAvailableBlocks(siteConfig: SiteConfig): Block[] {
     GalleryGridBlockConfig,
     HistoryBlockConfig,
     PlacementStatisticsBlockConfig,
+    ContactInfoCardBlockConfig,
   ]
 }
 

@@ -1,5 +1,11 @@
+export interface FAQItem {
+  id?: string
+  question: string
+  answer: string
+}
+
 export interface FAQBlockProps {
   sectionHeading?: string
-  faqIds: string[]
-  variant: 'accordion' | 'grid'
+  items?: FAQItem[]
+  variant?: 'accordion' | 'grid'
 }

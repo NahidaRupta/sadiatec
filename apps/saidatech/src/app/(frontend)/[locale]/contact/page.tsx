@@ -28,6 +28,12 @@ const titles: Record<Locale, string> = {
   ja: 'お問い合わせ',
   bn: 'যোগাযোগ করুন',
 }
+const button: Record<Locale, string> = {
+  en: 'Get to Know Us',
+  ja: 'お問い合わせ',
+  bn: 'যোগাযোগ করুন',
+}
+
 
 const descriptions: Record<Locale, string> = {
   en: 'Get in touch with our team for visa support, recruitment enquiries, or general questions.',
@@ -195,8 +201,8 @@ export default async function ContactPage({ params }: Props) {
 
   const heroProps: PageHeroBlockProps = {
     heading: titles[locale],
-    coloredSubtitle: heroSubheadings[locale],
-    secondaryButton: { label: titles[locale], href: '/contact' },
+    body: heroSubheadings[locale],
+    primaryButton: { label: button[locale], href: '/about' },
     overlayOpacity: 40,
   }
 

@@ -30,6 +30,7 @@ import { BusinessLineListBlockConfig } from './business-line-list/config'
 import { GalleryGridBlockConfig } from './gallery-grid/config'
 import { HistoryBlockConfig } from './history/config'
 import { PlacementStatisticsBlockConfig } from './placement-statistics/config'
+import { ContactInfoCardBlockConfig } from './contact-info-card/config'
 
 export const allBlockConfigs: Block[] = [
   HeroBlockConfig,
@@ -62,6 +63,7 @@ export const allBlockConfigs: Block[] = [
   GalleryGridBlockConfig,
   HistoryBlockConfig,
   PlacementStatisticsBlockConfig,
+  ContactInfoCardBlockConfig,
 ]
 
 export type { HeroBlockProps, HeroInlineStat, HeroKeywordPill, HeroCta } from './hero/types'
@@ -94,6 +96,7 @@ export type { BusinessLineListBlockProps, BusinessLineItem, BusinessLineFeature 
 export type { GalleryGridBlockProps, GalleryCategory, GalleryImageItem } from './gallery-grid/types'
 export type { HistoryBlockProps, HistoryEntry } from './history/types'
 export type { PlacementStatisticsBlockProps, IndustrySlice, RegionBar } from './placement-statistics/types'
+export type { ContactInfoCardBlockProps } from './contact-info-card/types'
 
 export { HeroBlock } from './hero/component'
 export { RichTextBlock } from './rich-text/component'
@@ -108,6 +111,7 @@ export { BusinessLineListBlock } from './business-line-list/component'
 export { GalleryGridBlock } from './gallery-grid/component'
 export { HistoryBlock } from './history/component'
 export { PlacementStatisticsBlock } from './placement-statistics/component'
+export { ContactInfoCardBlock } from './contact-info-card/component'
 
 export { blockRegistry } from './registry'
 export type { BlockRenderer } from './registry'

@@ -60,6 +60,8 @@ import { HistoryBlock } from './history/component'
 import { adaptHistoryBlock } from './history/adapter'
 import { PlacementStatisticsBlock } from './placement-statistics/component'
 import { adaptPlacementStatisticsBlock } from './placement-statistics/adapter'
+import { ContactInfoCardBlock } from './contact-info-card/component'
+import { adaptContactInfoCardBlock } from './contact-info-card/adapter'
 
 export type BlockRenderer = (raw: unknown) => ReactNode
 
@@ -94,4 +96,5 @@ export const blockRegistry: Record<string, BlockRenderer> = {
   'gallery-grid':            (raw) => <GalleryGridBlock            {...adaptGalleryGridBlock(raw)} />,
   'history':                 (raw) => <HistoryBlock                {...adaptHistoryBlock(raw)} />,
   'placement-statistics':    (raw) => <PlacementStatisticsBlock    {...adaptPlacementStatisticsBlock(raw)} />,
+  'contact-info-card':       (raw) => <ContactInfoCardBlock        {...adaptContactInfoCardBlock(raw)} />,
 }
