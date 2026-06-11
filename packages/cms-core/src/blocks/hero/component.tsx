@@ -129,7 +129,7 @@ export function HeroBlock({
                       variants={fadeInUp}
                       className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl xl:text-6xl"
                     >
-                      <span className="text-amber-500">{targetPhrase}</span>
+                      <span className="text-green-700">{targetPhrase}</span>
                       {cleanRemainder && (
                         <>
                           <br />

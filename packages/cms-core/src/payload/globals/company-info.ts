@@ -1,5 +1,5 @@
-import { safeRevalidateTag as revalidateTag } from '../lib/revalidate'
 import type { GlobalConfig } from 'payload'
+import { safeRevalidateTag as revalidateTag } from '../lib/revalidate'
 
 const localeSubfields = [
   { name: 'en', type: 'text' as const, label: 'English' },
@@ -16,77 +16,97 @@ const localeTextareaSubfields = [
 export const CompanyInfoGlobal: GlobalConfig = {
   slug: 'company-info',
   label: 'Company Information',
-  admin: { description: 'Used in footer, contact page, company profile, and schema.org markup' },
-  hooks: { afterChange: [() => { revalidateTag('company') }] },
+  admin: { 
+    description: 'Used in footer, contact page, company profile, and schema.org markup' 
+  },
+  hooks: { 
+    afterChange: [() => { revalidateTag('company') }] 
+  },
   fields: [
-    { name: 'legalName', type: 'text', admin: { description: 'Official legal / registered name' } },
-    { name: 'registrationNumber', type: 'text', admin: { description: 'Corporate registration number' } },
+    // General Company Info
+    { name: 'legalName', type: 'text' },
+    { name: 'registrationNumber', type: 'text' },
     { name: 'foundedYear', type: 'number' },
-    { name: 'capital', type: 'text', admin: { description: 'e.g. ¥10,000,000' } },
-    { name: 'licenseNumber', type: 'text', admin: { description: 'e.g. Aichi Labour Bureau dispatch license number' } },
-    { name: 'employeeCount', type: 'number', admin: { description: 'Approximate headcount' } },
+    { name: 'capital', type: 'text' },
+    { name: 'licenseNumber', type: 'text' },
+    { name: 'employeeCount', type: 'number' },
+
     {
       name: 'description',
       type: 'group',
       label: 'Company description',
       fields: localeTextareaSubfields,
     },
+
+    // ==================== MULTIPLE OFFICES (with Map + Nearest Stations) ====================
     {
-      name: 'mission',
-      type: 'group',
-      label: 'Mission statement',
-      fields: localeTextareaSubfields,
-    },
-    {
-      name: 'vision',
-      type: 'group',
-      label: 'Vision statement',
-      fields: localeTextareaSubfields,
-    },
-    {
-      name: 'address',
-      type: 'group',
-      label: 'Address',
-      fields: localeSubfields,
-    },
-    {
-      name: 'businessHours',
-      type: 'group',
-      label: 'Business hours',
-      fields: localeSubfields,
-    },
-    {
-      name: 'executives',
+      name: 'offices',
       type: 'array',
-      label: 'Leadership / Executives',
+      label: 'Offices',
+      admin: { description: 'Add Japan, Bangladesh, Malaysia offices with their own map and stations' },
       fields: [
-        { name: 'name', type: 'text', required: true },
         {
-          name: 'role',
-          type: 'group',
-          label: 'Role / Title',
-          fields: localeSubfields,
-        },
-      ],
-    },
-    {
-      name: 'timeline',
-      type: 'array',
-      label: 'Company history',
-      admin: { description: 'Key milestones in chronological order' },
-      fields: [
-        { name: 'year', type: 'number', required: true },
-        {
-          name: 'label',
-          type: 'group',
-          label: 'Milestone label',
-          fields: localeSubfields,
+          name: 'country',
+          type: 'text',
+          required: true,
+          label: 'Office Name / Country',
         },
         {
-          name: 'description',
-          type: 'group',
-          label: 'Milestone description',
-          fields: localeTextareaSubfields,
+          name: 'legalName',
+          type: 'text',
+          label: 'Legal Company Name',
+        },
+        {
+          name: 'address',
+          type: 'textarea',
+          required: true,
+        },
+        {
+          name: 'phone',
+          type: 'text',
+        },
+        {
+          name: 'fax',
+          type: 'text',
+        },
+        {
+          name: 'mobile',
+          type: 'text',
+        },
+        {
+          name: 'email',
+          type: 'email',
+        },
+        {
+          name: 'website',
+          type: 'text',
+        },
+
+        // Per Office Google Map
+        {
+          name: 'googleMapsEmbedUrl',
+          type: 'text',
+          label: 'Google Maps Embed URL',
+          admin: {
+            description: 'Paste the src value from Google Maps embed iframe',
+          },
+        },
+
+        // Per Office Nearest Stations
+        {
+          name: 'nearestStations',
+          type: 'array',
+          label: 'Nearest Stations',
+          fields: [
+            {
+              name: 'stationName',
+              type: 'text',
+            },
+            {
+              name: 'description',
+              type: 'text',
+            },
+          ],
         },
       ],
     },

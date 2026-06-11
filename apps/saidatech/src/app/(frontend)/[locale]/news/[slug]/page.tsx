@@ -10,6 +10,19 @@ function isSupportedLocale(s: string): boolean {
   return (siteConfig.locales.enabled as string[]).includes(s)
 }
 
+// 🛠️ DATE FORMATTING COMPONENT FUNCTION
+function formatArticleDate(isoString: string): string {
+  try {
+    return new Date(isoString).toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    })
+  } catch {
+    return isoString
+  }
+}
+
 type Props = {
   params: Promise<{ locale: string; slug: string }>
 }
@@ -139,7 +152,7 @@ export default async function NewsDetailPage({ params }: Props) {
   const article = result.docs[0]
   if (!article) notFound()
 
-  // 🛠️ SEPARATE SELECTION LOGICS:
+  // SEPARATE SELECTION LOGICS:
   const layoutBlocks = (article['layout'] ?? []) as RawBlock[]
   const hasLayoutBlocks = Array.isArray(layoutBlocks) && layoutBlocks.length > 0
   
@@ -147,6 +160,9 @@ export default async function NewsDetailPage({ params }: Props) {
 
   const titleText = typeof article['title'] === 'string' ? article['title'] : ''
   const excerptText = typeof article['excerpt'] === 'string' ? article['excerpt'] : null
+
+  // 🛠️ SAFELY CAPTURE THE PUBLISHED AT FIELD
+  const publishedAtStr = typeof article['publishedAt'] === 'string' ? article['publishedAt'] : null
 
   const thumbnail = article['thumbnail'] as Record<string, unknown> | null | undefined
   const thumbnailUrl = thumbnail && typeof thumbnail['url'] === 'string' ? thumbnail['url'] : null
@@ -187,8 +203,24 @@ export default async function NewsDetailPage({ params }: Props) {
         </div>
       </div>
 
-      {/* 🛠️ CONDITIONAL CORE CONTENT RENDERER */}
+      {/* 🛠️ CORE CONTENT CONTAINER */}
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+        
+        {/* 🛠️ CHRONOLOGICAL DATE ROW STYLING - RIGHT BEFORE THE CONTENT VIEW */}
+        {publishedAtStr && (
+          <div className="mb-6 text-left">
+            <time 
+              dateTime={publishedAtStr} 
+              className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-400 tabular-nums"
+            >
+              <svg className="h-3.5 w-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+              </svg>
+              {formatArticleDate(publishedAtStr)}
+            </time>
+          </div>
+        )}
+
         {hasLayoutBlocks ? (
           /* Case A: Custom layout blocks exist */
           <div className="w-full">
@@ -200,7 +232,7 @@ export default async function NewsDetailPage({ params }: Props) {
           </div>
         ) : richTextContent ? (
           /* Case B: Fall back to standard Lexical text body configuration */
-          <div className="w-full border-t border-neutral-100 pt-8">
+          <div className="w-full border-t border-neutral-100 pt-6">
             <RenderLexicalText content={richTextContent} />
           </div>
         ) : (

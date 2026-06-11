@@ -8,12 +8,28 @@ function mapCollectionItem(doc: Record<string, unknown>): NewsItem | null {
   const date = typeof doc['publishedAt'] === 'string' ? doc['publishedAt'] : new Date().toISOString()
   const category = typeof doc['category'] === 'string' && doc['category'] ? doc['category'] : undefined
   const href = slug ? `/news/${slug}` : '/news'
+  
+  // 1. Parse the excerpt field safely
+  const excerpt = typeof doc['excerpt'] === 'string' && doc['excerpt'] ? doc['excerpt'] : undefined
+
+  // 2. Safely extract thumbnail string path from the populated media relation
+  let thumbnail: string | undefined = undefined
+  if (doc['thumbnail'] && typeof doc['thumbnail'] === 'object') {
+    const thumbMedia = doc['thumbnail'] as Record<string, unknown>
+    if (typeof thumbMedia['url'] === 'string') {
+      thumbnail = thumbMedia['url']
+    }
+  } else if (typeof doc['thumbnail'] === 'string' && doc['thumbnail']) {
+    thumbnail = doc['thumbnail']
+  }
 
   return {
     headline,
     date,
     href,
     ...(category ? { category } : {}),
+    ...(excerpt ? { excerpt } : {}),
+    ...(thumbnail ? { thumbnail } : {}),
   }
 }
 
@@ -24,12 +40,18 @@ function mapInlineItem(item: Record<string, unknown>): NewsItem | null {
 
   const date = typeof item['date'] === 'string' ? item['date'] : new Date().toISOString()
   const category = typeof item['category'] === 'string' && item['category'] ? item['category'] : undefined
+  
+  // 3. Support thumbnail and excerpt mapping for manually configured inline blocks as well
+  const excerpt = typeof item['excerpt'] === 'string' && item['excerpt'] ? item['excerpt'] : undefined
+  const thumbnail = typeof item['thumbnail'] === 'string' && item['thumbnail'] ? item['thumbnail'] : undefined
 
   return {
     headline,
     date,
     href,
     ...(category ? { category } : {}),
+    ...(excerpt ? { excerpt } : {}),
+    ...(thumbnail ? { thumbnail } : {}),
   }
 }
 

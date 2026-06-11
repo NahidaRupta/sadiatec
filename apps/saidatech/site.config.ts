@@ -12,7 +12,7 @@ const siteConfig: SiteConfig = {
   },
 
   brand: {
-    logoFile: 'null',
+    logoFile: 'Sadiatec_Logo-1-BG3rMlc7.png',
     faviconFile: 'favicon.ico',
     ogImageFile: 'og-image.jpg',
     colors: {
@@ -79,8 +79,8 @@ const siteConfig: SiteConfig = {
   },
 
   forms: {
-    contactRecipient: 'contact@sadiatec.com',
-    jobApplicationRecipient: 'recruit@sadiatec.com',
+    contactRecipient: 'nahida.rahaman37@gmail.com',
+    jobApplicationRecipient: 'nahida.rahaman37@gmail.com',
   },
 
   legal: {
@@ -99,7 +99,7 @@ const siteConfig: SiteConfig = {
   },
 
   integrations: {
-    resendFromEmail: 'no-reply@sadiatec.com',
+    resendFromEmail: 'onboarding@resend.dev',
   },
 }
 

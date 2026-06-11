@@ -117,8 +117,7 @@ export function MobileMenu({
             <div className="flex h-20 items-center justify-between px-5 border-b border-neutral-100 shrink-0 bg-white">
               <Link href="/" onClick={close} aria-label="Sadia Tec Home">
                 <span className="text-2xl tracking-wide select-none">
-                  <span className="font-light text-gray-900">Sadia</span>
-                  <span className="font-extrabold text-amber-500 italic ml-0.5">Tec</span>
+                  <span className="font-light text-amber-500">Sadiatec</span>
                 </span>
               </Link>
               <button

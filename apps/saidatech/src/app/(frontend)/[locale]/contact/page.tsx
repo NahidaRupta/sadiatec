@@ -5,6 +5,8 @@ import { PageHeroBlock, CTABannerBlock } from '@saidatech/cms-core/blocks'
 import type { PageHeroBlockProps, CTABannerBlockProps } from '@saidatech/cms-core/blocks'
 import { Container, Section, Heading, Text } from '@saidatech/cms-core/components/ui'
 import { ContactForm } from './_components/ContactForm'
+import { getPayloadHMR } from '@payloadcms/next/utilities'
+import configPromise from '@payload-config'
 
 const LOCALES = ['en', 'ja', 'bn'] as const
 type Locale = (typeof LOCALES)[number]
@@ -20,58 +22,29 @@ export async function generateStaticParams() {
 }
 
 // ---------------------------------------------------------------------------
-// Static label maps
+// Types for form labels
 // ---------------------------------------------------------------------------
 
-const titles: Record<Locale, string> = {
-  en: 'Contact Us',
-  ja: 'お問い合わせ',
-  bn: 'যোগাযোগ করুন',
-}
-const button: Record<Locale, string> = {
-  en: 'Get to Know Us',
-  ja: 'お問い合わせ',
-  bn: 'যোগাযোগ করুন',
-}
-
-
-const descriptions: Record<Locale, string> = {
-  en: 'Get in touch with our team for visa support, recruitment enquiries, or general questions.',
-  ja: 'ビザ支援・採用に関するご相談・一般的なお問い合わせはこちらからどうぞ。',
-  bn: 'ভিসা সহায়তা, নিয়োগ সম্পর্কিত জিজ্ঞাসা বা সাধারণ প্রশ্নের জন্য আমাদের টিমের সাথে যোগাযোগ করুন।',
-}
-
-const heroSubheadings: Record<Locale, string> = {
-  en: "We'd love to hear from you. Reach out and we'll respond within one business day.",
-  ja: 'お気軽にご連絡ください。1営業日以内にご返信いたします。',
-  bn: 'আমরা আপনার কথা শুনতে আগ্রহী। যোগাযোগ করুন, আমরা একটি কার্যদিবসের মধ্যে সাড়া দেব।',
+type FormLabels = {
+  name: string
+  email: string
+  company: string
+  inquiryType: string
+  message: string
+  submit: string
+  submitting: string
+  success: string
+  error: string
+  required: string
+  inquiryOptions: {
+    general: string
+    visa: string
+    recruitment: string
+    other: string
+  }
 }
 
-const homeLabels: Record<Locale, string> = {
-  en: 'Home',
-  ja: 'ホーム',
-  bn: 'হোম',
-}
-
-const officeSectionLabels: Record<Locale, string> = {
-  en: 'Office Information',
-  ja: '会社情報',
-  bn: 'অফিসের তথ্য',
-}
-
-const emailLabels: Record<Locale, string> = {
-  en: 'Email',
-  ja: 'メール',
-  bn: 'ইমেইল',
-}
-
-const formSectionLabels: Record<Locale, string> = {
-  en: 'Send a Message',
-  ja: 'メッセージを送る',
-  bn: 'একটি বার্তা পাঠান',
-}
-
-const formLabels = {
+const formLabels: Record<Locale, FormLabels> = {
   en: {
     name: 'Full Name',
     email: 'Email Address',
@@ -127,6 +100,40 @@ const formLabels = {
     },
   },
 } as const
+
+// ---------------------------------------------------------------------------
+// Static labels
+// ---------------------------------------------------------------------------
+
+const titles: Record<Locale, string> = {
+  en: 'Contact Us',
+  ja: 'お問い合わせ',
+  bn: 'যোগাযোগ করুন',
+}
+
+const descriptions: Record<Locale, string> = {
+  en: 'Get in touch with our team for visa support, recruitment enquiries, or general questions.',
+  ja: 'ビザ支援・採用に関するご相談・一般的なお問い合わせはこちらからどうぞ。',
+  bn: 'ভিসা সহায়তা, নিয়োগ সম্পর্কিত জিজ্ঞাসা বা সাধারণ প্রশ্নের জন্য আমাদের টিমের সাথে যোগাযোগ করুন।',
+}
+
+const heroSubheadings: Record<Locale, string> = {
+  en: "We'd love to hear from you. Reach out and we'll respond within one business day.",
+  ja: 'お気軽にご連絡ください。1営業日以内にご返信いたします。',
+  bn: 'আমরা আপনার কথা শুনতে আগ্রহী। যোগাযোগ করুন, আমরা একটি কার্যদিবসের মধ্যে সাড়া দেব।',
+}
+
+const homeLabels: Record<Locale, string> = {
+  en: 'Home',
+  ja: 'ホーム',
+  bn: 'হোম',
+}
+
+const formSectionLabels: Record<Locale, string> = {
+  en: 'Send a Message',
+  ja: 'メッセージを送る',
+  bn: 'メッセージを送る',
+}
 
 const ctaHeadings: Record<Locale, string> = {
   en: 'Looking for answers before reaching out?',
@@ -199,10 +206,18 @@ export default async function ContactPage({ params }: Props) {
     ],
   }
 
+  // Fetch Company Information (depth: 1 に変更して、配列や詳細データを安全に読み込み)
+  const payload = await getPayloadHMR({ config: await configPromise })
+  const companyInfo = await payload.findGlobal({
+    slug: 'company-info',
+    locale,
+    depth: 1,
+  })
+
   const heroProps: PageHeroBlockProps = {
     heading: titles[locale],
     body: heroSubheadings[locale],
-    primaryButton: { label: button[locale], href: '/about' },
+    primaryButton: { label: 'Get to Know Us', href: '/about' },
     overlayOpacity: 40,
   }
 
@@ -212,8 +227,8 @@ export default async function ContactPage({ params }: Props) {
     variant: 'outlined',
   }
 
-  // API path — locale-prefixed only if not default locale (Next.js rewrites handle this)
   const apiPath = '/api/forms/contact'
+  const offices = Array.isArray(companyInfo?.offices) ? companyInfo.offices : []
 
   return (
     <>
@@ -222,80 +237,132 @@ export default async function ContactPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <PageHeroBlock {...heroProps} />
+
       <Section>
         <Container>
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-            {/* Form column */}
-            <div>
-              <Heading level={2} className="text-2xl font-semibold mb-6">
-                {formSectionLabels[locale]}
-              </Heading>
-              <ContactForm
-                locale={locale}
-                labels={formLabels[locale]}
-                apiPath={apiPath}
-              />
-            </div>
+          {/* Row 1: Centered Contact Form */}
+          <div className="max-w-2xl mx-auto mb-24">
+            <Heading level={2} className="text-3xl font-semibold text-center mb-8">
+              {formSectionLabels[locale]}
+            </Heading>
+            <ContactForm
+              locale={locale}
+              labels={formLabels[locale]}
+              apiPath={apiPath}
+            />
+          </div>
 
-            {/* Office info column */}
-            <div className="space-y-8">
-              <Heading level={2} className="text-2xl font-semibold">
-                {officeSectionLabels[locale]}
-              </Heading>
+          {/* Row 2: Multiple Offices Grid Stacker */}
+{offices.length > 0 && (
+  <div className="space-y-24 border-t border-neutral-100 pt-16">
+    {offices.map((office: any, idx: number) => (
+      <div 
+        key={office.id || idx} 
+        className="space-y-4"
+      >
+        {/* 1. Office Country Heading — Kept full-width so left & right columns align beneath it */}
+        <Heading level={3} className="text-2xl font-bold tracking-tight text-slate-900 text-left">
+          {office.country}
+        </Heading>
 
-              <div className="space-y-4">
-                <div>
-                  <Text className="text-xs font-semibold uppercase tracking-widest text-[var(--color-primary)] mb-1">
-                    {emailLabels[locale]}
-                  </Text>
-                  <a
-                    href={`mailto:${siteConfig.contact.email}`}
-                    className="text-sm text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors"
-                  >
-                    {siteConfig.contact.email}
-                  </a>
-                </div>
+        {/* 2. Grid Content Box — Columns now share a clean horizontal baseline directly beneath the heading */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          
+          {/* LEFT COLUMN - Map Component */}
+          <div className="w-full">
+            {office.googleMapsEmbedUrl ? (
+              <div className="aspect-video w-full overflow-hidden rounded-2xl border border-neutral-200 shadow-xs bg-slate-50">
+                <iframe
+                  src={office.googleMapsEmbedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            ) : (
+              <div className="aspect-video bg-neutral-100 rounded-2xl flex items-center justify-center text-neutral-400 text-sm italic">
+                No Map Available
+              </div>
+            )}
+          </div>
 
-                {siteConfig.contact.phone && (
-                  <div>
-                    <Text className="text-xs font-semibold uppercase tracking-widest text-[var(--color-primary)] mb-1">
-                      {locale === 'ja' ? '電話' : locale === 'bn' ? 'ফোন' : 'Phone'}
-                    </Text>
-                    <a
-                      href={`tel:${siteConfig.contact.phone}`}
-                      className="text-sm text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors"
-                    >
-                      {siteConfig.contact.phone}
+          {/* RIGHT COLUMN - Office Meta Details & Nearest Stations */}
+          <div className="space-y-4 text-left">
+            
+            {/* Office Address Card */}
+            <div className="space-y-1.5">
+              {office.legalName && (
+                <p className="text-base font-bold text-slate-950 leading-snug">{office.legalName}</p>
+              )}
+              <p className="text-[15px] text-slate-600 whitespace-pre-line leading-relaxed">
+                {office.address}
+              </p>
+              
+              {/* Contact Items grouped side-by-side */}
+              <div className="pt-1 text-sm font-medium text-slate-500 flex flex-wrap gap-x-5 gap-y-1.5 items-center">
+                {office.phone && (
+                  <span className="inline-flex items-center">
+                    <span className="font-bold text-slate-700 mr-1.5">TEL:</span>{office.phone}
+                  </span>
+                )}
+                {office.fax && (
+                  <span className="inline-flex items-center">
+                    <span className="font-bold text-slate-700 mr-1.5">FAX:</span>{office.fax}
+                  </span>
+                )}
+                {office.mobile && (
+                  <span className="inline-flex items-center">
+                    <span className="font-bold text-slate-700 mr-1.5">MOB:</span>{office.mobile}
+                  </span>
+                )}
+                {office.email && (
+                  <span className="inline-flex items-center">
+                    <span className="font-bold text-slate-700 mr-1.5">EMAIL:</span>
+                    <a href={`mailto:${office.email}`} className="hover:underline text-slate-600">
+                      {office.email}
                     </a>
-                  </div>
-                )}
-
-                {siteConfig.contact.address && (
-                  <div>
-                    <Text className="text-xs font-semibold uppercase tracking-widest text-[var(--color-primary)] mb-1">
-                      {locale === 'ja' ? '住所' : locale === 'bn' ? 'ঠিকানা' : 'Address'}
-                    </Text>
-                    <Text className="text-sm text-[var(--color-text)] whitespace-pre-line">
-                      {siteConfig.contact.address[locale] ?? siteConfig.contact.address['en'] ?? ''}
-                    </Text>
-                  </div>
-                )}
-
-                {siteConfig.contact.businessHours && (
-                  <div>
-                    <Text className="text-xs font-semibold uppercase tracking-widest text-[var(--color-primary)] mb-1">
-                      {locale === 'ja' ? '営業時間' : locale === 'bn' ? 'ব্যবসার সময়' : 'Business Hours'}
-                    </Text>
-                    <Text className="text-sm text-[var(--color-text)]">
-                      {siteConfig.contact.businessHours[locale] ?? siteConfig.contact.businessHours['en'] ?? ''}
-                    </Text>
-                  </div>
+                  </span>
                 )}
               </div>
             </div>
+
+            {/* Nearest Stations Blocks */}
+            {office.nearestStations && office.nearestStations.length > 0 && (
+              <div className="border-t border-slate-100 pt-3">
+                <Text className="text-[11px] font-bold uppercase tracking-wider text-(--color-primary) mb-2 block">
+                  NEAREST STATIONS
+                </Text>
+                <ul className="space-y-1.5">
+                  {office.nearestStations.map((station: any, stationIdx: number) => (
+                    <li key={station.id || stationIdx} className="flex gap-2.5 text-[15px] items-start">
+                      <span className="text-base shrink-0 select-none mt-0.5">🚉</span>
+                      <div className="leading-tight">
+                        <span className="font-semibold text-slate-800">{station.stationName}</span>
+                        {station.description && (
+                          <span className="text-sm text-slate-500 ml-2 font-normal">
+                            — {station.description}
+                          </span>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
           </div>
+
+        </div>
+      </div>
+    ))}
+  </div>
+)}
         </Container>
       </Section>
+      
       {siteConfig.features.faq && <CTABannerBlock {...ctaProps} />}
     </>
   )

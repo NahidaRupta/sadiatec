@@ -39,6 +39,7 @@ interface NavItem {
 interface HeaderGlobalData {
   navItems?: NavItem[]
   ctaButton?: { label?: string | Record<string, string>; href?: string }
+  logo?: string | PayloadMedia // 🛠️ Added property type reference matching your Payload uploaded logo
 }
 
 export interface ResolvedMegaColumnItem {
@@ -93,6 +94,12 @@ export async function Header({ locale }: { locale: string }) {
     return value[locale] || value['en'] || ''
   }
 
+  // 🛠️ DYNAMIC EXTRACTOR: Resolves the logo asset URL from the CMS upload payload block safely
+  let cmsLogoUrl: string | null = null
+  if (headerData.logo && typeof headerData.logo === 'object') {
+    cmsLogoUrl = headerData.logo.url || null
+  }
+
   const resolvedNavItems: ResolvedNavItem[] = (headerData.navItems ?? []).map((item) => {
     const resolved: ResolvedNavItem = {
       label: resolve(item.label),
@@ -131,7 +138,6 @@ export async function Header({ locale }: { locale: string }) {
   })
 
   // Inject About dropdown sub-links from translation keys when the CMS item has none.
-  // This ensures the About menu works without requiring a seed file update.
   if (siteConfig.features.about) {
     const tNav = await getTranslations({ locale, namespace: 'nav' })
 
@@ -169,6 +175,7 @@ export async function Header({ locale }: { locale: string }) {
       locales={siteConfig.locales.enabled}
       localeLabels={localeLabels}
       locale={locale}
+      cmsLogoUrl={cmsLogoUrl} // 👈 Pass the dynamic payload image link right down to client container
     />
   )
 }

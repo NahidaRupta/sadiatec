@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import { LocaleSwitcher } from './LocaleSwitcher'
 import { MobileMenu } from './MobileMenu'
@@ -14,16 +15,33 @@ interface HeaderClientProps {
   locales: string[]
   localeLabels: Record<string, string>
   locale: string
+  cmsLogoUrl?: string | null // 👈 Added the live dynamic CMS logo prop parameter
 }
-
-function Logo({ dark }: { dark: boolean }) {
-  return (
-    <span className="text-2xl tracking-wide select-none">
-      <span className={`font-light transition-colors duration-300 ${dark ? 'text-gray-900' : 'text-white'}`}>
-        Sadia
+// 🛠️ EXPANDED LOGO COMPONENT DIMENSIONS
+function Logo({ dark, imageUrl }: { dark: boolean; imageUrl?: string | null | undefined }) {
+  // Fallback text if no image is available
+  if (!imageUrl) {
+    return (
+      <span className="text-2xl tracking-wide select-none">
+        <span className={`font-light transition-colors duration-300 ${dark ? 'text-green-500' : 'text-white'}`}>
+          Sadiatec
+        </span>
       </span>
-      <span className="font-extrabold text-amber-500 italic ml-0.5">Tec</span>
-    </span>
+    )
+  }
+
+  return (
+    /* Changed from h-10 w-36 to h-14 w-48 to increase size */
+    <div className="relative flex items-center h-14 w-48 transition-all duration-300">
+      <Image
+        src={imageUrl} 
+        alt="Sadia Tec Logo"
+        fill
+        priority
+        className="object-contain object-left" 
+        sizes="250px" // 👈 Upgraded size budget to prevent Next.js from serving a lower-res image
+      />
+    </div>
   )
 }
 
@@ -60,7 +78,7 @@ function MegaMenuPanel({ item }: { item: ResolvedNavItem }) {
               return (
                 <div key={ci} className="flex flex-col bg-slate-50/50 border-l border-neutral-100 pl-8 -my-8 py-8 rounded-r-2xl">
                   {col.heading && (
-                    <p className="mb-5 text-[11px] font-bold uppercase tracking-wider text-amber-600">
+                    <p className="mb-5 text-[11px] font-bold uppercase tracking-wider text-green-600">
                       {col.heading}
                     </p>
                   )}
@@ -71,10 +89,10 @@ function MegaMenuPanel({ item }: { item: ResolvedNavItem }) {
                           href={subItem.href}
                           className="group flex items-center gap-3 rounded-xl bg-white border border-neutral-100/80 
                             px-4 py-3 text-sm font-semibold text-slate-800 shadow-[0_1px_2px_rgba(0,0,0,0.02)]
-                            hover:text-amber-600 hover:border-amber-200 hover:shadow-md transition-all duration-200"
+                            hover:text-green-600 hover:border-green-200 hover:shadow-md transition-all duration-200"
                         >
                           <svg 
-                            className="h-3.5 w-3.5 text-slate-400 group-hover:text-amber-500 transition-colors shrink-0" 
+                            className="h-3.5 w-3.5 text-slate-400 group-hover:text-green-500 transition-colors shrink-0" 
                             fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
                           >
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
@@ -102,7 +120,7 @@ function MegaMenuPanel({ item }: { item: ResolvedNavItem }) {
                         href={subItem.href}
                         className="group block text-left navigation-item-wrapper focus:outline-none"
                       >
-                        <span className="block text-[15px] font-bold text-gray-900 group-hover:text-amber-600 transition-colors leading-snug">
+                        <span className="block text-[15px] font-bold text-gray-900 group-hover:text-green-600 transition-colors leading-snug">
                           {subItem.label}
                         </span>
                         {subItem.description && (
@@ -136,8 +154,8 @@ function DropdownPanel({ items }: { items: { label: string; href: string }[] }) 
           <li key={child.href}>
             <Link
               href={child.href}
-              className="block px-5 py-2.5 text-sm text-gray-700 hover:text-amber-600
-                hover:bg-amber-50 transition-colors"
+              className="block px-5 py-2.5 text-sm text-gray-700 hover:text-green-600
+                hover:bg-green-50 transition-colors"
             >
               {child.label}
             </Link>
@@ -155,6 +173,7 @@ export function HeaderClient({
   locales,
   localeLabels,
   locale,
+  cmsLogoUrl, // Destructured safe content identifier variable
 }: HeaderClientProps) {
   const [scrolled, setScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -176,7 +195,7 @@ export function HeaderClient({
   const shouldShowDarkHeader = scrolled || !isHomepage
 
   const navTextClass = shouldShowDarkHeader 
-    ? 'text-gray-700 hover:text-amber-600' 
+    ? 'text-gray-700 hover:text-green-600' 
     : 'text-white/90 hover:text-white'
     
   const chevronClass = shouldShowDarkHeader ? 'text-gray-400' : 'text-white/60'
@@ -204,9 +223,9 @@ export function HeaderClient({
           <Link
             href="/"
             aria-label="Sadia Tec Home"
-            className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded-sm"
+            className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 rounded-sm"
           >
-            <Logo dark={shouldShowDarkHeader} />
+            <Logo dark={shouldShowDarkHeader} imageUrl={cmsLogoUrl} />
           </Link>
 
           {/* Desktop nav */}
@@ -218,7 +237,7 @@ export function HeaderClient({
 
                 const active = isActive(item)
                 const activeTextClass = shouldShowDarkHeader
-                  ? 'text-amber-600 font-bold'
+                  ? 'text-green-600 font-bold'
                   : 'text-white font-bold'
                 const isLeaf = !hasMega && !hasDropdown
 
@@ -252,47 +271,75 @@ export function HeaderClient({
             </ul>
           </nav>
 
-          {/* Right: inline flag switcher + CTA */}
+          {/* Right Controls */}
           <div className="hidden md:flex items-center gap-5">
 
-            {/* Inline Flag Matrix */}
-            <div className="flex items-center gap-3" aria-label="Language selection">
-              {locales.map((loc) => {
-                const isCurrentLocale = locale === loc
-                const flagIcon = localeLabels[loc] || loc
+            <div className="relative group/lang py-2">
+              <button
+                type="button"
+                className={[
+                  'flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-sm font-semibold transition-colors duration-200',
+                  shouldShowDarkHeader 
+                    ? 'text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200' 
+                    : 'text-white bg-white/10 hover:bg-white/20 border border-white/10'
+                ].join(' ')}
+                aria-label="Language selection dropdown"
+              >
+                <span className="text-xl select-none leading-none">
+                  {localeLabels[locale] || locale}
+                </span>
+                <span className="text-xs uppercase tracking-wider opacity-90">{locale}</span>
+                <svg
+                  className="h-3 w-3 opacity-60 transition-transform duration-200 group-hover/lang:rotate-180"
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
 
-                return (
-                  <Link
-                    key={loc}
-                    href={strippedPath}
-                    locale={loc}
-                    className={[
-                      'text-xl p-1 rounded-md transition-all duration-200 hover:scale-115 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400',
-                      isCurrentLocale
-                        ? 'opacity-100 drop-shadow-md scale-105 filter-none'
-                        : 'opacity-40 hover:opacity-80 saturated-50'
-                    ].join(' ')}
-                    title={`Switch to ${loc.toUpperCase()}`}
-                  >
-                    <span className="inline-block transform-gpu select-none leading-none">
-                      {flagIcon}
-                    </span>
-                  </Link>
-                )
-              })}
+              <div
+                className="absolute right-0 top-full pt-2 min-w-[140px] z-50
+                  opacity-0 invisible group-hover/lang:opacity-100 group-hover/lang:visible
+                  transition-all duration-150 origin-top-right pointer-events-none group-hover/lang:pointer-events-auto"
+              >
+                <ul className="rounded-xl bg-white shadow-xl border border-neutral-100 py-1.5 overflow-hidden">
+                  {locales.map((loc) => {
+                    const isCurrentLocale = locale === loc
+                    const flagIcon = localeLabels[loc] || loc
+
+                    return (
+                      <li key={loc}>
+                        <Link
+                          href={strippedPath}
+                          locale={loc}
+                          className={[
+                            'flex items-center gap-3 w-full px-4 py-2 text-sm transition-colors text-left font-medium',
+                            isCurrentLocale
+                              ? 'text-green-600 bg-green-50/50 font-bold'
+                              : 'text-gray-600 hover:text-green-600 hover:bg-neutral-50'
+                          ].join(' ')}
+                        >
+                          <span className="text-xl select-none leading-none">{flagIcon}</span>
+                          <span className="uppercase text-xs tracking-wider font-semibold">
+                            {loc === 'en' ? 'English' : loc === 'ja' ? '日本語' : 'বাংলা'}
+                          </span>
+                        </Link>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
             </div>
 
-            {/* Separator line between flags and CTA */}
             <div className={`h-5 w-px ${shouldShowDarkHeader ? 'bg-gray-200' : 'bg-white/20'}`} />
 
-            {/* CTA Action button */}
             {ctaLabel && (
               <Link href={ctaHref}>
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center rounded-full bg-amber-500
+                  className="inline-flex items-center justify-center rounded-full bg-green-800
                     px-6 py-2.5 text-sm font-bold text-white shadow-md
-                    transition-all duration-200 hover:bg-amber-600 hover:-translate-y-0.5 hover:shadow-lg"
+                    transition-all duration-200 hover:bg-green-600 hover:-translate-y-0.5 hover:shadow-lg"
                 >
                   {ctaLabel}
                 </button>
@@ -300,7 +347,7 @@ export function HeaderClient({
             )}
           </div>
 
-          {/* Mobile hamburger */}
+          {/* Mobile Menu */}
           <div className="flex md:hidden">
             <MobileMenu
               navItems={navItems}

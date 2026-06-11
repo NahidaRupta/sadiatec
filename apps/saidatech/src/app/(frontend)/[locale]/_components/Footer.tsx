@@ -131,8 +131,7 @@ export async function Footer({ locale }: FooterProps) {
             {/* 1. Brand Logo - Text Design Only */}
             <Link href="/" className="inline-block select-none focus:outline-none">
               <span className="text-2xl tracking-wide">
-                <span className="font-light text-white">Sadia</span>
-                <span className="font-extrabold text-amber-500 italic ml-0.5">tec</span>
+                <span className="font-light text-green-500">Sadiatec</span>
               </span>
             </Link>
             
@@ -243,8 +242,8 @@ export async function Footer({ locale }: FooterProps) {
                     <li key={linkIdx}>
                       <Link
                         href={link.href}
-                        className="text-[14px] text-neutral-400 hover:text-amber-500 transition-colors
-                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-sm"
+                        className="text-[14px] text-neutral-400 hover:text-green-500 transition-colors
+                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 rounded-sm"
                       >
                         {link.label ?? link.href}
                       </Link>
@@ -272,7 +271,7 @@ export async function Footer({ locale }: FooterProps) {
                 <Link
                   href={link.slug}
                   className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors
-                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-sm"
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 rounded-sm"
                 >
                   {link.labelKey}
                 </Link>
