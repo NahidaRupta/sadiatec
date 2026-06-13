@@ -28,7 +28,7 @@ const siteConfig: SiteConfig = {
       warning: '#d97706',
     },
     typography: {
-      fontSans: 'Noto Sans JP',
+      fontSans: 'Lato',
       fontSizeBase: '16px',
       fontWeightHeading: '700',
       fontWeightBody: '400',

@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { notFound } from 'next/navigation'
-import { Inter, Noto_Sans_JP, Noto_Sans_Bengali } from 'next/font/google'
+import { Lato, Noto_Sans_JP, Noto_Sans_Bengali } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { buildCssVariables } from '@saidatech/cms-core/tokens'
@@ -9,8 +9,9 @@ import { Header } from './_components/Header'
 import { Footer } from './_components/Footer'
 import { HtmlLangSetter } from './_components/HtmlLangSetter'
 
-const interFont = Inter({
+const latoFont = Lato({
   subsets: ['latin'],
+  weight: ['300', '400', '700'],
   variable: '--font-latin',
   display: 'swap',
   preload: false,
@@ -39,7 +40,7 @@ const skipLabel: Record<string, string> = {
 }
 
 const localeFontConfig: Record<string, { variableClass: string; cssVar: string }> = {
-  en: { variableClass: interFont.variable, cssVar: '--font-latin' },
+  en: { variableClass: latoFont.variable, cssVar: '--font-latin' },
   ja: { variableClass: notoSansJP.variable, cssVar: '--font-ja' },
   bn: { variableClass: notoSansBN.variable, cssVar: '--font-bn' },
 }
@@ -85,7 +86,7 @@ export default async function LocaleLayout({
   } as CSSProperties
 
   const fontClasses = [
-    interFont.variable,
+    latoFont.variable,
     notoSansJP.variable,
     notoSansBN.variable,
   ].join(' ')

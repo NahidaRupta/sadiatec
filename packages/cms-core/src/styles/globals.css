@@ -67,8 +67,9 @@
   --color-neutral-900: #0f172a;
   --color-neutral-950: #020617;
 
-  /* ─── Typography — font families (concrete fallbacks) ─── */
-  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* ─── Typography — font families (concrete fallbacks; overridden per-locale at runtime) ─── */
+  /* g-gates.com stack: Lato → Noto Sans JP → Japanese system fonts */
+  --font-sans: Lato, "Noto Sans JP", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
   --font-serif: Georgia, "Times New Roman", serif;
   --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
 
@@ -137,6 +138,9 @@
 @layer base {
   html {
     font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.75;
+    letter-spacing: 0.03em;
     color: var(--color-text);
     background-color: var(--color-background);
     -webkit-font-smoothing: antialiased;
@@ -148,6 +152,23 @@
     display: flex;
     flex-direction: column;
   }
+
+  /* Heading scale — sourced from g-gates.com Lightning theme CSS */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0;
+    margin-top: 0;
+    margin-bottom: 0.75em;
+  }
+
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.33rem; }
+  h5 { font-size: 1.2rem; }
+  h6 { font-size: 1.125rem; }
 
   /* Japanese: proportional-width kana kerning */
   :lang(ja) {
