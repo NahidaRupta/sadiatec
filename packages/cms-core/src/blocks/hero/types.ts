@@ -1,3 +1,8 @@
+export interface HeroSlide {
+  imageUrl: string
+  alt: string
+}
+
 export interface HeroInlineStat {
   value: string
   label: string
@@ -23,6 +28,7 @@ export interface HeroBlockProps {
   inlineStats?: HeroInlineStat[]
   keywordPills?: HeroKeywordPill[]
   backgroundImageUrl?: string
+  heroSlides?: HeroSlide[]
   showScrollIndicator?: boolean
   // Legacy fields — accepted for backwards compat with existing page files
   heading?: string

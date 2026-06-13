@@ -49,6 +49,29 @@ export const HeroBlockConfig: Block = {
       relationTo: 'media',
     },
     {
+      name: 'heroSlides',
+      label: 'Hero Image Slides',
+      type: 'array',
+      minRows: 1,
+      maxRows: 5,
+      admin: {
+        description: 'Full-width slider images — 2 to 4 recommended. If empty, falls back to Background Image.',
+      },
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+        {
+          name: 'alt',
+          type: 'text',
+          localized: true,
+        },
+      ],
+    },
+    {
       name: 'showScrollIndicator',
       type: 'checkbox',
       defaultValue: true,

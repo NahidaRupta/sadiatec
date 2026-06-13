@@ -1,0 +1,391 @@
+- generic [active] [ref=e1]:
+  - banner:
+    - generic [ref=e2]:
+      - link "PERSOL Global Workforce" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "PERSOL Global Workforce" [ref=e5]
+      - navigation [ref=e6]:
+        - generic [ref=e7]:
+          - link "メルマガ" [ref=e9] [cursor=pointer]:
+            - /url: /newsletter/
+          - generic [ref=e10]:
+            - link "JA":
+              - /url: /
+            - text: /
+            - link "EN" [ref=e11] [cursor=pointer]:
+              - /url: /en/
+          - link "お問い合わせ" [ref=e13] [cursor=pointer]:
+            - /url: /contact/
+          - link "資料請求" [ref=e15] [cursor=pointer]:
+            - /url: /download/
+        - list [ref=e17]:
+          - listitem [ref=e18]:
+            - generic [ref=e19]:
+              - term [ref=e20] [cursor=pointer]: 外国人材の採用をご検討中の方
+              - definition [ref=e21]:
+                - generic [ref=e22]:
+                  - link "外国人材紹介サービス" [ref=e23] [cursor=pointer]:
+                    - /url: /for-employers/hiring-foreign-talent/
+                  - link "農業分野の外国人材派遣サービス" [ref=e24] [cursor=pointer]:
+                    - /url: /for-employers/temporary-staff/
+          - listitem [ref=e25]:
+            - link "仕事をお探しの方" [ref=e26] [cursor=pointer]:
+              - /url: /for-job-seekers/
+          - listitem [ref=e27]:
+            - generic [ref=e28]:
+              - term [ref=e29] [cursor=pointer]: 企業情報
+              - definition [ref=e30]:
+                - generic [ref=e31]:
+                  - link "企業情報" [ref=e32] [cursor=pointer]:
+                    - /url: /about/
+                  - link "採用情報" [ref=e33] [cursor=pointer]:
+                    - /url: /about/recruit/
+          - listitem [ref=e34]:
+            - link "事例・お役立ち情報" [ref=e35] [cursor=pointer]:
+              - /url: /information/
+          - listitem [ref=e36]:
+            - link "ニュース" [ref=e37] [cursor=pointer]:
+              - /url: /news/
+    - generic [ref=e38]:
+      - link "PERSOL Global Workforce" [ref=e40] [cursor=pointer]:
+        - /url: /
+        - img "PERSOL Global Workforce" [ref=e41]
+      - navigation [ref=e42]:
+        - list [ref=e44]:
+          - listitem [ref=e45]:
+            - generic [ref=e46]:
+              - term [ref=e47] [cursor=pointer]:
+                - text: 外国人材の採用を
+                - text: ご検討中の方
+              - definition [ref=e48]:
+                - generic [ref=e49]:
+                  - link "外国人材紹介サービス" [ref=e50] [cursor=pointer]:
+                    - /url: /for-employers/hiring-foreign-talent/
+                  - link "農業分野の外国人材派遣サービス" [ref=e51] [cursor=pointer]:
+                    - /url: /for-employers/temporary-staff/
+          - listitem [ref=e52]:
+            - link "仕事をお探しの方" [ref=e53] [cursor=pointer]:
+              - /url: /for-job-seekers/
+          - listitem [ref=e54]:
+            - generic [ref=e55]:
+              - term [ref=e56] [cursor=pointer]: 企業情報
+              - definition [ref=e57]:
+                - generic [ref=e58]:
+                  - link "企業情報" [ref=e59] [cursor=pointer]:
+                    - /url: /about/
+                  - link "採用情報" [ref=e60] [cursor=pointer]:
+                    - /url: /about/recruit/
+          - listitem [ref=e61]:
+            - link "事例・お役立ち情報" [ref=e62] [cursor=pointer]:
+              - /url: /information/
+          - listitem [ref=e63]:
+            - link "ニュース" [ref=e64] [cursor=pointer]:
+              - /url: /news/
+        - generic [ref=e65]:
+          - link "お問い合わせ" [ref=e67] [cursor=pointer]:
+            - /url: /contact/
+          - link "資料請求" [ref=e69] [cursor=pointer]:
+            - /url: /download/
+  - main [ref=e70]:
+    - generic [ref=e71]:
+      - generic [ref=e72]:
+        - heading "外国人材と企業をつなぎ 未来をひらく" [level=1] [ref=e73]:
+          - text: 外国人材と企業をつなぎ
+          - text: 未来をひらく
+        - generic [ref=e74]:
+          - generic [ref=e77]:
+            - group "3 / 3":
+              - generic:
+                - img "ビジュアル画像"
+            - group "1 / 3" [ref=e78]:
+              - img "ビジュアル画像" [ref=e80]
+            - group "2 / 3":
+              - generic:
+                - img "ビジュアル画像"
+            - group "3 / 3":
+              - generic:
+                - img "ビジュアル画像"
+            - group "1 / 3":
+              - generic:
+                - img "ビジュアル画像"
+          - generic [ref=e81]:
+            - button "Go to slide 1" [ref=e82] [cursor=pointer]
+            - button "Go to slide 2" [ref=e83] [cursor=pointer]
+            - button "Go to slide 3" [ref=e84] [cursor=pointer]
+          - button "Previous slide" [ref=e85] [cursor=pointer]
+          - button "Next slide" [ref=e86] [cursor=pointer]
+      - generic [ref=e88]:
+        - heading "“Work and Smile” Decent work for everyone." [level=2] [ref=e91]:
+          - generic [ref=e92]:
+            - text: “Work and Smile”
+            - text: Decent work
+            - text: for everyone.
+        - paragraph [ref=e93]:
+          - text: 私たちPERSOL Global Workforceは、
+          - text: 国籍・文化の垣根を超え、
+          - text: 外国人材が日本で活躍できる仕組みを創造し、
+          - text: はたらく人の支援、企業の成長に貢献してまいります。
+        - list [ref=e94]:
+          - listitem [ref=e95]:
+            - img "ビジュアル画像" [ref=e97]
+          - listitem [ref=e98]:
+            - img "ビジュアル画像" [ref=e100]
+          - listitem [ref=e101]:
+            - img "ビジュアル画像" [ref=e103]
+          - listitem [ref=e104]:
+            - img "ビジュアル画像" [ref=e106]
+      - generic [ref=e107]:
+        - generic [ref=e110]:
+          - heading "最新情報" [level=2] [ref=e111]
+          - generic [ref=e112]:
+            - generic [ref=e113]:
+              - group "1 / 4" [ref=e114]:
+                - link "6月25日（木）外国人ドライバー採用オンラインセミナー開催 ニュースリリース 2026年6月5日 6月25日（木）外国人ドライバー採用オンラインセミナー開催 ～免許取得方法から実際の担当業務まで分かりやすく解説～" [ref=e115] [cursor=pointer]:
+                  - /url: /seminar/index.html
+                  - img "6月25日（木）外国人ドライバー採用オンラインセミナー開催" [ref=e117]
+                  - generic [ref=e118]:
+                    - generic [ref=e119]: ニュースリリース
+                    - generic [ref=e120]:
+                      - emphasis [ref=e121]: "2026"
+                      - text: 年
+                      - emphasis [ref=e122]: "6"
+                      - text: 月
+                      - emphasis [ref=e123]: "5"
+                      - text: 日
+                  - generic [ref=e124]:
+                    - text: 6月25日（木）外国人ドライバー採用オンラインセミナー開催
+                    - text: ～免許取得方法から実際の担当業務まで分かりやすく解説～
+              - group "2 / 4" [ref=e125]:
+                - link "【特定技能・農業】理想の外国人材との出会い。農家に頼られる外国人材、外国人材にパーフェクトな職場と称賛される農家 ニュースリリース 2026年6月10日 【2026年6月30日(火)15:00～16:00 オンライン開催】 『みーつけあエージェント』とPERSOL Global Workforceが無料オンラインセミナーを開催" [ref=e126] [cursor=pointer]:
+                  - /url: /news/20260610/
+                  - img "【特定技能・農業】理想の外国人材との出会い。農家に頼られる外国人材、外国人材にパーフェクトな職場と称賛される農家" [ref=e128]
+                  - generic [ref=e129]:
+                    - generic [ref=e130]: ニュースリリース
+                    - generic [ref=e131]:
+                      - emphasis [ref=e132]: "2026"
+                      - text: 年
+                      - emphasis [ref=e133]: "6"
+                      - text: 月
+                      - emphasis [ref=e134]: "10"
+                      - text: 日
+                  - generic [ref=e135]:
+                    - text: 【2026年6月30日(火)15:00～16:00 オンライン開催】
+                    - text: 『みーつけあエージェント』とPERSOL Global Workforceが無料オンラインセミナーを開催
+              - group "3 / 4" [ref=e136]:
+                - link "【早期退職を防ぐ】外国人材定着のヒントがここに！ 情報 お役立ち情報ダウンロード 外国人材の早期退職を防ぐ！実践すべき５つの施策 【早期退職を防ぐ】外国人材定着のヒントがここに！" [ref=e137] [cursor=pointer]:
+                  - /url: /download/whitepaper/retention/index.html
+                  - img "【早期退職を防ぐ】外国人材定着のヒントがここに！" [ref=e139]
+                  - generic [ref=e140]:
+                    - generic [ref=e141]: 情報
+                    - emphasis [ref=e143]: お役立ち情報ダウンロード
+                  - generic [ref=e144]:
+                    - text: 外国人材の早期退職を防ぐ！実践すべき５つの施策
+                    - text: 【早期退職を防ぐ】外国人材定着のヒントがここに！
+              - group "4 / 4" [ref=e145]:
+                - link "PERSOL Global Workforce代表が答える。外国人材採用のアレコレ２回目 コラム 2026年5月13日 PERSOL Global Workforce代表が答える。外国人材採用のアレコレ２回目 現場で活躍する外国人材の育て方――「本当に任せられますか？夜勤はいつからできますか？」の答えは" [ref=e146] [cursor=pointer]:
+                  - /url: /information/20260513/
+                  - img "PERSOL Global Workforce代表が答える。外国人材採用のアレコレ２回目" [ref=e148]
+                  - generic [ref=e149]:
+                    - generic [ref=e150]: コラム
+                    - generic [ref=e151]:
+                      - emphasis [ref=e152]: "2026"
+                      - text: 年
+                      - emphasis [ref=e153]: "5"
+                      - text: 月
+                      - emphasis [ref=e154]: "13"
+                      - text: 日
+                  - generic [ref=e155]:
+                    - text: PERSOL Global Workforce代表が答える。外国人材採用のアレコレ２回目
+                    - text: 現場で活躍する外国人材の育て方――「本当に任せられますか？夜勤はいつからできますか？」の答えは
+            - generic [ref=e156]:
+              - button "Go to slide 1" [ref=e157] [cursor=pointer]
+              - button "Go to slide 2" [ref=e158] [cursor=pointer]
+              - button "Go to slide 3" [ref=e159] [cursor=pointer]
+        - button "Previous slide" [disabled]
+        - button "Next slide" [ref=e160] [cursor=pointer]
+      - generic [ref=e162]:
+        - heading "外国人材の採用を ご検討中の方" [level=2] [ref=e163]
+        - generic [ref=e164]:
+          - generic [ref=e165]:
+            - link "外国人材紹介サービス" [ref=e166] [cursor=pointer]:
+              - /url: /for-employers/hiring-foreign-talent/
+              - img "外国人材紹介サービス" [ref=e168]
+            - heading "外国人材紹介サービス" [level=3] [ref=e169]
+            - paragraph [ref=e170]: 企業の課題に合わせて、一定のスキルと日本語力を持つ即戦力の人材（特定技能）、管理職やエキスパートとして活躍が期待される人材（技人国）をご紹介します。
+            - list [ref=e171]:
+              - listitem [ref=e172]: 介護
+              - listitem [ref=e173]: 飲食料品製造業
+              - listitem [ref=e174]: 宿泊
+              - listitem [ref=e175]: 外食業
+              - listitem [ref=e176]: 自動車運送業
+              - listitem [ref=e177]: 航空
+              - listitem [ref=e178]: more
+          - generic [ref=e179]:
+            - link "農業分野の外国人材派遣サービス" [ref=e180] [cursor=pointer]:
+              - /url: /for-employers/temporary-staff/
+              - img "農業分野の外国人材派遣サービス" [ref=e182]
+            - heading "農業分野の外国人材派遣サービス" [level=3] [ref=e183]
+            - paragraph [ref=e184]:
+              - text: 一定の日本語力と農業知識や経験を持つ即戦力の農業人材の派遣が可能です。
+              - text: 農繁期のみの短期から長期まで、労働力不足の課題を解決します。
+            - list [ref=e185]:
+              - listitem [ref=e186]: 耕種農業
+              - listitem [ref=e187]: 畜産農業
+      - generic [ref=e189]:
+        - heading "事例・お役立ち情報" [level=2] [ref=e190]
+        - generic [ref=e191]:
+          - link "【資料ダウンロード】外国人材採用 丸わかりブック 情報 【資料ダウンロード】外国人材採用 丸わかりブック 外国人材採用でよく使われる在留資格を整理し、日本人採用との違いや注意点をわかりやすく解説した資料です。" [ref=e193] [cursor=pointer]:
+            - /url: /download/whitepaper/
+            - img "【資料ダウンロード】外国人材採用 丸わかりブック" [ref=e195]
+            - generic [ref=e197]: 情報
+            - generic [ref=e198]:
+              - text: 【資料ダウンロード】外国人材採用 丸わかりブック
+              - text: 外国人材採用でよく使われる在留資格を整理し、日本人採用との違いや注意点をわかりやすく解説した資料です。
+          - list [ref=e200]:
+            - listitem [ref=e201]:
+              - link "【資料ダウンロード】農業・外国人材派遣の仕組み 情報 【資料ダウンロード】農業・外国人材派遣の仕組み “農繁期の忙しい時”に頼れる外国人材派遣のスキームをわかりやすくご案内します。" [ref=e202] [cursor=pointer]:
+                - /url: /download/service-document/
+                - img "【資料ダウンロード】農業・外国人材派遣の仕組み" [ref=e204]
+                - generic [ref=e205]:
+                  - generic [ref=e207]: 情報
+                  - generic [ref=e208]:
+                    - text: 【資料ダウンロード】農業・外国人材派遣の仕組み
+                    - text: “農繁期の忙しい時”に頼れる外国人材派遣のスキームをわかりやすくご案内します。
+            - listitem [ref=e209]:
+              - link "【特定技能・介護】外国人材を採用してよかった、ではなく「私たちの戦力になる人材」を採用できてよかった！いまはそう思います。 事例 【特定技能・介護】外国人材を採用してよかった、ではなく「私たちの戦力になる人材」を採用できてよかった！いまはそう思います。" [ref=e210] [cursor=pointer]:
+                - /url: /information/20241213/
+                - img "【特定技能・介護】外国人材を採用してよかった、ではなく「私たちの戦力になる人材」を採用できてよかった！いまはそう思います。" [ref=e212]
+                - generic [ref=e213]:
+                  - generic [ref=e215]: 事例
+                  - generic [ref=e216]: 【特定技能・介護】外国人材を採用してよかった、ではなく「私たちの戦力になる人材」を採用できてよかった！いまはそう思います。
+            - listitem [ref=e217]:
+              - link "【特定技能・農業】理想の外国人材との出会い。農家に頼られる外国人材、外国人材にパーフェクトな職場と称賛される農家 事例 【特定技能・農業】理想の外国人材との出会い。 農家に頼られる外国人材、外国人材にパーフェクトな職場と称賛される農家" [ref=e218] [cursor=pointer]:
+                - /url: /information/20251126/
+                - img "【特定技能・農業】理想の外国人材との出会い。農家に頼られる外国人材、外国人材にパーフェクトな職場と称賛される農家" [ref=e220]
+                - generic [ref=e221]:
+                  - generic [ref=e223]: 事例
+                  - generic [ref=e224]:
+                    - text: 【特定技能・農業】理想の外国人材との出会い。
+                    - text: 農家に頼られる外国人材、外国人材にパーフェクトな職場と称賛される農家
+        - link "事例・お役立ち情報一覧を見る" [ref=e226] [cursor=pointer]:
+          - /url: /information/
+      - generic [ref=e229]:
+        - generic [ref=e230]:
+          - heading "ニュース" [level=2] [ref=e231]
+          - link "ニュース一覧を見る" [ref=e233] [cursor=pointer]:
+            - /url: /news/
+        - list [ref=e235]:
+          - listitem [ref=e236]:
+            - link "2026年6月10日 ニュースリリース 【2026年6月30日(火)15:00～16:00 オンライン開催】 『みーつけあエージェント』とPERSOL Global Workforceが無料オンラインセミナーを開催" [ref=e237] [cursor=pointer]:
+              - /url: /news/20260610/
+              - generic [ref=e238]:
+                - generic [ref=e239]:
+                  - emphasis [ref=e240]: "2026"
+                  - text: 年
+                  - emphasis [ref=e241]: "6"
+                  - text: 月
+                  - emphasis [ref=e242]: "10"
+                  - text: 日
+                - generic [ref=e243]: ニュースリリース
+              - generic [ref=e244]:
+                - text: 【2026年6月30日(火)15:00～16:00 オンライン開催】
+                - text: 『みーつけあエージェント』とPERSOL Global Workforceが無料オンラインセミナーを開催
+          - listitem [ref=e245]:
+            - link "2026年6月5日 ニュースリリース 6月25日（木）外国人ドライバー採用オンラインセミナー開催" [ref=e246] [cursor=pointer]:
+              - /url: /news/20260605/
+              - generic [ref=e247]:
+                - generic [ref=e248]:
+                  - emphasis [ref=e249]: "2026"
+                  - text: 年
+                  - emphasis [ref=e250]: "6"
+                  - text: 月
+                  - emphasis [ref=e251]: "5"
+                  - text: 日
+                - generic [ref=e252]: ニュースリリース
+              - generic [ref=e253]: 6月25日（木）外国人ドライバー採用オンラインセミナー開催
+          - listitem [ref=e254]:
+            - link "2026年6月4日 ニュースリリース 外国人材採用経験者の73.9％が採用後「期待以上」と回答 一方、外国人材活用に関する課題や意外な落とし穴も明らかに" [ref=e255] [cursor=pointer]:
+              - /url: /news/20260604/
+              - generic [ref=e256]:
+                - generic [ref=e257]:
+                  - emphasis [ref=e258]: "2026"
+                  - text: 年
+                  - emphasis [ref=e259]: "6"
+                  - text: 月
+                  - emphasis [ref=e260]: "4"
+                  - text: 日
+                - generic [ref=e261]: ニュースリリース
+              - generic [ref=e262]:
+                - text: 外国人材採用経験者の73.9％が採用後「期待以上」と回答
+                - text: 一方、外国人材活用に関する課題や意外な落とし穴も明らかに
+  - contentinfo [ref=e263]:
+    - generic [ref=e268]:
+      - generic [ref=e269]:
+        - heading "お問い合わせ" [level=2] [ref=e270]
+        - paragraph [ref=e271]: 外国人材に関するご質問・ご相談はお気軽にお問い合わせください。
+      - generic [ref=e272]:
+        - link "お問い合わせ" [ref=e274] [cursor=pointer]:
+          - /url: /contact/
+        - link "資料請求" [ref=e276] [cursor=pointer]:
+          - /url: /download/
+    - generic [ref=e277]:
+      - generic [ref=e278]:
+        - link "PERSOL Global Workforce" [ref=e280] [cursor=pointer]:
+          - /url: /
+          - img "PERSOL Global Workforce" [ref=e281]
+        - generic [ref=e282]:
+          - list [ref=e283]:
+            - listitem [ref=e284]:
+              - generic [ref=e285]:
+                - term [ref=e286]: 外国人材の採用をご検討中の方
+                - definition [ref=e287]:
+                  - link "外国人材紹介サービス" [ref=e288] [cursor=pointer]:
+                    - /url: /for-employers/hiring-foreign-talent/
+                  - link "農業分野の外国人材派遣サービス" [ref=e289] [cursor=pointer]:
+                    - /url: /for-employers/temporary-staff/
+            - listitem [ref=e290]:
+              - link "仕事をお探しの方" [ref=e291] [cursor=pointer]:
+                - /url: /for-job-seekers/
+            - listitem [ref=e292]:
+              - generic [ref=e293]:
+                - term [ref=e294]: 企業情報
+                - definition [ref=e295]:
+                  - link "企業情報" [ref=e296] [cursor=pointer]:
+                    - /url: /about/
+                  - link "採用情報" [ref=e297] [cursor=pointer]:
+                    - /url: /about/recruit/
+            - listitem [ref=e298]:
+              - link "事例・お役立ち情報" [ref=e299] [cursor=pointer]:
+                - /url: /information/
+            - listitem [ref=e300]:
+              - link "ニュース" [ref=e301] [cursor=pointer]:
+                - /url: /news/
+          - list [ref=e302]:
+            - listitem [ref=e303]:
+              - link "情報セキュリティ基本方針" [ref=e304] [cursor=pointer]:
+                - /url: /security/
+            - listitem [ref=e305]:
+              - link "個人情報保護方針" [ref=e306] [cursor=pointer]:
+                - /url: /privacy_info/
+            - listitem [ref=e307]:
+              - link "利用規約" [ref=e308] [cursor=pointer]:
+                - /url: /terms/
+            - listitem [ref=e309]:
+              - link "サイトのご利用にあたって" [ref=e310] [cursor=pointer]:
+                - /url: /terms-of-use/
+            - listitem [ref=e311]:
+              - link "取扱職種の範囲等" [ref=e312] [cursor=pointer]:
+                - /url: /scope_of_employment/
+            - listitem [ref=e313]:
+              - link "労働者派遣事業の状況" [ref=e314] [cursor=pointer]:
+                - /url: /status/
+            - listitem [ref=e315]:
+              - link "ソーシャルメディア運用ポリシー" [ref=e316] [cursor=pointer]:
+                - /url: /social/
+      - generic [ref=e318]:
+        - generic [ref=e319]: “ Work and Smile” Decent work for everyone.
+        - generic [ref=e320]: “ Work and Smile” Decent work for everyone.
+    - generic [ref=e323]:
+      - img "PERSOL Global Workforce" [ref=e325]
+      - img "はたらいて、笑おう" [ref=e327]
+    - paragraph [ref=e329]: © PERSOL Global Workforce CO., LTD.

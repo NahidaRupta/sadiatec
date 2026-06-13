@@ -1,4 +1,4 @@
-import type { HeroBlockProps } from './types'
+import type { HeroBlockProps, HeroSlide } from './types'
 
 export function adaptHeroBlock(raw: unknown): HeroBlockProps {
   const data = (typeof raw === 'object' && raw !== null ? raw : {}) as Record<string, unknown>
@@ -15,6 +15,18 @@ export function adaptHeroBlock(raw: unknown): HeroBlockProps {
       label: typeof s['label'] === 'string' ? s['label'] : '',
     }))
     .filter((s) => s.value && s.label)
+
+  const rawSlides = Array.isArray(data['heroSlides']) ? data['heroSlides'] : []
+  const heroSlides: HeroSlide[] = rawSlides
+    .filter((s): s is Record<string, unknown> => typeof s === 'object' && s !== null)
+    .map((s) => {
+      const img = s['image'] as Record<string, unknown> | null | undefined
+      return {
+        imageUrl: img && typeof img['url'] === 'string' ? img['url'] : '',
+        alt: typeof s['alt'] === 'string' ? s['alt'] : '',
+      }
+    })
+    .filter((s) => s.imageUrl)
 
   const rawPills = Array.isArray(data['keywordPills']) ? data['keywordPills'] : []
   const keywordPills = rawPills
@@ -53,5 +65,6 @@ export function adaptHeroBlock(raw: unknown): HeroBlockProps {
     ...(inlineStats.length > 0 ? { inlineStats } : {}),
     ...(keywordPills.length > 0 ? { keywordPills } : {}),
     ...(bgImageUrl ? { backgroundImageUrl: bgImageUrl } : {}),
+    ...(heroSlides.length > 0 ? { heroSlides } : {}),
   }
 }
