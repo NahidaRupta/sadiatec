@@ -19,7 +19,7 @@ export function LogoCloudBlock({
   const doubledLogos = [...logos, ...logos]
 
   return (
-    <section className="overflow-hidden py-12 md:py-16" aria-label={eyebrow}>
+    <section className="overflow-hidden bg-white py-12 md:py-16" aria-label={eyebrow}>
       {/* Header */}
       <div className="mx-auto mb-8 max-w-7xl px-4 text-center sm:px-6 lg:px-8">
         <SectionEyebrow>{eyebrow}</SectionEyebrow>

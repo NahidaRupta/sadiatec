@@ -34,7 +34,7 @@ function AlternatingRow({ service, index }: AlternatingRowProps) {
           <img
             src={service.imageUrl}
             alt={service.imageName}
-            className="aspect-[16/10] w-full rounded-2xl object-cover shadow-sm border border-neutral-100" // Changed to elegant 16/10 aspect ratio
+            className="aspect-[16/10] w-full rounded-2xl object-cover shadow-sm"
           />
         ) : (
           <div className="aspect-[16/10] w-full rounded-2xl bg-(--color-neutral-100)" />
@@ -86,7 +86,7 @@ function GridCard({ service }: GridCardProps) {
   return (
     <motion.article
       variants={fadeInUp}
-      className="flex flex-col overflow-hidden rounded-2xl border border-(--color-neutral-200) bg-white shadow-sm hover:shadow-md transition-shadow duration-300"
+      className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow duration-300"
     >
       {service.imageUrl ? (
         // eslint-disable-next-line @next/next/no-img-element
@@ -144,7 +144,7 @@ export function ServicesGridBlock({
 
   return (
     /* ── 🎯 FIXED: Tuned down section padding top (pt-10 md:pt-14) to maintain an uniform flow serial sequence ── */
-    <section className="pt-10 pb-20 md:pt-14 md:pb-28 bg-white overflow-hidden">
+    <section className="py-20 lg:py-24 bg-bg-secondary overflow-hidden border-t-4 border-brand-primary">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* ── 🎯 FIXED: Trimmed space below header down from mb-16/24 to mb-10 md:mb-14 ── */}

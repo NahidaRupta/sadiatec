@@ -125,7 +125,7 @@ export function BlogTeaserBlock({
   if (posts.length === 0) return null
 
   return (
-    <section aria-labelledby="blog-teaser-heading" className="py-20 md:py-28">
+    <section aria-labelledby="blog-teaser-heading" className="py-20 md:py-28 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header row */}
         <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">

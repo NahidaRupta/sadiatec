@@ -15,11 +15,10 @@ interface HeaderClientProps {
   locales: string[]
   localeLabels: Record<string, string>
   locale: string
-  cmsLogoUrl?: string | null // 👈 Added the live dynamic CMS logo prop parameter
+  cmsLogoUrl?: string | null
 }
-// 🛠️ EXPANDED LOGO COMPONENT DIMENSIONS
+
 function Logo({ dark, imageUrl }: { dark: boolean; imageUrl?: string | null | undefined }) {
-  // Fallback text if no image is available
   if (!imageUrl) {
     return (
       <span className="text-2xl tracking-wide select-none">
@@ -31,21 +30,19 @@ function Logo({ dark, imageUrl }: { dark: boolean; imageUrl?: string | null | un
   }
 
   return (
-    /* Changed from h-10 w-36 to h-14 w-48 to increase size */
     <div className="relative flex items-center h-14 w-48 transition-all duration-300">
       <Image
-        src={imageUrl} 
+        src={imageUrl}
         alt="Sadia Tec Logo"
         fill
         priority
-        className="object-contain object-left" 
-        sizes="250px" // 👈 Upgraded size budget to prevent Next.js from serving a lower-res image
+        className="object-contain object-left"
+        sizes="250px"
       />
     </div>
   )
 }
 
-// 🛠️ MegaMenuPanel
 function MegaMenuPanel({ item }: { item: ResolvedNavItem }) {
   const columns = item.megaColumns ?? []
 
@@ -91,8 +88,8 @@ function MegaMenuPanel({ item }: { item: ResolvedNavItem }) {
                             px-4 py-3 text-sm font-semibold text-slate-800 shadow-[0_1px_2px_rgba(0,0,0,0.02)]
                             hover:text-brand-accent hover:border-brand-accent/20 hover:shadow-md transition-all duration-200"
                         >
-                          <svg 
-                            className="h-3.5 w-3.5 text-slate-400 group-hover:text-brand-accent transition-colors shrink-0" 
+                          <svg
+                            className="h-3.5 w-3.5 text-slate-400 group-hover:text-brand-accent transition-colors shrink-0"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
                           >
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
@@ -141,7 +138,6 @@ function MegaMenuPanel({ item }: { item: ResolvedNavItem }) {
   )
 }
 
-// 🛠️ DropdownPanel
 function DropdownPanel({ items }: { items: { label: string; href: string }[] }) {
   return (
     <div
@@ -154,7 +150,7 @@ function DropdownPanel({ items }: { items: { label: string; href: string }[] }) 
           <li key={child.href}>
             <Link
               href={child.href}
-              className="block px-5 py-2.5 text-sm text-gray-700 hover:text-brand-accent
+              className="block px-5 py-2.5 text-sm text-text-secondary hover:text-brand-accent
                 hover:bg-brand-accent/5 transition-colors"
             >
               {child.label}
@@ -173,14 +169,14 @@ export function HeaderClient({
   locales,
   localeLabels,
   locale,
-  cmsLogoUrl, // Destructured safe content identifier variable
+  cmsLogoUrl,
 }: HeaderClientProps) {
   const [scrolled, setScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
+    const onScroll = () => setScrolled(window.scrollY > 0)
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
     return () => window.removeEventListener('scroll', onScroll)
@@ -191,17 +187,11 @@ export function HeaderClient({
   }, [pathname])
 
   const strippedPath = pathname.replace(/^\/(en|ja|bn)(?=\/|$)/, '') || '/'
-  const isHomepage = strippedPath === '/'
-  const shouldShowDarkHeader = scrolled || !isHomepage
-
-  const navTextClass = shouldShowDarkHeader
-    ? 'text-gray-700 hover:text-brand-accent'
-    : 'text-white/90 hover:text-white'
-    
-  const chevronClass = shouldShowDarkHeader ? 'text-gray-400' : 'text-white/60'
 
   function isActive(item: ResolvedNavItem): boolean {
-    const hasChildren = (item.children?.length ?? 0) > 0 || (item.megaMenu && (item.megaColumns?.length ?? 0) > 0)
+    const hasChildren =
+      (item.children?.length ?? 0) > 0 ||
+      (item.megaMenu && (item.megaColumns?.length ?? 0) > 0)
     return hasChildren
       ? strippedPath.startsWith(item.href)
       : strippedPath === item.href
@@ -210,14 +200,11 @@ export function HeaderClient({
   return (
     <header
       className={[
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-20',
-        shouldShowDarkHeader
-          ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-neutral-100'
-          : 'bg-transparent',
+        'sticky top-0 left-0 right-0 z-50 bg-white border-b border-border-default transition-shadow duration-300',
+        scrolled ? 'shadow-sm' : 'shadow-none',
       ].join(' ')}
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+      <div className="flex h-16 items-center justify-between w-full px-6 lg:px-20">
 
           {/* Logo */}
           <Link
@@ -225,20 +212,16 @@ export function HeaderClient({
             aria-label="Sadia Tec Home"
             className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded-sm"
           >
-            <Logo dark={shouldShowDarkHeader} imageUrl={cmsLogoUrl} />
+            <Logo dark={true} imageUrl={cmsLogoUrl} />
           </Link>
 
-          {/* Desktop nav */}
-          <nav aria-label="Main navigation" className="hidden md:block">
-            <ul className="flex items-center gap-0.5">
+          {/* Desktop nav — hidden below lg breakpoint */}
+          <nav aria-label="Main navigation" className="hidden lg:block">
+            <ul className="flex items-center">
               {navItems.map((item) => {
                 const hasMega = item.megaMenu && (item.megaColumns ?? []).length > 0
                 const hasDropdown = !hasMega && (item.children ?? []).length > 0
-
                 const active = isActive(item)
-                const activeTextClass = shouldShowDarkHeader
-                  ? 'text-brand-accent font-bold'
-                  : 'text-white font-bold'
                 const isLeaf = !hasMega && !hasDropdown
 
                 return (
@@ -247,15 +230,17 @@ export function HeaderClient({
                       href={item.href}
                       aria-current={active && isLeaf ? 'page' : undefined}
                       className={[
-                        'inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-semibold',
-                        'transition-colors duration-200 min-h-[44px]',
-                        active ? activeTextClass : navTextClass,
+                        'inline-flex items-center gap-1 px-3 py-2 text-sm font-medium min-h-[44px]',
+                        'border-b-2 transition-colors duration-200',
+                        active
+                          ? 'text-brand-primary border-brand-primary'
+                          : 'text-text-primary border-transparent hover:text-brand-primary hover:border-brand-primary',
                       ].join(' ')}
                     >
                       {item.label}
                       {(hasMega || hasDropdown) && (
                         <svg
-                          className={`h-3.5 w-3.5 transition-transform duration-200 group-hover/item:rotate-180 ${chevronClass}`}
+                          className="h-3.5 w-3.5 text-text-muted transition-transform duration-200 group-hover/item:rotate-180"
                           fill="none" viewBox="0 0 24 24" stroke="currentColor"
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
@@ -271,26 +256,24 @@ export function HeaderClient({
             </ul>
           </nav>
 
-          {/* Right Controls */}
-          <div className="hidden md:flex items-center gap-5">
+          {/* Right controls — hidden below lg breakpoint */}
+          <div className="hidden lg:flex items-center gap-4">
 
+            {/* Language switcher */}
             <div className="relative group/lang py-2">
               <button
                 type="button"
-                className={[
-                  'flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-sm font-semibold transition-colors duration-200',
-                  shouldShowDarkHeader 
-                    ? 'text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200' 
-                    : 'text-white bg-white/10 hover:bg-white/20 border border-white/10'
-                ].join(' ')}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-sm font-medium
+                  text-text-primary hover:bg-bg-secondary border border-border-default
+                  transition-colors duration-200"
                 aria-label="Language selection dropdown"
               >
                 <span className="text-xl select-none leading-none">
                   {localeLabels[locale] || locale}
                 </span>
-                <span className="text-xs uppercase tracking-wider opacity-90">{locale}</span>
+                <span className="text-xs uppercase tracking-wider">{locale}</span>
                 <svg
-                  className="h-3 w-3 opacity-60 transition-transform duration-200 group-hover/lang:rotate-180"
+                  className="h-3 w-3 text-text-muted transition-transform duration-200 group-hover/lang:rotate-180"
                   fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -302,7 +285,7 @@ export function HeaderClient({
                   opacity-0 invisible group-hover/lang:opacity-100 group-hover/lang:visible
                   transition-all duration-150 origin-top-right pointer-events-none group-hover/lang:pointer-events-auto"
               >
-                <ul className="rounded-xl bg-white shadow-xl border border-neutral-100 py-1.5 overflow-hidden">
+                <ul className="rounded-xl bg-white shadow-xl border border-border-default py-1.5 overflow-hidden">
                   {locales.map((loc) => {
                     const isCurrentLocale = locale === loc
                     const flagIcon = localeLabels[loc] || loc
@@ -315,8 +298,8 @@ export function HeaderClient({
                           className={[
                             'flex items-center gap-3 w-full px-4 py-2 text-sm transition-colors text-left font-medium',
                             isCurrentLocale
-                              ? 'text-brand-accent bg-brand-accent/5 font-bold'
-                              : 'text-gray-600 hover:text-brand-accent hover:bg-neutral-50'
+                              ? 'text-brand-primary bg-brand-primary/5 font-bold'
+                              : 'text-text-secondary hover:text-brand-primary hover:bg-bg-secondary',
                           ].join(' ')}
                         >
                           <span className="text-xl select-none leading-none">{flagIcon}</span>
@@ -331,15 +314,15 @@ export function HeaderClient({
               </div>
             </div>
 
-            <div className={`h-5 w-px ${shouldShowDarkHeader ? 'bg-gray-200' : 'bg-white/20'}`} />
+            <div className="h-5 w-px bg-border-default" />
 
             {ctaLabel && (
               <Link href={ctaHref}>
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center rounded-full bg-brand-accent
-                    px-6 py-2.5 text-sm font-bold text-white shadow-md
-                    transition-all duration-200 hover:bg-brand-accent-hover hover:-translate-y-0.5 hover:shadow-lg"
+                  className="inline-flex items-center justify-center rounded-sm bg-brand-accent
+                    px-5 py-2 text-sm font-medium text-white
+                    transition-colors duration-200 hover:bg-brand-accent-hover"
                 >
                   {ctaLabel}
                 </button>
@@ -347,19 +330,18 @@ export function HeaderClient({
             )}
           </div>
 
-          {/* Mobile Menu */}
-          <div className="flex md:hidden">
+          {/* Mobile menu trigger — visible below lg breakpoint */}
+          <div className="flex lg:hidden">
             <MobileMenu
               navItems={navItems}
               ctaLabel={ctaLabel}
               ctaHref={ctaHref}
               locales={locales}
               localeLabels={localeLabels}
-              scrolled={shouldShowDarkHeader}
+              scrolled={true}
               onOpenChange={setIsMobileMenuOpen}
             />
           </div>
-        </div>
       </div>
     </header>
   )

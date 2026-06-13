@@ -46,12 +46,11 @@ function StatCounter({ item, reducedMotion }: StatCounterProps) {
   return (
     <div ref={ref} className="flex flex-col items-center text-center px-4 py-3 md:py-0">
       {/* Scaled down count text for a cleaner presentation */}
-      <span className="text-3xl font-extrabold tracking-tight text-(--color-primary) md:text-4xl lg:text-5xl">
+      <span className="text-5xl font-bold tracking-tight text-brand-dark md:text-6xl">
         {count.toLocaleString()}
-        <span className="text-2xl font-bold ml-0.5 md:text-3xl">{item.suffix ?? '+'}</span>
+        <span className="text-3xl font-bold ml-0.5 md:text-4xl">{item.suffix ?? '+'}</span>
       </span>
-      {/* Swapped uppercase tracking-wider for sleek descriptive typography */}
-      <span className="mt-2 text-xs md:text-sm font-medium text-(--color-muted) tracking-tight">
+      <span className="mt-2 text-xs md:text-sm font-medium text-text-secondary tracking-tight">
         {item.label}
       </span>
     </div>
@@ -64,7 +63,7 @@ export function StatsBlock({ eyebrow, sectionHeading, items }: StatsBlockProps) 
   if (items.length === 0) return null
 
   return (
-    <section className="bg-(--color-surface) py-20 md:py-24 border-y border-neutral-100/50">
+    <section className="bg-brand-primary-light py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section header */}

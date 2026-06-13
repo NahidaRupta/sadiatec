@@ -69,7 +69,7 @@ export function DownloadsGridBlock({
   if (downloads.length === 0) return null
 
   return (
-    <section aria-labelledby="downloads-heading" className="bg-(--color-surface) py-20 md:py-28">
+    <section aria-labelledby="downloads-heading" className="bg-bg-secondary py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section header — centered */}
         <div className="mb-12 text-center">

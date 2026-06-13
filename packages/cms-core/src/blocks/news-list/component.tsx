@@ -10,7 +10,7 @@ import type { NewsListBlockProps, NewsItem } from './types'
 function NewsCard({ item }: { item: NewsItem }) {
   return (
     <motion.li variants={fadeInUp} className="list-none flex">
-      <article className="flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-xs transition-all duration-300 hover:shadow-md w-full">
+      <article className="flex flex-col overflow-hidden rounded-2xl border border-border-default bg-white shadow-xs transition-all duration-300 hover:shadow-md w-full">
         
         {/* 1. Added "relative" to this container class list */}
 <div className="relative aspect-video w-full overflow-hidden bg-slate-50 border-b border-slate-100">
@@ -79,7 +79,7 @@ export function NewsListBlock({
   if (items.length === 0) return null
 
   return (
-    <section aria-labelledby="news-grid-heading" className="py-12 md:py-20 bg-slate-50/50">
+    <section aria-labelledby="news-grid-heading" className="bg-bg-secondary py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Centered Block Header */}
@@ -90,7 +90,7 @@ export function NewsListBlock({
             </div>
           )}
           {heading && (
-            <h2 id="news-grid-heading" className="text-3xl font-extrabold tracking-tight text-slate-900 md:text-4xl">
+            <h2 id="news-grid-heading" className="text-3xl font-extrabold tracking-tight text-text-primary md:text-4xl">
               {heading}
             </h2>
           )}
