@@ -26,7 +26,7 @@ export function adaptServicesGridBlock(raw: unknown): ServicesGridBlockProps {
 
   const rawLayout = data['layout']
   const layout: ServicesLayout =
-    rawLayout === 'grid' || rawLayout === 'alternating' ? rawLayout : 'alternating'
+    rawLayout === 'corporate-banner' || rawLayout === 'alternating' ? rawLayout : 'alternating'
 
   return {
     eyebrow: typeof data['eyebrow'] === 'string' ? data['eyebrow'] : '',

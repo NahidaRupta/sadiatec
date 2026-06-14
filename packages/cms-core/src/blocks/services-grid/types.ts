@@ -1,4 +1,4 @@
-export type ServicesLayout = 'alternating' | 'grid'
+export type ServicesLayout = 'alternating' | 'corporate-banner'
 
 export interface ServiceCta {
   label: string

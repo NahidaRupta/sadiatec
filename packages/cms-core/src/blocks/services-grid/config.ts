@@ -31,8 +31,8 @@ export const ServicesGridBlockConfig: Block = {
       type: 'select',
       defaultValue: 'alternating',
       options: [
-        { label: 'Alternating image/text rows', value: 'alternating' },
-        { label: '3-column card grid', value: 'grid' },
+        { label: 'Alternating image/text rows (Homepage style)', value: 'alternating' },
+        { label: 'Corporate Banner Style (Services page style)', value: 'corporate-banner' },
       ],
     },
   ],
