@@ -5,6 +5,15 @@ export const NewsListBlockConfig: Block = {
   interfaceName: 'NewsListBlock',
   labels: { singular: 'News List', plural: 'News Lists' },
   fields: [
+    {
+      name: 'layout',
+      type: 'select',
+      defaultValue: 'list',
+      options: [
+        { label: 'Standard Split List (News Updates Page)', value: 'list' },
+        { label: 'Horizontal Slider Card Deck (Home Page)', value: 'carousel' },
+      ],
+    },
     { name: 'eyebrow', type: 'text', localized: true },
     { name: 'heading', type: 'text', localized: true },
     { name: 'intro', type: 'textarea', localized: true },

@@ -202,24 +202,7 @@ export function ServicesGridBlock({
           ))}
         </div>
 
-        {/* 🛠️ NEW HOMEPAGE "VIEW ALL SERVICES" BRAND BLUE BUTTON */}
-        {!isCorporateLayout && (
-          <div className="mt-16 md:mt-20 text-center">
-            <Link
-              href="/services"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#5EA6E6] hover:bg-[#4B93D3] active:scale-[0.98] text-white text-[14px] font-bold tracking-wide rounded-full transition-all duration-200 shadow-md shadow-blue-200/50 hover:shadow-lg hover:shadow-blue-200/60 focus:outline-none focus:ring-2 focus:ring-[#5EA6E6] focus:ring-offset-2"
-            >
-              <span>View All Services</span>
-              <svg 
-                className="h-4 w-4 stroke-current fill-none" 
-                viewBox="0 0 24 24" 
-                strokeWidth="2.5"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </Link>
-          </div>
-        )}
+        
 
       </div>
     </section>

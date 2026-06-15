@@ -1,16 +1,15 @@
-// apps/saidatech/src/blocks/NewsList/types.ts
-
 export interface NewsItem {
   date: string
   category?: string
   headline: string
   href: string
-  thumbnail?: string // Pure string containing the image URL path
+  thumbnail?: string 
   excerpt?: string
 }
 
 export interface NewsListBlockProps {
   blockType?: 'news-list'
+  layout?: 'list' | 'carousel'
   eyebrow?: string
   heading?: string
   intro?: string

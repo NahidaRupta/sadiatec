@@ -9,10 +9,8 @@ function mapCollectionItem(doc: Record<string, unknown>): NewsItem | null {
   const category = typeof doc['category'] === 'string' && doc['category'] ? doc['category'] : undefined
   const href = slug ? `/news/${slug}` : '/news'
   
-  // 1. Parse the excerpt field safely
   const excerpt = typeof doc['excerpt'] === 'string' && doc['excerpt'] ? doc['excerpt'] : undefined
 
-  // 2. Safely extract thumbnail string path from the populated media relation
   let thumbnail: string | undefined = undefined
   if (doc['thumbnail'] && typeof doc['thumbnail'] === 'object') {
     const thumbMedia = doc['thumbnail'] as Record<string, unknown>
@@ -40,27 +38,21 @@ function mapInlineItem(item: Record<string, unknown>): NewsItem | null {
 
   const date = typeof item['date'] === 'string' ? item['date'] : new Date().toISOString()
   const category = typeof item['category'] === 'string' && item['category'] ? item['category'] : undefined
-  
-  // 3. Support thumbnail and excerpt mapping for manually configured inline blocks as well
-  const excerpt = typeof item['excerpt'] === 'string' && item['excerpt'] ? item['excerpt'] : undefined
-  const thumbnail = typeof item['thumbnail'] === 'string' && item['thumbnail'] ? item['thumbnail'] : undefined
 
   return {
     headline,
     date,
     href,
     ...(category ? { category } : {}),
-    ...(excerpt ? { excerpt } : {}),
-    ...(thumbnail ? { thumbnail } : {}),
   }
 }
 
 export function adaptNewsListBlock(raw: unknown): NewsListBlockProps {
   const data = (typeof raw === 'object' && raw !== null ? raw : {}) as Record<string, unknown>
-
   const str = (v: unknown) => (typeof v === 'string' && v ? v : '')
 
   const source = data['source'] === 'inline' ? 'inline' : 'collection'
+  const layout = data['layout'] === 'carousel' ? 'carousel' : 'list'
 
   let items: NewsItem[] = []
   if (source === 'collection') {
@@ -83,6 +75,7 @@ export function adaptNewsListBlock(raw: unknown): NewsListBlockProps {
 
   return {
     items,
+    layout,
     ...(str(data['eyebrow']) ? { eyebrow: str(data['eyebrow']) } : {}),
     ...(str(data['heading']) ? { heading: str(data['heading']) } : {}),
     ...(str(data['intro']) ? { intro: str(data['intro']) } : {}),
