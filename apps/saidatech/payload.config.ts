@@ -27,7 +27,7 @@ const db =
           connectionTimeoutMillis: 15000,
           ssl: true,
         },
-           push: false,
+          //  push: false,
       })
 
 const baseConfig = buildCmsConfig(siteConfig, undefined, db)
