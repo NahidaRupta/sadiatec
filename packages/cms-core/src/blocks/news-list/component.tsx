@@ -1,10 +1,27 @@
 'use client'
 
+import { useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { staggerContainer, fadeInUp } from '../../lib/motion'
 import type { NewsListBlockProps, NewsItem } from './types'
+
+function ChevronLeft() {
+  return (
+    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+    </svg>
+  )
+}
+
+function ChevronRight() {
+  return (
+    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+    </svg>
+  )
+}
 
 /* ──────────────────────────────────────────────────────────────────────
    LAYOUT A: ORIGINAL DEDICATED SUBPAGE DESIGN (layout === 'list')
@@ -97,11 +114,10 @@ function CarouselCardItem({ item }: { item: NewsItem }) {
   return (
     <motion.div 
       variants={fadeInUp}
-      className="flex flex-col bg-transparent group text-left min-w-[290px] sm:min-w-[340px] md:min-w-[380px] flex-1"
+      className="flex flex-col bg-transparent group text-left w-full min-w-full sm:min-w-[340px] md:min-w-[380px] sm:flex-1 snap-center snap-always px-2 sm:px-0"
     >
-      <Link href={item.href} className="block space-y-4 focus:outline-none">
+      <Link href={item.href} className="block space-y-4 focus-visible:outline-none">
         
-        {/* 1. 🛠️ Scaled Down Image Size - max-w-[85%] centered container for a more compact thumb layout */}
         <div className="relative aspect-[16/10] max-w-[85%] mx-auto w-full rounded-2xl overflow-hidden bg-white/90 border border-white/20 shadow-md">
           {item.thumbnail ? (
             <Image
@@ -118,7 +134,6 @@ function CarouselCardItem({ item }: { item: NewsItem }) {
           )}
         </div>
 
-        {/* 2. Badge Meta Metadata Row with White Text color overrides */}
         <div className="flex items-center gap-3 pt-2 pl-[7.5%]">
           {item.category && (
             <span className="inline-block bg-black text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-sm">
@@ -132,7 +147,6 @@ function CarouselCardItem({ item }: { item: NewsItem }) {
           )}
         </div>
 
-        {/* 3. 🛠️ Boosted headline text size to be bigger, with absolute pure white coloring */}
         <div className="space-y-2 pl-[7.5%] pr-2">
           <h3 className="text-[16px] md:text-[18px] font-extrabold text-white leading-snug line-clamp-2 transition-colors duration-150">
             {item.headline}
@@ -151,37 +165,79 @@ function CarouselCardItem({ item }: { item: NewsItem }) {
 
 function CarouselLayoutView({ heading = 'Latest Information', items }: NewsListBlockProps) {
   const displayItems = items.slice(0, 3)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+
+  const handleScroll = (direction: 'left' | 'right') => {
+    if (!scrollContainerRef.current) return
+    
+    const container = scrollContainerRef.current
+    const cardWidth = container.clientWidth 
+    const currentScrollPosition = container.scrollLeft
+
+    const targetScrollPosition =
+      direction === 'left'
+        ? currentScrollPosition - cardWidth
+        : currentScrollPosition + cardWidth
+
+    container.scrollTo({
+      left: targetScrollPosition,
+      behavior: 'smooth',
+    })
+  }
 
   return (
     <div className="w-full bg-white py-6 md:py-10">
       <div className="mx-auto max-w-[1920px] px-4 sm:px-6 md:px-10 lg:px-12">
         
-        <section className="relative w-full bg-brand-accent rounded-[2rem] p-8 md:p-14 lg:p-16 overflow-hidden shadow-sm">
+        {/* Main Blue Section Card */}
+        <section className="relative w-full bg-brand-accent rounded-[2rem] p-6 sm:p-8 md:p-14 lg:p-16 overflow-hidden shadow-sm">
           
-          
-          <div className="w-full">
-            
-            {/* 🛠️ Main Layout Title set to White text */}
-            <div className="mb-10 text-left">
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white">
-                {heading}
-              </h2>
-            </div>
+          {/* Title block */}
+          <div className="mb-8 sm:mb-10 text-left px-2 sm:px-0">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white">
+              {heading}
+            </h2>
+          </div>
 
-            {/* Horizontal Slider Track Grid Column System */}
+          {/* ── 🛠️ FIXED: Arrow elements shifted completely outward to eliminate image crowding ── */}
+          {displayItems.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={() => handleScroll('left')}
+                aria-label="Previous News"
+                className="absolute left-1.5 bottom-[40%] z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-brand-accent shadow-md backdrop-blur-sm transition-all hover:bg-white active:scale-95 focus:outline-none block md:hidden"
+              >
+                <ChevronLeft />
+              </button>
+              <button
+                type="button"
+                onClick={() => handleScroll('right')}
+                aria-label="Next News"
+                className="absolute right-1.5 bottom-[40%] z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-brand-accent shadow-md backdrop-blur-sm transition-all hover:bg-white active:scale-95 focus:outline-none block md:hidden"
+              >
+                <ChevronRight />
+              </button>
+            </>
+          )}
+
+          {/* Horizontal Track Grid Slider */}
+          <div className="w-full relative group/carousel px-2 sm:px-0">
             <motion.div
+              ref={scrollContainerRef}
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-40px' }}
-              className="flex flex-col sm:flex-row gap-6 lg:gap-8 overflow-x-auto scrollbar-none pb-4"
+              className="flex flex-row overflow-x-auto scrollbar-none pb-4 snap-x snap-mandatory gap-0 sm:gap-6 lg:gap-8 equilibrium-touch scroll-smooth"
+              style={{ WebkitOverflowScrolling: 'touch' }}
             >
               {displayItems.map((item, i) => (
                 <CarouselCardItem key={item.headline || i} item={item} />
               ))}
             </motion.div>
-
           </div>
+
         </section>
 
       </div>

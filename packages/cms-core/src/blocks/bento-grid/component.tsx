@@ -41,7 +41,7 @@ function BentoCard({ item, index, layout }: BentoCardProps) {
 
       {/* ── High-Legibility Description Block ── */}
       {item.description && (
-        <p className="mt-1.5 text-[13px] md:text-[13.5px] leading-relaxed text-text-muted font-normal tracking-wide max-w-xl">
+        <p className="mt-1.5 text-[13px] md:text-[14px] leading-relaxed text-text-muted font-normal tracking-wide max-w-xl">
           {item.description}
         </p>
       )}
@@ -81,18 +81,12 @@ export function BentoGridBlock({
 
           {/* ── Centered Strategic Minimalist Header Section ── */}
           <div className="mx-auto mb-8 md:mb-10 max-w-3xl text-center">
-            {eyebrow && (
-              <div className="mb-1">
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-primary">
-                  {eyebrow}
-                </span>
-              </div>
-            )}
+             {eyebrow && <SectionEyebrow>{eyebrow}</SectionEyebrow>}
             <h2 className="text-2xl md:text-[32px] font-bold tracking-tight text-text-primary leading-[1.2]">
               {heading}
             </h2>
             {intro && (
-              <p className="mx-auto mt-2 max-w-2xl text-[13px] md:text-[15px] leading-relaxed text-text-muted font-normal">
+              <p className="mx-auto mt-2 max-w-2xl text-[13.5px] md:text-[15px] leading-relaxed text-text-muted font-normal">
                 {intro}
               </p>
             )}

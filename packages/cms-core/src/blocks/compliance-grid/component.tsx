@@ -49,11 +49,7 @@ export function ComplianceGridBlock({
         
         {/* 🛠️ Centered the text portion container using mx-auto and text-center */}
         <div className="mb-14 text-center mx-auto max-w-3xl space-y-2.5">
-          {eyebrow && (
-            <span className="text-[12px] font-bold uppercase tracking-[0.15em] text-[#2B70A6]">
-              {eyebrow}
-            </span>
-          )}
+          {eyebrow && <SectionEyebrow>{eyebrow}</SectionEyebrow>}
           {heading && (
             <h2
               id="compliance-heading"
@@ -63,7 +59,7 @@ export function ComplianceGridBlock({
             </h2>
           )}
           {intro && (
-            <p className="text-[14px] md:text-[15px] leading-relaxed text-gray-600 font-normal max-w-2xl mx-auto">
+            <p className="text-[14px] md:text-[15.5px] leading-relaxed text-gray-600 font-normal max-w-2xl mx-auto">
               {intro}
             </p>
           )}
@@ -109,7 +105,7 @@ export function ComplianceGridBlock({
         {commitments.length > 0 && (
           <div className="mt-16 border-t border-gray-100 pt-12 text-left">
             {commitmentsHeading && (
-              <h3 className="mb-6 text-[12px] font-bold tracking-[0.15em] text-gray-400 uppercase">
+              <h3 className="mb-6 text-[13px] font-bold tracking-[0.15em] text-gray-400 uppercase">
                 {commitmentsHeading}
               </h3>
             )}
@@ -129,7 +125,7 @@ export function ComplianceGridBlock({
                       d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" 
                     />
                   </svg>
-                  <span className="text-[14px] leading-relaxed font-normal text-gray-700">
+                  <span className="text-[15px] leading-relaxed font-normal text-gray-700">
                     {item}
                   </span>
                 </li>
