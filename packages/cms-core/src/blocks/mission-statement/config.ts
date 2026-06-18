@@ -9,25 +9,46 @@ export const MissionStatementBlockConfig: Block = {
   },
   fields: [
     {
-      name: 'heading',
-      label: 'Heading',
-      type: 'textarea',
-      localized: true,
-      required: true,
-      admin: {
-        description: 'Large heading — left column. Use line breaks for multi-line effect.',
-        rows: 3,
-      },
+      type: 'row',
+      fields: [
+        {
+          name: 'missionHeading',
+          label: 'Mission Heading',
+          type: 'text',
+          localized: true,
+          required: true,
+          admin: { width: '50%' },
+        },
+        {
+          name: 'visionHeading',
+          label: 'Vision Heading',
+          type: 'text',
+          localized: true,
+          required: true,
+          admin: { width: '50%' },
+        },
+      ],
     },
     {
-      name: 'body',
-      label: 'Body Text',
-      type: 'textarea',
-      localized: true,
-      admin: {
-        description: 'Supporting paragraph — right column.',
-        rows: 4,
-      },
+      type: 'row',
+      fields: [
+        {
+          name: 'missionBody',
+          label: 'Mission Description',
+          type: 'textarea',
+          localized: true,
+          required: true,
+          admin: { rows: 4, width: '50%' },
+        },
+        {
+          name: 'visionBody',
+          label: 'Vision Description',
+          type: 'textarea',
+          localized: true,
+          required: true,
+          admin: { rows: 4, width: '50%' },
+        },
+      ],
     },
     {
       name: 'photos',

@@ -19,11 +19,11 @@ export function adaptMissionStatementBlock(raw: unknown): MissionStatementBlockP
     })
     .filter((p) => p.imageUrl)
 
-  const bodyStr = typeof data['body'] === 'string' && data['body'] ? data['body'] : undefined
-
   return {
-    heading: typeof data['heading'] === 'string' ? data['heading'] : '',
-    ...(bodyStr ? { body: bodyStr } : {}),
+    missionHeading: typeof data['missionHeading'] === 'string' ? data['missionHeading'] : '',
+    missionBody: typeof data['missionBody'] === 'string' ? data['missionBody'] : '',
+    visionHeading: typeof data['visionHeading'] === 'string' ? data['visionHeading'] : '',
+    visionBody: typeof data['visionBody'] === 'string' ? data['visionBody'] : '',
     ...(photos.length > 0 ? { photos } : {}),
   }
 }

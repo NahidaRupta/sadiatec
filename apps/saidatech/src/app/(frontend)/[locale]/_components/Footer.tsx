@@ -28,7 +28,7 @@ interface FooterProps {
 function LinkedInIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6" aria-hidden="true">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
     </svg>
   )
 }
@@ -73,7 +73,6 @@ const socialIconMap: Record<string, React.FC> = {
   youtube: YouTubeIcon,
 }
 
-// Exactly mirroring the color specifications from the layout reference file
 const brandColorMap: Record<string, string> = {
   facebook: 'bg-[#0066FF] text-white hover:bg-[#0052cc]',
   x: 'bg-black text-white hover:bg-neutral-900',
@@ -105,19 +104,24 @@ export async function Footer({ locale }: FooterProps) {
   const dynamicAddress = footerData.officeAddress || '3-16-7 Nihonbashihamacho, Chuo-ku, Tokyo\nSprout Nihonbashi Hamacho Building 6F'
 
   return (
-    /* ── MATCHED: White-to-Blue Linear Gradient Background profile ── */
-    <footer className="w-full bg-gradient-to-b from-white via-[#3B9AE2]/70 to-[#1E71C6] text-white pt-12 pb-6 overflow-hidden">
+    /* 
+      ── BALANCED SHADE COMBINATION ──
+      Instead of starting from pure white on mobile, we use an extremely soft, bright ice-blue (#D6E9FA).
+      This preserves the gradient mix look perfectly while dropping the brightness just enough to contrast with white text.
+      On desktop (lg:), it snaps smoothly back to your exact 'from-white' layout pattern.
+    */
+    <footer className="w-full bg-gradient-to-b from-[#D6E9FA] via-[#3B9AE2] to-[#1E71C6] lg:from-white lg:via-[#3B9AE2]/70 lg:to-[#1E71C6] text-white pt-12 pb-6 overflow-hidden">
       <Container>
         
-        {/* ── MATCHED: "Follow Us" Split Heading Line ── */}
+        {/* ── "Follow Us" Split Heading Line ── */}
         <div className="relative flex items-center justify-center mb-10 w-full max-w-5xl mx-auto">
           <div className="absolute left-0 right-0 h-px bg-white/40 z-0" />
-          <h2 className="relative z-10 px-6 bg-white/0 text-2xl md:text-3xl font-bold tracking-widest text-[#3A89DA] font-sans lowercase mix-blend-difference">
-            follow us
+          <h2 className="relative z-10 px-6 bg-white/0 text-2xl md:text-3xl font-bold tracking-widest text-[#3A89DA] font-sans mix-blend-difference">
+            Follow us
           </h2>
         </div>
 
-        {/* ── MATCHED: Oversized Rounded Pill Social Buttons Matrix ── */}
+        {/* ── Oversized Rounded Pill Social Buttons Matrix ── */}
         <div className="flex items-center justify-center gap-4 md:gap-5 mb-20">
           {['facebook', 'x', 'instagram', 'youtube', 'linkedin'].map((platform) => {
             const Icon = socialIconMap[platform]
@@ -145,7 +149,7 @@ export async function Footer({ locale }: FooterProps) {
           })}
         </div>
 
-        {/* ── MATCHED: Main Company Info & Navigation Split Layout Grid ── */}
+        {/* ── Main Company Info & Navigation Split Layout Grid ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 border-b border-white/20 pb-12">
           
           {/* Left Block: Company Vital Records Data */}
@@ -197,7 +201,7 @@ export async function Footer({ locale }: FooterProps) {
 
         </div>
 
-        {/* ── MATCHED: Centered Minimalist Metadata Bottom Bar ── */}
+        {/* ── Centered Minimalist Metadata Bottom Bar ── */}
         <div className="pt-6 pb-2 text-center">
           <Text as="span" className="text-[11px] md:text-xs font-medium tracking-widest text-white/60 uppercase">
             {copyrightText}

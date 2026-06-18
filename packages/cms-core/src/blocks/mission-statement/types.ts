@@ -8,7 +8,9 @@ export interface MissionPhoto {
 
 export interface MissionStatementBlockProps {
   blockType?: 'mission-statement'
-  heading: string
-  body?: string
+  missionHeading: string
+  missionBody: string
+  visionHeading: string
+  visionBody: string
   photos?: MissionPhoto[]
 }

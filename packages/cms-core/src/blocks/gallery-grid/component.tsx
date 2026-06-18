@@ -1,219 +1,116 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation' // 🛠️ ADDED: Clean hook to read paths across client/server cycles
 import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link' // 🛠️ (Or your updated local Link path)
 import type { GalleryGridBlockProps, GalleryImageItem } from './types'
 
-const colsMap: Record<string, string> = {
-  '2': 'grid-cols-1 sm:grid-cols-2',
-  '3': 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-  '4': 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4',
+// 🛠️ ADDED: Import the alternative dynamic albums grid view
+import { GalleryAlbumsBlock } from './GalleryAlbumsBlock'
+
+// Cinematic slow pan and zoom fade transition configuration
+const ultraSmoothVariants = {
+  initial: { opacity: 0, scale: 1.05, filter: 'blur(4px)' },
+  animate: { opacity: 1, scale: 1, filter: 'blur(0px)', transition: { duration: 1.2, ease: [0.25, 1, 0.5, 1] } },
+  exit: { opacity: 0, scale: 0.98, filter: 'blur(2px)', transition: { duration: 1.0, ease: [0.25, 1, 0.5, 1] } }
 }
 
-const ratioMap: Record<string, string> = {
-  square: 'aspect-square',
-  '4:3': 'aspect-[4/3]',
-  '3:2': 'aspect-[3/2]',
-  auto: '',
-}
-
-/* ── ADVANCED FRAMER MOTION VARIANTS ── */
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08, // Creating a beautiful cascading effect item by item
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      ease: [0.215, 0.61, 0.355, 1], // Premium snappy easing curves
-    },
-  },
-  exit: { 
-    opacity: 0, 
-    scale: 0.95, 
-    transition: { duration: 0.2 } 
-  },
-}
-
-interface LightboxProps {
-  item: GalleryImageItem
-  onClose: () => void
-  onPrev: () => void
-  onNext: () => void
-}
-
-function Lightbox({ item, onClose, onPrev, onNext }: LightboxProps) {
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-      else if (e.key === 'ArrowLeft') onPrev()
-      else if (e.key === 'ArrowRight') onNext()
-    }
-    document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
-  }, [onClose, onPrev, onNext])
-
-  return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label={item.caption ?? 'Gallery image'}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
-      onClick={onClose}
-    >
-      <button
-        autoFocus
-        aria-label="Close gallery"
-        className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition-colors z-50"
-        onClick={onClose}
-      >
-        ✕
-      </button>
-      <button
-        aria-label="Previous image"
-        className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white hover:bg-white/20 transition-colors z-50"
-        onClick={(e) => { e.stopPropagation(); onPrev() }}
-      >
-        ←
-      </button>
-      
-      {/* Lightbox pop-in zoom animation */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-        className="relative max-h-[90vh] max-w-4xl w-full"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <Image
-          src={item.imageUrl}
-          alt={item.caption ?? ''}
-          width={1200}
-          height={900}
-          className="max-h-[85vh] w-full object-contain rounded-sm"
-        />
-        {item.caption && (
-          <p className="mt-3 text-center text-sm text-white/70">{item.caption}</p>
-        )}
-      </motion.div>
-      
-      <button
-        aria-label="Next image"
-        className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white hover:bg-white/20 transition-colors z-50"
-        onClick={(e) => { e.stopPropagation(); onNext() }}
-      >
-        →
-      </button>
-    </div>
-  )
-}
-
-export function GalleryGridBlock({
-  heading,
-  intro,
-  showFilter = false,
-  filterAllLabel = 'All',
-  categories,
-  items,
-  columns = '3',
-  enableLightbox = true,
-  aspectRatio = 'square',
-}: GalleryGridBlockProps) {
+export function GalleryGridBlock(props: GalleryGridBlockProps) {
+  const { heading, showFilter = false, categories, items } = props
+  
+  const pathname = usePathname() // 🛠️ ADDED: Safely evaluate pathname string
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const [activeIndex, setActiveIndex] = useState<number>(0)
 
+  // 🛠️ INTERCEPT ROUTE: If url matches internal archive folder, render the Album design immediately!
+  if (pathname && pathname.includes('/gallery')) {
+    return <GalleryAlbumsBlock {...props} />
+  }
+
+  // --- Normal Homepage Slide Show Logic Continues Below ---
   const filtered = activeCategory
     ? items.filter((item) => item.category === activeCategory)
     : items
 
-  const colsClass = colsMap[columns] ?? colsMap['3']
-  const ratioClass = ratioMap[aspectRatio] ?? ''
-
   function handleCategoryChange(slug: string | null) {
     setActiveCategory(slug)
-    setLightboxIndex(null)
+    setActiveIndex(0)
   }
 
-  const closeLightbox = useCallback(() => setLightboxIndex(null), [])
+  useEffect(() => {
+    if (!filtered || filtered.length <= 1) return
 
-  const prevItem = useCallback(() => {
-    setLightboxIndex((idx) => idx !== null ? (idx - 1 + filtered.length) % filtered.length : null)
-  }, [filtered.length])
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % filtered.length)
+    }, 5000)
 
-  const nextItem = useCallback(() => {
-    setLightboxIndex((idx) => idx !== null ? (idx + 1) % filtered.length : null)
-  }, [filtered.length])
+    return () => clearInterval(interval)
+  }, [filtered])
 
-  function openLightbox(index: number) {
-    if (enableLightbox) setLightboxIndex(index)
-  }
+  if (!filtered || filtered.length === 0) return null
 
+  const currentItem = filtered[activeIndex] as GalleryImageItem
+
+  
   return (
-    <section className="pt-10 pb-16 md:pt-10 md:pb-24 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {(heading || intro) && (
-          <div className="mb-10 text-center">
-            {heading && (
-              <h2 className="text-2xl font-bold tracking-tight text-[var(--color-text)] sm:text-3xl">
-                {heading}
-              </h2>
-            )}
-            {intro && (
-              <p className="mt-4 mx-auto max-w-2xl text-base text-[var(--color-muted)]">{intro}</p>
-            )}
-          </div>
-        )}
+    <section className="relative w-full overflow-hidden bg-[#FBFBFC] pt-10 pb-16 md:pt-20 md:pb-24 px-4 sm:px-6 lg:px-8">
+      
+      {/* Recreated Gradient Aura Background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div className="absolute top-[5%] left-[5%] h-80 w-80 rounded-full bg-teal-300/25 opacity-70 mix-blend-multiply filter blur-[80px]" />
+        <div className="absolute bottom-[10%] left-[20%] h-[500px] w-[500px] rounded-full bg-amber-200/35 opacity-60 mix-blend-multiply filter blur-[120px]" />
+        <div className="absolute top-[2%] right-[8%] h-96 w-96 rounded-full bg-purple-200/25 opacity-50 filter blur-[100px]" />
+        <div className="absolute bottom-[25%] right-[12%] h-72 w-72 rounded-full bg-yellow-200/35 opacity-40 filter blur-[80px]" />
+      </div>
 
+      {/* Content Layer */}
+      <div className="relative z-10 mx-auto max-w-5xl">
+        
+        {/* Header Block */}
+        <div className="mb-10 text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center space-x-2 mb-2.5">
+            <span className="h-px w-6 bg-sky-500 rounded" />
+            <p className="text-xs font-bold uppercase tracking-widest text-sky-600">Our Journey</p>
+            <span className="h-px w-6 bg-sky-500 rounded" />
+          </div>
+          <h2 className="text-xl sm:text-2xl md:text-2xl font-extrabold tracking-tight text-gray-900 leading-tight">
+            {heading ? heading : "A visual glimpse into our people, partnerships, and the experiences that define Sadiatec."}
+          </h2>
+        </div>
+
+        {/* Dynamic Category Selector */}
         {showFilter && categories && categories.length > 0 && (
-          <div className="mb-8 flex flex-wrap justify-center gap-2" role="group" aria-label="Filter by category">
+          <div className="mb-8 flex flex-wrap justify-center gap-2" role="group">
             <button
               onClick={() => handleCategoryChange(null)}
-              aria-pressed={activeCategory === null}
-              className={`relative rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-200 z-10 ${
-                activeCategory === null
-                  ? 'text-white'
-                  : 'bg-[var(--color-neutral-100,#f5f5f5)] text-[var(--color-muted)] hover:bg-[var(--color-neutral-200,#e5e7eb)]'
+              className={`relative rounded-full px-5 py-2 text-xs font-semibold tracking-wide uppercase transition-all duration-200 z-10 ${
+                activeCategory === null ? 'text-white' : 'bg-white/40 backdrop-blur-sm text-gray-600 shadow-sm hover:bg-white/80'
               }`}
             >
-              {/* Pill background morph sliding animation */}
               {activeCategory === null && (
                 <motion.span 
-                  layoutId="activeFilterPill"
-                  className="absolute inset-0 rounded-full bg-[var(--color-primary)] -z-10"
-                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  layoutId="galleryFilterPill"
+                  className="absolute inset-0 rounded-full bg-sky-600 -z-10"
+                  transition={{ type: 'spring', stiffness: 350, damping: 28 }}
                 />
               )}
-              {filterAllLabel}
+              All Memories
             </button>
             {categories.map((cat) => (
               <button
                 key={cat.slug}
                 onClick={() => handleCategoryChange(cat.slug)}
-                aria-pressed={activeCategory === cat.slug}
-                className={`relative rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-200 z-10 ${
-                  activeCategory === cat.slug
-                    ? 'text-white'
-                    : 'bg-[var(--color-neutral-100,#f5f5f5)] text-[var(--color-muted)] hover:bg-[var(--color-neutral-200,#e5e7eb)]'
+                className={`relative rounded-full px-5 py-2 text-xs font-semibold tracking-wide uppercase transition-all duration-200 z-10 ${
+                  activeCategory === cat.slug ? 'text-white' : 'bg-white/40 backdrop-blur-sm text-gray-600 shadow-sm hover:bg-white/80'
                 }`}
               >
                 {activeCategory === cat.slug && (
                   <motion.span 
-                    layoutId="activeFilterPill"
-                    className="absolute inset-0 rounded-full bg-[var(--color-primary)] -z-10"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    layoutId="galleryFilterPill"
+                    className="absolute inset-0 rounded-full bg-sky-600 -z-10"
+                    transition={{ type: 'spring', stiffness: 350, damping: 28 }}
                   />
                 )}
                 {cat.label}
@@ -222,61 +119,91 @@ export function GalleryGridBlock({
           </div>
         )}
 
-        {/* 🛠️ ADVANCED: Turned layout lists to motion grids with fluid AnimatePresence mechanics */}
-        <motion.ul 
-          layout
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
-          className={`grid gap-4 ${colsClass}`} 
-          role="list"
+        {/* ── Seamless Borderless Viewport Stage ── */}
+        {/* 🛠️ MODIFIED: Converted the wrapper container into a Next.js <Link> wrapper */}
+        <Link 
+          href="/gallery" 
+          className="relative block group w-full max-w-5xl mx-auto aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/11] overflow-hidden rounded-3xl cursor-pointer"
         >
+          
           <AnimatePresence mode="popLayout">
-            {filtered.map((item, i) => (
-              <motion.li 
-                layout
-                key={item.imageUrl} // Custom unique key to prevent layout mismatch when switching views
-                variants={itemVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-              >
-                <button
-                  disabled={!enableLightbox}
-                  onClick={() => openLightbox(i)}
-                  className={`group relative w-full overflow-hidden rounded-xl ${ratioClass} block bg-[var(--color-neutral-100,#f5f5f5)] shadow-sm hover:shadow-md transition-shadow duration-300 ${enableLightbox ? 'cursor-pointer' : 'cursor-default'}`}
-                  aria-label={item.caption ?? `Gallery image ${i + 1}`}
-                >
-                  <Image
-                    src={item.imageUrl}
-                    alt={item.caption ?? ''}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className={`object-cover transition-transform duration-500 ease-out ${enableLightbox ? 'group-hover:scale-105' : ''}`}
-                  />
-                  {item.caption && (
-                    <span className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pt-8 pb-3 px-3 text-xs text-white translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                      {item.caption}
-                    </span>
-                  )}
-                </button>
-              </motion.li>
-            ))}
+            <motion.div
+              key={activeIndex}
+              variants={ultraSmoothVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="absolute inset-0 h-full w-full will-change-[transform,opacity] overflow-hidden"
+              style={{
+                WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 78%, rgba(0,0,0,0) 100%)',
+                maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 78%, rgba(0,0,0,0) 100%)',
+              }}
+            >
+              <Image
+                src={currentItem.imageUrl}
+                alt={currentItem.caption ?? 'Corporate Memory Presentation'}
+                fill
+                priority
+                sizes="(max-width: 1200px) 100vw, 1400px"
+                className="object-cover w-full h-full select-none transition-transform duration-700 group-hover:scale-102"
+              />
+            </motion.div>
           </AnimatePresence>
-        </motion.ul>
-      </div>
 
-      <AnimatePresence>
-        {enableLightbox && lightboxIndex !== null && filtered[lightboxIndex] && (
-          <Lightbox
-            item={filtered[lightboxIndex]}
-            onClose={closeLightbox}
-            onPrev={prevItem}
-            onNext={nextItem}
-          />
-        )}
-      </AnimatePresence>
+          {/* ── Minimalist Clean Text Overlay Layer ── */}
+          <div className="absolute inset-x-4 bottom-6 sm:bottom-8 z-20 px-4 sm:px-8 flex items-center justify-between gap-6 pointer-events-none">
+            <div className="max-w-[75%] select-none">
+              <AnimatePresence mode="wait">
+                {currentItem.caption && (
+                  <motion.p
+                    key={activeIndex}
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
+                    transition={{ duration: 0.35 }}
+                    className="text-xs sm:text-sm font-semibold tracking-wide text-gray-800 drop-shadow-[0_2px_8px_rgba(255,255,255,0.85)] leading-relaxed"
+                  >
+                    {currentItem.caption}
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Slide Index Counter Badge */}
+            <div className="shrink-0 rounded-full bg-white/40 backdrop-blur-md px-3 py-1 text-[10px] font-bold tracking-widest text-gray-700 border border-white/40 shadow-sm select-none">
+              {activeIndex + 1} / {filtered.length}
+            </div>
+          </div>
+
+          {/* Navigation Arrows */}
+          {/* 🛠️ MODIFIED: Added pointer-events-auto so clicking chevrons still scrolls the slideshow cleanly */}
+          <div className="absolute inset-0 z-30 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <button
+              type="button"
+              aria-label="Previous image"
+              onClick={(e) => {
+                e.preventDefault(); // Prevents link redirect when navigation button is targeted
+                setActiveIndex((prev) => (prev - 1 + filtered.length) % filtered.length);
+              }}
+              className="pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-white/30 backdrop-blur-md text-gray-800 border border-white/40 shadow-sm transition-all hover:bg-white hover:scale-105 active:scale-95"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Next image"
+              onClick={(e) => {
+                e.preventDefault(); // Prevents link redirect when navigation button is targeted
+                setActiveIndex((prev) => (prev + 1) % filtered.length);
+              }}
+              className="pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-white/30 backdrop-blur-md text-gray-800 border border-white/40 shadow-sm transition-all hover:bg-white hover:scale-105 active:scale-95"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" /></svg>
+            </button>
+          </div>
+
+        </Link>
+      </div>
     </section>
   )
 }

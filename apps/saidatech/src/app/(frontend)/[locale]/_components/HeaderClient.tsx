@@ -30,15 +30,14 @@ function Logo({ dark, imageUrl }: { dark: boolean; imageUrl?: string | null | un
   }
 
   return (
-    /* 🛠️ MODIFIED: Tightened max image block box frame constraints to blend perfectly into tighter layout heights */
-    <div className="relative flex items-center h-10 w-40 sm:h-12 sm:w-44 transition-all duration-300">
+    <div className="relative flex items-center h-12 w-44 sm:h-16 sm:w-56 transition-all duration-300">
       <Image
         src={imageUrl}
         alt="Sadia Tec Logo"
         fill
         priority
         className="object-contain object-left"
-        sizes="240px"
+        sizes="300px"
       />
     </div>
   )
@@ -70,43 +69,12 @@ function MegaMenuPanel({ item }: { item: ResolvedNavItem }) {
 
         <div className="col-span-9 grid grid-cols-3 gap-8">
           {columns.map((col, ci) => {
-            const isSidebar = ci === 2 || col.heading?.toLowerCase().includes('more')
-
-            if (isSidebar) {
-              return (
-                <div key={ci} className="flex flex-col bg-slate-50/50 border-l border-neutral-100 pl-8 -my-8 py-8 rounded-r-2xl">
-                  {col.heading && (
-                    <p className="mb-5 text-[11px] font-bold uppercase tracking-wider text-brand-accent">
-                      {col.heading}
-                    </p>
-                  )}
-                  <ul className="space-y-2.5">
-                    {(col.items ?? []).map((subItem) => (
-                      <li key={subItem.href}>
-                        <Link
-                          href={subItem.href}
-                          className="group flex items-center gap-3 rounded-xl bg-white border border-neutral-100/80
-                            px-4 py-3 text-sm font-semibold text-slate-800 shadow-[0_1px_2px_rgba(0,0,0,0.02)]
-                            hover:text-brand-accent hover:border-brand-accent/20 hover:shadow-md transition-all duration-200"
-                        >
-                          <svg
-                            className="h-3.5 w-3.5 text-slate-400 group-hover:text-brand-accent transition-colors shrink-0"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                          </svg>
-                          <span className="leading-tight truncate">{subItem.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )
-            }
+            // Check if the current heading matches the text we want to hide
+            const showHeading = col.heading && col.heading.toLowerCase() !== 'more services'
 
             return (
               <div key={ci} className="flex flex-col space-y-6">
-                {col.heading && (
+                {showHeading && (
                   <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400">
                     {col.heading}
                   </p>
@@ -118,7 +86,7 @@ function MegaMenuPanel({ item }: { item: ResolvedNavItem }) {
                         href={subItem.href}
                         className="group block text-left navigation-item-wrapper focus:outline-none"
                       >
-                        <span className="block text-[15px] font-bold text-gray-900 group-hover:text-brand-accent transition-colors leading-snug">
+                        <span className="block text-[16px] font-bold text-gray-900 group-hover:text-brand-accent transition-colors leading-snug">
                           {subItem.label}
                         </span>
                         {subItem.description && (
@@ -151,7 +119,7 @@ function DropdownPanel({ items }: { items: { label: string; href: string }[] }) 
           <li key={child.href}>
             <Link
               href={child.href}
-              className="block px-5 py-2.5 text-sm text-text-secondary hover:text-brand-accent
+              className="block px-5 py-2.5 text-base text-text-secondary hover:text-brand-accent
                 hover:bg-brand-accent/5 transition-colors"
             >
               {child.label}
@@ -207,11 +175,10 @@ export function HeaderClient({
           : 'border-b border-transparent shadow-none',
       ].join(' ')}
     >
-      {/* 🛠️ MODIFIED: Scaled height down from h-24 -> h-16/md:h-20 at top, and down to h-14/md:h-16 when scrolled */}
       <div 
         className={[
           'flex items-center justify-between w-full px-6 lg:px-20 transition-all duration-300', 
-          scrolled ? 'h-14 md:h-16' : 'h-14 md:h-16'
+          'h-14 md:h-16'
         ].join(' ')}
       >
           {/* Logo */}
@@ -223,7 +190,7 @@ export function HeaderClient({
             <Logo dark={true} imageUrl={cmsLogoUrl} />
           </Link>
 
-          {/* Desktop nav — Optimized font dimensions */}
+          {/* Desktop nav */}
           <nav aria-label="Main navigation" className="hidden lg:block h-full">
             <ul className="flex items-center gap-1 h-full">
               {navItems.map((item) => {
@@ -233,13 +200,12 @@ export function HeaderClient({
                 const isLeaf = !hasMega && !hasDropdown
 
                 return (
-                  /* 🛠️ MODIFIED: Linked parent list block height directly to the nav viewport frame height grid */
                   <li key={item.href} className="relative group/item h-full flex items-center">
                     <Link
                       href={item.href}
                       aria-current={active && isLeaf ? 'page' : undefined}
                       className={[
-                        'inline-flex items-center gap-1 px-3 h-full text-sm font-semibold tracking-wide',
+                        'inline-flex items-center gap-1 px-3 h-full text-base font-semibold tracking-wide',
                         'border-b-2 transition-colors duration-200',
                         active
                           ? 'text-brand-primary border-brand-primary'
@@ -325,7 +291,7 @@ export function HeaderClient({
 
             <div className="h-4 w-px bg-border-default" />
 
-            {/* Custom Pill CTA matching image_ec3a05 design blueprint */}
+            {/* Custom Pill CTA */}
             {ctaLabel && (
               <Link href={ctaHref}>
                 <button
@@ -352,7 +318,7 @@ export function HeaderClient({
             )}
           </div>
 
-          {/* Mobile menu trigger — visible below lg breakpoint */}
+          {/* Mobile menu trigger */}
           <div className="flex lg:hidden">
             <MobileMenu
               navItems={navItems}

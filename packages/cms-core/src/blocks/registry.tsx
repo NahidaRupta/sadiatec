@@ -56,6 +56,7 @@ import { BusinessLineListBlock } from './business-line-list/component'
 import { adaptBusinessLineListBlock } from './business-line-list/adapter'
 import { GalleryGridBlock } from './gallery-grid/component'
 import { adaptGalleryGridBlock } from './gallery-grid/adapter'
+import { GalleryAlbumsBlock } from './gallery-grid/GalleryAlbumsBlock'
 import { HistoryBlock } from './history/component'
 import { adaptHistoryBlock } from './history/adapter'
 import { PlacementStatisticsBlock } from './placement-statistics/component'
@@ -95,9 +96,12 @@ export const blockRegistry: Record<string, BlockRenderer> = {
   'ceo-message':             (raw) => <CEOMessageBlock             {...adaptCEOMessageBlock(raw)} />,
   'affiliates':              (raw) => <AffiliatesBlock             {...adaptAffiliatesBlock(raw)} />,
   'business-line-list':      (raw) => <BusinessLineListBlock       {...adaptBusinessLineListBlock(raw)} />,
-  'gallery-grid':            (raw) => <GalleryGridBlock            {...adaptGalleryGridBlock(raw)} />,
   'history':                 (raw) => <HistoryBlock                {...adaptHistoryBlock(raw)} />,
   'placement-statistics':    (raw) => <PlacementStatisticsBlock    {...adaptPlacementStatisticsBlock(raw)} />,
   'contact-info-card':       (raw) => <ContactInfoCardBlock        {...adaptContactInfoCardBlock(raw)} />,
   'mission-statement':       (raw) => <MissionStatementBlock       {...adaptMissionStatementBlock(raw)} />,
+
+/* 🛠️ RESTORED TO CLEAN PASSTHROUGH */
+  'gallery-grid': (raw) => <GalleryGridBlock {...adaptGalleryGridBlock(raw)} />,
+
 }
