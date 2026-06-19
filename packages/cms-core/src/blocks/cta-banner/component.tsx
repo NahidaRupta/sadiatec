@@ -143,7 +143,7 @@ export function CTABannerBlock({
 
               {/* Body */}
               {body && (
-                <p className="text-[13px] md:text-[14px] leading-relaxed 
+                <p className="text-[14px] md:text-[15px] leading-relaxed 
                               text-text-muted font-normal tracking-wide">
                   {body}
                 </p>
@@ -155,7 +155,7 @@ export function CTABannerBlock({
                   <Link
                     href={primaryButton.href}
                     className="inline-flex items-center gap-2 rounded-full bg-brand-accent
-                              px-6 py-2.5 text-xs font-semibold tracking-wider text-white shadow-sm
+                              px-6 py-2.5 text-sm font-semibold tracking-wider text-white shadow-sm
                               transition-all duration-200 hover:bg-brand-accent-hover hover:shadow-md"
                   >
                     <span>{primaryButton.label}</span>

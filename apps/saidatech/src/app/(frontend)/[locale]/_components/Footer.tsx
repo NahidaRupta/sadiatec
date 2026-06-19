@@ -1,4 +1,4 @@
-// SERVER COMPONENT — do not add 'use client'
+// SERVER COMPONENT
 import { getCachedPayload } from '@/lib/payload'
 import { Container, Text } from '@saidatech/cms-core/components/ui'
 import siteConfig from '../../../../../site.config'
@@ -28,7 +28,7 @@ interface FooterProps {
 function LinkedInIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6" aria-hidden="true">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
     </svg>
   )
 }
@@ -49,14 +49,6 @@ function FacebookIcon() {
   )
 }
 
-function TwitterXIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  )
-}
-
 function YouTubeIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6" aria-hidden="true">
@@ -66,7 +58,6 @@ function YouTubeIcon() {
 }
 
 const socialIconMap: Record<string, React.FC> = {
-  x: TwitterXIcon,
   linkedin: LinkedInIcon,
   instagram: InstagramIcon,
   facebook: FacebookIcon,
@@ -75,7 +66,6 @@ const socialIconMap: Record<string, React.FC> = {
 
 const brandColorMap: Record<string, string> = {
   facebook: 'bg-[#0066FF] text-white hover:bg-[#0052cc]',
-  x: 'bg-black text-white hover:bg-neutral-900',
   instagram: 'bg-gradient-to-tr from-[#FFB000] via-[#FF0078] to-[#9400D3] text-white hover:opacity-95',
   youtube: 'bg-[#FF0000] text-white hover:bg-[#cc0000]',
   linkedin: 'bg-[#0077B5] text-white hover:bg-[#005988]',
@@ -104,16 +94,8 @@ export async function Footer({ locale }: FooterProps) {
   const dynamicAddress = footerData.officeAddress || '3-16-7 Nihonbashihamacho, Chuo-ku, Tokyo\nSprout Nihonbashi Hamacho Building 6F'
 
   return (
-    /* 
-      ── BALANCED SHADE COMBINATION ──
-      Instead of starting from pure white on mobile, we use an extremely soft, bright ice-blue (#D6E9FA).
-      This preserves the gradient mix look perfectly while dropping the brightness just enough to contrast with white text.
-      On desktop (lg:), it snaps smoothly back to your exact 'from-white' layout pattern.
-    */
     <footer className="w-full bg-gradient-to-b from-[#D6E9FA] via-[#3B9AE2] to-[#1E71C6] lg:from-white lg:via-[#3B9AE2]/70 lg:to-[#1E71C6] text-white pt-12 pb-6 overflow-hidden">
       <Container>
-        
-        {/* ── "Follow Us" Split Heading Line ── */}
         <div className="relative flex items-center justify-center mb-10 w-full max-w-5xl mx-auto">
           <div className="absolute left-0 right-0 h-px bg-white/40 z-0" />
           <h2 className="relative z-10 px-6 bg-white/0 text-2xl md:text-3xl font-bold tracking-widest text-[#3A89DA] font-sans mix-blend-difference">
@@ -121,9 +103,8 @@ export async function Footer({ locale }: FooterProps) {
           </h2>
         </div>
 
-        {/* ── Oversized Rounded Pill Social Buttons Matrix ── */}
         <div className="flex items-center justify-center gap-4 md:gap-5 mb-20">
-          {['facebook', 'x', 'instagram', 'youtube', 'linkedin'].map((platform) => {
+          {['facebook', 'instagram', 'youtube', 'linkedin'].map((platform) => {
             const Icon = socialIconMap[platform]
             if (!Icon) return null
             
@@ -149,24 +130,21 @@ export async function Footer({ locale }: FooterProps) {
           })}
         </div>
 
-        {/* ── Main Company Info & Navigation Split Layout Grid ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 border-b border-white/20 pb-12">
-          
-          {/* Left Block: Company Vital Records Data */}
           <div className="lg:col-span-5 flex flex-col space-y-6 text-left">
             <Link href="/" className="inline-block select-none focus:outline-none mb-2">
-              <span className="text-2xl font-bold tracking-wider text-white">
+              <span className="text-3xl font-bold tracking-wider text-white">
                 Sadiatec Co., Ltd
               </span>
             </Link>
             
-            <div className="space-y-4 font-medium text-white/90 text-[14px] sm:text-[15px] leading-relaxed tracking-wide">
+            <div className="space-y-4 font-medium text-white/90 text-[15px] sm:text-[16px] leading-relaxed tracking-wide">
               <div>
-                <p className="font-bold text-white/70 text-xs uppercase tracking-widest mb-1">Company Address</p>
+                <p className="font-bold text-white/70 text-sm uppercase tracking-widest mb-1">Company Address</p>
                 <p className="whitespace-pre-line font-medium">{dynamicAddress}</p>
               </div>
               <div className="pt-2">
-                <p className="font-bold text-white/70 text-xs uppercase tracking-widest mb-1">Inquiries</p>
+                <p className="font-bold text-white/70 text-sm uppercase tracking-widest mb-1">Inquiries</p>
                 <p className="font-semibold underline underline-offset-4 hover:text-white transition-colors cursor-pointer">
                   {dynamicEmail}
                 </p>
@@ -174,21 +152,20 @@ export async function Footer({ locale }: FooterProps) {
             </div>
           </div>
 
-          {/* Right Block: Content Dynamic Columns Array Navigation Links */}
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-left">
             {columns.map((column, idx) => (
               <div key={idx} className="flex flex-col">
                 {column.heading && (
-                  <p className="text-[13px] font-bold text-white uppercase tracking-wider mb-4 border-b border-white/10 pb-2">
+                  <p className="text-[14px] font-bold text-white uppercase tracking-wider mb-4 border-b border-white/10 pb-2">
                     {column.heading}
                   </p>
                 )}
-                <ul role="list" className="flex flex-col gap-2.5">
+                <ul role="list" className="flex flex-col gap-3">
                   {(column.links ?? []).map((link, linkIdx) => (
                     <li key={linkIdx}>
                       <Link
                         href={link.href}
-                        className="text-[13.5px] text-white/85 hover:text-white font-medium hover:underline transition-all duration-150"
+                        className="text-[15px] text-white/85 hover:text-white font-medium hover:underline transition-all duration-150"
                       >
                         {link.label ?? link.href}
                       </Link>
@@ -198,16 +175,13 @@ export async function Footer({ locale }: FooterProps) {
               </div>
             ))}
           </div>
-
         </div>
 
-        {/* ── Centered Minimalist Metadata Bottom Bar ── */}
         <div className="pt-6 pb-2 text-center">
-          <Text as="span" className="text-[11px] md:text-xs font-medium tracking-widest text-white/60 uppercase">
+          <Text as="span" className="text-xs md:text-sm font-medium tracking-widest text-white/60 uppercase">
             {copyrightText}
           </Text>
         </div>
-
       </Container>
     </footer>
   )
