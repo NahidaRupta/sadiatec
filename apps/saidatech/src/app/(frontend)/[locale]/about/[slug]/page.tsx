@@ -15,12 +15,12 @@ type Props = {
 type RawBlock = { blockType: string; id?: string } & Record<string, unknown>
 
 export async function generateStaticParams() {
-  return [
-    { slug: 'message-from-the-ceo' },
-    { slug: 'organization-overview' },
-    { slug: 'business-contents' },
-    { slug: 'history' },
-  ]
+  const locales = siteConfig.locales.enabled as string[]
+  const slugs = ['message-from-the-ceo', 'organization-overview', 'business-contents', 'history']
+
+  return locales.flatMap((locale) =>
+    slugs.map((slug) => ({ locale, slug }))
+  )
 }
 
 export const dynamicParams = true

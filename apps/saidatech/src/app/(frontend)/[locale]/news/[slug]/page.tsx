@@ -28,6 +28,25 @@ type Props = {
 
 type RawBlock = { blockType: string; id?: string } & Record<string, unknown>
 
+export async function generateStaticParams() {
+  const payload = await getCachedPayload()
+  const result = await payload.find({
+    collection: 'news',
+    limit: 1000,
+    select: { slug: true },
+  })
+
+  const locales = siteConfig.locales.enabled as string[]
+
+  return locales.flatMap((locale) =>
+    result.docs
+      .filter((doc) => typeof doc.slug === 'string')
+      .map((doc) => ({ locale, slug: doc.slug as string }))
+  )
+}
+
+export const dynamicParams = true
+
 function RenderLexicalText({ content }: { content: any }) {
   if (!content) return null
 
@@ -111,28 +130,15 @@ export default async function NewsDetailPage({ params }: Props) {
   const eventType = typeof article['eventType'] === 'string' ? article['eventType'] : 'Online Event'
 
   return (
-    /* 🛠️ MODIFIED: Turned parent wrapper into a relative frame to isolate the background gradient configuration */
     <main className="w-full pt-5 md:pt-6 bg-white min-h-screen relative overflow-hidden">
-      
-      {/* 🛠️ ADDED: Canvas background layers mimicking the custom mesh color scheme from image_47baa6.jpg */}
       <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
-        {/* Soft Cyan Blur - Top Left */}
         <div className="absolute -top-[10%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-cyan-100/40 blur-[120px]" />
-        
-        {/* Amber / Yellow Ambient Glow - Mid Bottom Center */}
         <div className="absolute bottom-[15%] left-[45%] w-[35vw] h-[35vw] rounded-full bg-amber-100/30 blur-[100px]" />
-        
-        {/* Soft Pink / Rose Blush - Right Side */}
         <div className="absolute top-[20%] -right-[10%] w-[45vw] h-[45vw] rounded-full bg-rose-100/40 blur-[130px]" />
       </div>
 
-      {/* Content wrapper lifted up above the background elements */}
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 relative z-10">
-        
-        {/* 🛠️ MODIFIED: Adjusted background to a clear backdrop-blur frame and updated the broken md:p-30 layout pad */}
         <div className="bg-white/90 backdrop-blur-md shadow-sm border border-neutral-100 rounded-2xl overflow-hidden p-10 sm:p-30 md:p-30">
-          
-          {/* Top Event Banner */}
           <div className="border-b pb-8 mb-8">
             {eventDate && (
               <div className="inline-block bg-black text-white text-sm font-medium px-5 py-1.5 mb-6 rounded">
@@ -151,7 +157,6 @@ export default async function NewsDetailPage({ params }: Props) {
             )}
           </div>
 
-          {/* News Meta + Share Buttons */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
             <div className="flex items-center gap-3">
               <span className="inline-block bg-black text-white text-xs font-bold px-4 py-1 tracking-wider">News Release</span>
@@ -163,7 +168,6 @@ export default async function NewsDetailPage({ params }: Props) {
             </div>
           </div>
 
-          {/* Main Content */}
           <div className="mb-10">
             {hasLayoutBlocks ? (
               layoutBlocks.map((block, index) => {
@@ -178,7 +182,6 @@ export default async function NewsDetailPage({ params }: Props) {
             )}
           </div>
 
-          {/* Bottom Promotional Image */}
           {thumbnailUrl && (
             <div className="relative rounded-xl overflow-hidden border border-neutral-200 shadow-sm">
               <Image

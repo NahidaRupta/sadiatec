@@ -14,6 +14,25 @@ type Props = {
 
 type RawBlock = { blockType: string; id?: string } & Record<string, unknown>
 
+export async function generateStaticParams() {
+  const payload = await getCachedPayload()
+  const result = await payload.find({
+    collection: 'pages',
+    limit: 1000,
+    select: { slug: true },
+  })
+
+  const locales = siteConfig.locales.enabled as string[]
+
+  return locales.flatMap((locale) =>
+    result.docs
+      .filter((doc) => typeof doc.slug === 'string')
+      .map((doc) => ({ locale, slug: doc.slug as string }))
+  )
+}
+
+export const dynamicParams = true
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params
   if (!isSupportedLocale(locale)) return {}
@@ -42,8 +61,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ...(metaImageUrl ? { openGraph: { images: [metaImageUrl] } } : {}),
   }
 }
-
-export const dynamicParams = true
 
 export default async function DynamicPage({ params }: Props) {
   const { locale, slug } = await params
