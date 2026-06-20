@@ -30,14 +30,14 @@ function Logo({ dark, imageUrl }: { dark: boolean; imageUrl?: string | null | un
   }
 
   return (
-    <div className="relative flex items-center h-12 w-44 sm:h-16 sm:w-56 transition-all duration-300">
+    <div className="relative flex items-center h-18 w-64 sm:h-22 sm:w-80 transition-all duration-300">
       <Image
         src={imageUrl}
         alt="Sadia Tec Logo"
         fill
         priority
         className="object-contain object-left"
-        sizes="300px"
+        sizes="500px"
       />
     </div>
   )
@@ -69,7 +69,6 @@ function MegaMenuPanel({ item }: { item: ResolvedNavItem }) {
 
         <div className="col-span-9 grid grid-cols-3 gap-8">
           {columns.map((col, ci) => {
-            // Check if the current heading matches the text we want to hide
             const showHeading = col.heading && col.heading.toLowerCase() !== 'more services'
 
             return (
@@ -141,7 +140,7 @@ export function HeaderClient({
   cmsLogoUrl,
 }: HeaderClientProps) {
   const [scrolled, setScrolled] = useState(false)
-  const [, setIsMobileMenuOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -178,7 +177,7 @@ export function HeaderClient({
       <div
         className={[
           'flex items-center justify-between w-full px-6 lg:px-20 transition-all duration-300',
-          'h-14 md:h-16'
+          'h-17 md:h-19'
         ].join(' ')}
       >
         {/* Logo */}
@@ -205,8 +204,8 @@ export function HeaderClient({
                     href={item.href}
                     aria-current={active && isLeaf ? 'page' : undefined}
                     className={[
-                      'inline-flex items-center gap-1 px-3 h-full text-base font-semibold tracking-wide',
-                      'border-b-2 transition-colors duration-200',
+                      'inline-flex items-center gap-1 px-3 text-base font-semibold tracking-wide',
+                      'h-[40px] border-b-2 transition-colors duration-200',
                       active
                         ? 'text-brand-primary border-brand-primary'
                         : 'text-text-primary border-transparent hover:text-brand-primary hover:border-brand-primary',
@@ -239,15 +238,13 @@ export function HeaderClient({
             <button
               type="button"
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold
-      text-text-primary hover:bg-bg-secondary border border-border-default
-      transition-colors duration-200"
+                text-text-primary hover:bg-bg-secondary border border-border-default
+                transition-colors duration-200"
               aria-label="Language selection dropdown"
             >
-              {/* Increased text-base to text-lg for the flag/label */}
               <span className="text-lg select-none leading-none">
                 {localeLabels[locale] || locale}
               </span>
-              {/* Increased text-[9px] to text-xs for the language code */}
               <span className="uppercase tracking-wider text-xs font-bold">{locale}</span>
               <svg
                 className="h-3 w-3 text-text-muted transition-transform duration-200 group-hover/lang:rotate-180"
@@ -259,8 +256,8 @@ export function HeaderClient({
 
             <div
               className="absolute right-0 top-full pt-1.5 min-w-[160px] z-50
-      opacity-0 invisible group-hover/lang:opacity-100 group-hover/lang:visible
-      transition-all duration-150 origin-top-right pointer-events-none group-hover/lang:pointer-events-auto"
+                opacity-0 invisible group-hover/lang:opacity-100 group-hover/lang:visible
+                transition-all duration-150 origin-top-right pointer-events-none group-hover/lang:pointer-events-auto"
             >
               <ul className="rounded-xl bg-white shadow-xl border border-border-default py-1.5 overflow-hidden">
                 {locales.map((loc) => {
