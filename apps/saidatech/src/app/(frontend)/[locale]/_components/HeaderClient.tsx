@@ -28,7 +28,6 @@ function Logo({ dark, imageUrl }: { dark: boolean; imageUrl?: string | null | un
       </span>
     )
   }
-
   return (
     <div className="relative flex items-center h-18 w-64 sm:h-22 sm:w-80 transition-all duration-300">
       <Image
@@ -42,7 +41,6 @@ function Logo({ dark, imageUrl }: { dark: boolean; imageUrl?: string | null | un
     </div>
   )
 }
-
 function MegaMenuPanel({ item }: { item: ResolvedNavItem }) {
   const columns = item.megaColumns ?? []
 
