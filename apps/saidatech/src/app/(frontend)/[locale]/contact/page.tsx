@@ -88,10 +88,10 @@ const formLabels: Record<Locale, FormLabels> = {
     email: 'ইমেইল ঠিকানা',
     company: 'কোম্পানি (ঐচ্ছিক)',
     inquiryType: 'জিজ্ঞাসার ধরন',
-    message: 'বার্তা',
-    submit: 'বার্তা পাঠান',
+    message: 'মেসেজ',
+    submit: 'মেসেজ পাঠান',
     submitting: 'পাঠানো হচ্ছে…',
-    success: 'ধন্যবাদ! আপনার বার্তা পাঠানো হয়েছে। আমরা একটি কার্যদিবসের মধ্যে যোগাযোগ করব।',
+    success: 'ধন্যবাদ! আপনার মেসেজ পাঠানো হয়েছে। আমরা একটি কার্যদিবসের মধ্যে যোগাযোগ করব।',
     error: 'কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।',
     required: 'আবশ্যক',
     inquiryOptions: {
@@ -109,8 +109,8 @@ const formLabels: Record<Locale, FormLabels> = {
 
 const titles: Record<Locale, string> = {
   en: 'Begin Your Journey',
-  ja: 'お問い合わせ',
-  bn: 'যোগাযোগ করুন',
+  ja: '新しい旅を始める',
+  bn: 'আপনার যাত্রা শুরু করুন',
 }
 
 const descriptions: Record<Locale, string> = {
@@ -134,7 +134,7 @@ const homeLabels: Record<Locale, string> = {
 const formSectionLabels: Record<Locale, string> = {
   en: 'Send a Message',
   ja: 'メッセージを送る',
-  bn: 'メッセージを送る',
+  bn: 'মেসেজ পাঠান',
 }
 
 const ctaHeadings: Record<Locale, string> = {
@@ -365,7 +365,7 @@ export default async function ContactPage({ params }: Props) {
         </Container>
       </Section>
       
-      {siteConfig.features.faq && <CTABannerBlock {...ctaProps} />}
+      
     </>
   )
 }

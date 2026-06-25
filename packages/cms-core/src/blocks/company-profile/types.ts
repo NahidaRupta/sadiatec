@@ -7,6 +7,11 @@ export interface CompanyProfileCta {
   label: string
   href: string
 }
+export interface CompanyProfileRow {
+  label: string;
+  value: string;
+  key?: string; // Add this optional key for localization
+}
 
 export interface CompanyProfileBlockProps {
   blockType?: 'company-profile'

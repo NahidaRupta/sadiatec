@@ -19,9 +19,12 @@ export function adaptCompanyProfileBlock(raw: unknown): CompanyProfileBlockProps
   ]
 
   const rows: CompanyProfileRow[] = rowDefs
-    .map(({ label, key }) => ({ label, value: str(profile[key]) }))
-    .filter((r) => r.value)
-
+  .map(({ label, key }) => ({ 
+    label, 
+    value: str(profile[key]), 
+    key // <--- Pass the key here so the component can use it
+  }))
+  .filter((r) => r.value)
   const photo = data['photo'] as Record<string, unknown> | null | undefined
   const photoUrl = photo && typeof photo['url'] === 'string' ? photo['url'] : undefined
   const photoAlt = photo && typeof photo['alt'] === 'string' ? photo['alt'] : undefined

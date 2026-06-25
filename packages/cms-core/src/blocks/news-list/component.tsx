@@ -28,7 +28,7 @@ function ChevronRight() {
    ────────────────────────────────────────────────────────────────────── */
 function NewsRowItem({ item }: { item: NewsItem }) {
   return (
-    <motion.li 
+    <motion.li
       variants={fadeInUp}
       className="list-none border-t border-slate-200/80 pt-6 pb-8 first:border-t-0 first:pt-0 group text-left"
     >
@@ -66,6 +66,10 @@ function NewsRowItem({ item }: { item: NewsItem }) {
 }
 
 function ListLayoutView({ heading, items, viewAllCta }: NewsListBlockProps) {
+  // Sort by date descending (latest first)
+  const sortedItems = [...items].sort((a, b) =>
+    new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime()
+  )
   return (
     <section aria-labelledby="news-split-heading" className="bg-[#F6F6F6] py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16">
@@ -92,7 +96,7 @@ function ListLayoutView({ heading, items, viewAllCta }: NewsListBlockProps) {
               role="list"
               className="flex flex-col space-y-2 border-b border-slate-200/80 pb-2"
             >
-              {items.slice(0, 3).map((item, i) => (
+              {sortedItems.slice(0, 3).map((item, i) => (
                 <NewsRowItem key={item.headline || i} item={item} />
               ))}
             </motion.ul>
@@ -112,12 +116,12 @@ function CarouselCardItem({ item }: { item: NewsItem }) {
     : ''
 
   return (
-    <motion.div 
+    <motion.div
       variants={fadeInUp}
       className="flex flex-col bg-transparent group text-left w-full min-w-full sm:min-w-[340px] md:min-w-[380px] sm:flex-1 snap-center snap-always px-2 sm:px-0"
     >
       <Link href={item.href} className="block space-y-4 focus-visible:outline-none">
-        
+
         <div className="relative aspect-[16/10] max-w-[85%] mx-auto w-full rounded-2xl overflow-hidden bg-white/90 border border-white/20 shadow-md">
           {item.thumbnail ? (
             <Image
@@ -164,14 +168,18 @@ function CarouselCardItem({ item }: { item: NewsItem }) {
 }
 
 function CarouselLayoutView({ heading = 'Latest Information', items }: NewsListBlockProps) {
-  const displayItems = items.slice(0, 3)
+  // Sort by date descending (latest first)
+  const sortedItems = [...items].sort((a, b) =>
+    new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime()
+  )
+  const displayItems = sortedItems.slice(0, 3)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   const handleScroll = (direction: 'left' | 'right') => {
     if (!scrollContainerRef.current) return
-    
+
     const container = scrollContainerRef.current
-    const cardWidth = container.clientWidth 
+    const cardWidth = container.clientWidth
     const currentScrollPosition = container.scrollLeft
 
     const targetScrollPosition =
@@ -188,10 +196,10 @@ function CarouselLayoutView({ heading = 'Latest Information', items }: NewsListB
   return (
     <div className="w-full bg-white py-6 md:py-10">
       <div className="mx-auto max-w-[1920px] px-4 sm:px-6 md:px-10 lg:px-12">
-        
+
         {/* Main Blue Section Card */}
         <section className="relative w-full bg-brand-accent rounded-[2rem] p-6 sm:p-8 md:p-14 lg:p-16 overflow-hidden shadow-sm">
-          
+
           {/* Title block */}
           <div className="mb-8 sm:mb-10 text-left px-2 sm:px-0">
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white">
