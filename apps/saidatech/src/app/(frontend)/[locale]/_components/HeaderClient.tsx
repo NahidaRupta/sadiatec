@@ -46,12 +46,13 @@ function MegaMenuPanel({ item }: { item: ResolvedNavItem }) {
 
   return (
     <div
-      className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[1100px] max-w-[95vw] z-50
+      className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[900px] max-w-[95vw] z-50
         opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible
         transition-all duration-200 origin-top pointer-events-none group-hover/item:pointer-events-auto"
     >
-      <div className="bg-white rounded-2xl shadow-2xl border border-neutral-100 p-8 grid grid-cols-12 gap-8 text-left">
-        <div className="col-span-3 relative rounded-2xl overflow-hidden min-h-[380px] bg-neutral-50">
+      <div className="bg-white rounded-2xl shadow-2xl border border-neutral-100 p-8 grid grid-cols-12 gap-10 text-left">
+        {/* Featured Image Column - Kept at col-span-3 to maintain its smaller width */}
+        <div className="col-span-3 relative rounded-2xl overflow-hidden min-h-[300px] bg-neutral-50">
           {item.featuredImageUrl ? (
             <img
               src={item.featuredImageUrl}
@@ -65,7 +66,8 @@ function MegaMenuPanel({ item }: { item: ResolvedNavItem }) {
           )}
         </div>
 
-        <div className="col-span-9 grid grid-cols-3 gap-8">
+        {/* Content Columns - Expanded to col-span-9 for wider text area */}
+        <div className="col-span-9 grid grid-cols-2 gap-10">
           {columns.map((col, ci) => {
             const showHeading = col.heading && col.heading.toLowerCase() !== 'more services'
 
@@ -83,11 +85,11 @@ function MegaMenuPanel({ item }: { item: ResolvedNavItem }) {
                         href={subItem.href}
                         className="group block text-left navigation-item-wrapper focus:outline-none"
                       >
-                        <span className="block text-[16px] font-bold text-gray-900 group-hover:text-brand-accent transition-colors leading-snug">
+                        <span className="block text-[15px] font-bold text-gray-900 group-hover:text-brand-accent transition-colors leading-snug">
                           {subItem.label}
                         </span>
                         {subItem.description && (
-                          <p className="mt-1 text-xs text-gray-500 font-normal leading-relaxed group-hover:text-gray-600 transition-colors">
+                          <p className="mt-1.5 text-[12px] text-gray-500 font-normal leading-relaxed group-hover:text-gray-600 transition-colors">
                             {subItem.description}
                           </p>
                         )}

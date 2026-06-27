@@ -22,14 +22,16 @@ const db =
     : postgresAdapter({
       pool: {
         connectionString: uri,
-        max: 20,
+        max: 80,
         idleTimeoutMillis: 30000,
-        connectionTimeoutMillis: 30000,
+        connectionTimeoutMillis: 60000,   // ← Increased to 60 seconds
+        maxLifetime: 600000,              // 10 minutes
+        allowExitOnIdle: true,
         ssl: uri.includes('rlwy.net') ? { rejectUnauthorized: false } : true,
-      },
-           push: false,
-           
-      })
+      } as any,
+      push: false,
+
+    })
 
 const baseConfig = buildCmsConfig(siteConfig, undefined, db)
 
