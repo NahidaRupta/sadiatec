@@ -60,10 +60,7 @@ export function HeroBlock({
   }, [total])
 
   const crossFadeVariants = {
-    enter: {
-      opacity: 0,
-      scale: 1.05,
-    },
+    enter: { opacity: 0, scale: 1.05 },
     center: {
       opacity: 1,
       scale: 1,
@@ -85,8 +82,8 @@ export function HeroBlock({
   return (
     <div aria-label="Hero" role="region" className="flex flex-col bg-white overflow-hidden">
 
-      {/* ── Band 1: Heading Strip ── */}
-      <div className="bg-white px-6 pt-6 pb-2 lg:px-20 lg:pt-8 lg:pb-2">
+      {/* Heading Strip */}
+      <div className="bg-white px-6 pt-6 pb-3 lg:px-20 lg:pt-8 lg:pb-2">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -96,7 +93,7 @@ export function HeroBlock({
           {eyebrow && (
             <motion.p
               variants={fadeInUp}
-              className="mb-0 text-xs font-semibold uppercase tracking-widest text-text-secondary"
+              className="mb-1 text-xs font-semibold uppercase tracking-widest text-text-secondary"
             >
               {eyebrow}
             </motion.p>
@@ -105,22 +102,18 @@ export function HeroBlock({
           <motion.h1
             id="hero-heading"
             variants={fadeInUp}
-            className="ml-auto max-w-[700px] text-2xl font-medium tracking-tight text-text-primary md:text-4xl lg:text-5xl"
+            className="ml-auto max-w-[700px] text-[22px] leading-tight font-medium tracking-tight text-text-primary 
+                       md:text-3xl lg:text-4xl break-words"
           >
             {resolvedHeadline}
           </motion.h1>
         </motion.div>
       </div>
 
-      {/* ── Band 2: Floating Canvas Slider ── */}
+      {/* Image Slider */}
       {slides.length > 0 && (
         <div className="w-full px-4 pb-4 md:px-6 md:pb-6 lg:px-10 lg:pb-8">
-          <div
-            className="
-              relative w-full overflow-hidden bg-bg-secondary rounded-2xl md:rounded-3xl 
-              aspect-[4/3] sm:aspect-[16/10] md:h-[calc(100vh-160px)] md:min-h-[500px]
-            "
-          >
+          <div className="relative w-full overflow-hidden bg-bg-secondary rounded-2xl md:rounded-3xl aspect-[4/3] sm:aspect-[16/10] md:h-[calc(100vh-160px)] md:min-h-[500px]">
             <AnimatePresence initial={true} mode="popLayout">
               <motion.div
                 key={current}
@@ -139,10 +132,9 @@ export function HeroBlock({
                   sizes="(max-width: 768px) 100vw, 95vw"
                 />
 
-                {/* ── Slides Content Overlay (Renders Title and Subtitle over the image) ── */}
                 {(slides[current]?.title || slides[current]?.subtitle) && (
                   <div className="absolute inset-0 bg-black/30 flex flex-col justify-end p-8 sm:p-12 md:p-16 text-left">
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3, duration: 0.8 }}
@@ -164,7 +156,6 @@ export function HeroBlock({
               </motion.div>
             </AnimatePresence>
 
-            {/* Navigation Controls */}
             {total > 1 && (
               <>
                 <button
@@ -184,19 +175,13 @@ export function HeroBlock({
                   <ChevronRight />
                 </button>
 
-                {/* Dot Pagination Elements */}
-                <div
-                  className="absolute bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:bottom-6 md:right-8 z-10 flex gap-2"
-                  role="tablist"
-                  aria-label="Slide indicators"
-                >
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:bottom-6 md:right-8 z-10 flex gap-2" role="tablist">
                   {slides.map((_, i) => (
                     <button
                       key={i}
                       type="button"
                       role="tab"
                       aria-selected={i === current}
-                      aria-label={`Go to slide ${i + 1}`}
                       onClick={() => setCurrent(i)}
                       className={[
                         'h-2 w-2 rounded-full transition-all duration-300',

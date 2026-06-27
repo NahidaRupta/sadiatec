@@ -5,8 +5,8 @@ import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useReducedMotion } from 'framer-motion'
 import { Link } from '@/i18n/routing'
-import { LocaleSwitcher } from './LocaleSwitcher'
 import type { ResolvedNavItem } from './Header'
+import { Jp, Us, Bd } from 'react-flag-icons';
 
 interface MobileMenuProps {
   navItems: ResolvedNavItem[]
@@ -14,38 +14,40 @@ interface MobileMenuProps {
   ctaHref: string
   locales: string[]
   localeLabels: Record<string, string>
+  locale: string          // ← Added to know current language
+  strippedPath: string    // ← Added for flag navigation
   scrolled: boolean
   onOpenChange?: (isOpen: boolean) => void
 }
 
 const leftDrawerNormal = {
   closed: { x: '-100%', transition: { duration: 0.3, ease: [0.32, 0, 0.67, 0] as const } },
-  open:   { x: '0%',   transition: { duration: 0.35, ease: [0.33, 1, 0.68, 1] as const } },
+  open: { x: '0%', transition: { duration: 0.35, ease: [0.33, 1, 0.68, 1] as const } },
 }
 
 const leftDrawerReduced = {
   closed: { x: '-100%', transition: { duration: 0.01 } },
-  open:   { x: '0%',   transition: { duration: 0.01 } },
+  open: { x: '0%', transition: { duration: 0.01 } },
 }
 
 const backdropNormal = {
   closed: { opacity: 0 },
-  open:   { opacity: 1, transition: { duration: 0.25 } },
+  open: { opacity: 1, transition: { duration: 0.25 } },
 }
 
 const backdropReduced = {
   closed: { opacity: 0 },
-  open:   { opacity: 1, transition: { duration: 0.01 } },
+  open: { opacity: 1, transition: { duration: 0.01 } },
 }
 
 const accordionNormal = {
-  open:   { height: 'auto', opacity: 1, transition: { duration: 0.25, ease: 'easeInOut' as const } },
-  closed: { height: 0,      opacity: 0, transition: { duration: 0.25, ease: 'easeInOut' as const } },
+  open: { height: 'auto', opacity: 1, transition: { duration: 0.25, ease: 'easeInOut' as const } },
+  closed: { height: 0, opacity: 0, transition: { duration: 0.25, ease: 'easeInOut' as const } },
 }
 
 const accordionReduced = {
-  open:   { height: 'auto', opacity: 1, transition: { duration: 0.01 } },
-  closed: { height: 0,      opacity: 0, transition: { duration: 0.01 } },
+  open: { height: 'auto', opacity: 1, transition: { duration: 0.01 } },
+  closed: { height: 0, opacity: 0, transition: { duration: 0.01 } },
 }
 
 export function MobileMenu({
@@ -54,6 +56,8 @@ export function MobileMenu({
   ctaHref,
   locales,
   localeLabels,
+  locale,
+  strippedPath,
   scrolled,
   onOpenChange,
 }: MobileMenuProps) {
@@ -83,15 +87,12 @@ export function MobileMenu({
   }, [isOpen, onOpenChange])
 
   const close = () => { setIsOpen(false); setOpenItem(null) }
-
-  const toggleItem = (href: string) =>
-    setOpenItem((prev) => (prev === href ? null : href))
+  const toggleItem = (href: string) => setOpenItem((prev) => (prev === href ? null : href))
 
   const portalContent = (
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[99999] flex justify-start pointer-events-none">
-          {/* Backdrop (Dark mask + blur) */}
           <motion.div
             key="backdrop"
             variants={backdropVariants}
@@ -102,7 +103,6 @@ export function MobileMenu({
             className="fixed inset-0 bg-black/40 backdrop-blur-sm pointer-events-auto"
           />
 
-          {/* Sliding Drawer Body Container */}
           <motion.aside
             id={drawerId}
             key="drawer"
@@ -113,7 +113,7 @@ export function MobileMenu({
             className="relative h-full w-80 max-w-[85vw] bg-white shadow-2xl 
               flex flex-col overflow-hidden text-left pointer-events-auto z-10"
           >
-            {/* Dedicated Top Drawer Header (Matching your site style guide) */}
+            {/* Top Header */}
             <div className="flex h-20 items-center justify-between px-5 border-b border-neutral-100 shrink-0 bg-white">
               <Link href="/" onClick={close} aria-label="Sadia Tec Home">
                 <span className="text-2xl tracking-wide select-none">
@@ -124,9 +124,7 @@ export function MobileMenu({
                 type="button"
                 aria-label="Close menu"
                 onClick={close}
-                className="flex items-center justify-center rounded-md p-2 text-gray-500
-                  hover:bg-neutral-100 focus-visible:outline-none
-                  focus-visible:ring-2 focus-visible:ring-brand-accent min-h-[44px] min-w-[44px]"
+                className="flex items-center justify-center rounded-md p-2 text-gray-500 hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent min-h-[44px] min-w-[44px]"
               >
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -134,16 +132,15 @@ export function MobileMenu({
               </button>
             </div>
 
-            {/* Nav items body list */}
+            {/* Navigation */}
             <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label="Mobile navigation">
               <ul role="list" className="space-y-1">
                 {navItems.map((item) => {
-                  const hasChildren =
-                    (item.children ?? []).length > 0 ||
+                  const hasChildren = (item.children ?? []).length > 0 ||
                     (item.megaMenu && (item.megaColumns ?? []).length > 0)
                   const isExpanded = openItem === item.href
 
-                  const allChildren: { label: string; href: string }[] = item.megaMenu
+                  const allChildren = item.megaMenu
                     ? (item.megaColumns ?? []).flatMap((col) => col.items ?? [])
                     : (item.children ?? [])
 
@@ -154,26 +151,15 @@ export function MobileMenu({
                           type="button"
                           onClick={() => toggleItem(item.href)}
                           aria-expanded={isExpanded}
-                          className="flex w-full items-center justify-between rounded-xl px-4 py-3
-                            text-base font-semibold text-gray-900 hover:bg-neutral-50
-                            transition-colors min-h-[48px]"
+                          className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-base font-semibold text-gray-900 hover:bg-neutral-50 transition-colors min-h-[48px]"
                         >
                           <span>{item.label}</span>
-                          <svg
-                            className={`h-4 w-4 text-gray-400 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                          >
+                          <svg className={`h-4 w-4 text-gray-400 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                           </svg>
                         </button>
                       ) : (
-                        <Link
-                          href={item.href}
-                          onClick={close}
-                          className="flex items-center rounded-xl px-4 py-3 text-base
-                            font-semibold text-gray-900 hover:bg-neutral-50
-                            transition-colors min-h-[48px]"
-                        >
+                        <Link href={item.href} onClick={close} className="flex items-center rounded-xl px-4 py-3 text-base font-semibold text-gray-900 hover:bg-neutral-50 transition-colors min-h-[48px]">
                           {item.label}
                         </Link>
                       )}
@@ -181,26 +167,11 @@ export function MobileMenu({
                       {hasChildren && (
                         <AnimatePresence initial={false}>
                           {isExpanded && (
-                            <motion.ul
-                              key="sub"
-                              variants={accordion}
-                              initial="closed"
-                              animate="open"
-                              exit="closed"
-                              className="overflow-hidden"
-                              role="list"
-                            >
+                            <motion.ul variants={accordion} initial="closed" animate="open" exit="closed" className="overflow-hidden" role="list">
                               <li className="pl-4 pr-2 pb-2">
                                 <div className="border-l-2 border-brand-primary-light pl-3 space-y-1">
                                   {allChildren.map((child) => (
-                                    <Link
-                                      key={child.href}
-                                      href={child.href}
-                                      onClick={close}
-                                      className="flex items-center gap-2 rounded-lg px-3 py-2.5
-                                        text-sm text-gray-600 hover:text-brand-accent hover:bg-brand-accent/5
-                                        transition-colors min-h-[40px]"
-                                    >
+                                    <Link key={child.href} href={child.href} onClick={close} className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm text-gray-600 hover:text-brand-accent hover:bg-brand-accent/5 transition-colors min-h-[40px]">
                                       <span className="h-1 w-1 shrink-0 rounded-full bg-brand-primary" />
                                       {child.label}
                                     </Link>
@@ -217,16 +188,11 @@ export function MobileMenu({
               </ul>
             </nav>
 
-            {/* Bottom Menu Panel Action Switchers */}
-            <div className="border-t border-neutral-100 p-4 space-y-4 bg-gray-50/80 shrink-0">
-              <LocaleSwitcher locales={locales} localeLabels={localeLabels} />
+            {/* Bottom Section - Only CTA Button */}
+            <div className="border-t border-neutral-100 p-4 bg-gray-50/80 shrink-0">
               {ctaLabel && (
                 <Link href={ctaHref} onClick={close} className="block">
-                  <button
-                    type="button"
-                    className="w-full rounded-full bg-brand-accent py-3 text-sm font-bold
-                      text-white shadow-md transition-all duration-200 hover:bg-brand-accent-hover"
-                  >
+                  <button className="w-full rounded-full bg-brand-accent py-3 text-sm font-bold text-white shadow-md transition-all duration-200 hover:bg-brand-accent-hover">
                     {ctaLabel}
                   </button>
                 </Link>
@@ -240,21 +206,50 @@ export function MobileMenu({
 
   return (
     <>
-      {/* Trigger Button inside the header flow */}
-      <button
-        type="button"
-        aria-label="Open menu"
-        onClick={() => setIsOpen(true)}
-        className={[
-          'inline-flex items-center justify-center rounded-md p-2 transition-colors',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent min-h-[44px] min-w-[44px]',
-          scrolled ? 'text-gray-700 hover:bg-neutral-100' : 'text-white hover:bg-white/10',
-        ].join(' ')}
-      >
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+      {/* Mobile Header: Flags + Hamburger */}
+      <div className="flex lg:hidden items-center gap-3">
+        {/* Flags Container */}
+        <div className="flex items-center gap-2 bg-[#EBF5FF] px-3 py-.5 rounded-2xl border border-gray-200">
+          {['ja', 'en', 'bn'].map((loc) => {
+            const isCurrentLocale = locale === loc
+            return (
+              <Link
+                key={loc}
+                href={strippedPath}
+                locale={loc}
+                className={[
+                  "transition-all duration-200 p-1 rounded-xl",
+                  isCurrentLocale ? "scale-110" : "hover:scale-105 opacity-75 hover:opacity-100"
+                ].join(" ")}
+              >
+                {loc === 'ja' ? (
+                  <Jp size={isCurrentLocale ? 24 : 20} className="block" />
+                ) : loc === 'bn' ? (
+                  <Bd size={isCurrentLocale ? 24 : 20} className="block" />
+                ) : (
+                  <Us size={isCurrentLocale ? 24 : 20} className="block" />
+                )}
+              </Link>
+            )
+          })}
+        </div>
+
+        {/* Hamburger Button */}
+        <button
+          type="button"
+          aria-label="Open menu"
+          onClick={() => setIsOpen(true)}
+          className={[
+            'inline-flex items-center justify-center rounded-md p-2 transition-colors',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent min-h-[44px] min-w-[44px]',
+            scrolled ? 'text-gray-700 hover:bg-neutral-100' : 'text-white hover:bg-white/10',
+          ].join(' ')}
+        >
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
 
       {mounted && createPortal(portalContent, document.body)}
     </>

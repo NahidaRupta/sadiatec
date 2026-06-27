@@ -29,14 +29,14 @@ function Logo({ dark, imageUrl }: { dark: boolean; imageUrl?: string | null | un
     )
   }
   return (
-    <div className="relative flex items-center h-18 w-64 sm:h-22 sm:w-80 transition-all duration-300">
+    <div className="relative flex items-center h-16 w-54 sm:h-20 sm:w-70 transition-all duration-300">
       <Image
         src={imageUrl}
         alt="Sadia Tec Logo"
         fill
         priority
         className="object-contain object-left"
-        sizes="500px"
+        sizes="450px"
       />
     </div>
   )
@@ -177,77 +177,74 @@ export function HeaderClient({
 
         {/* Navigation remains unchanged */}
         <nav aria-label="Main navigation" className="hidden lg:block h-full">
-          {/* ... your nav code ... */}
+          <ul className="flex items-center gap-1 h-full">
+            {navItems.map((item) => {
+              const hasMega = item.megaMenu && (item.megaColumns ?? []).length > 0
+              const hasDropdown = !hasMega && (item.children ?? []).length > 0
+              const active = isActive(item)
+              const isLeaf = !hasMega && !hasDropdown
+
+              return (
+                <li key={item.href} className="relative group/item h-full flex items-center">
+                  <Link
+                    href={item.href}
+                    aria-current={active && isLeaf ? 'page' : undefined}
+                    className={[
+                      'inline-flex items-center gap-1 px-3 text-sm font-semibold tracking-wide',
+                      'h-[40px] border-b-2 transition-colors duration-200',
+                      active
+                        ? 'text-brand-primary border-brand-primary'
+                        : 'text-text-primary border-transparent hover:text-brand-primary hover:border-brand-primary',
+                    ].join(' ')}
+                  >
+                    {item.label}
+                    {(hasMega || hasDropdown) && (
+                      <svg
+                        className="h-3 w-3 text-text-muted transition-transform duration-200 group-hover/item:rotate-180"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    )}
+                  </Link>
+
+                  {hasMega && <MegaMenuPanel item={item} />}
+                  {hasDropdown && <DropdownPanel items={item.children!} />}
+                </li>
+              )
+            })}
+          </ul>
         </nav>
 
         <div className="hidden lg:flex items-center gap-4">
-          <div className="relative group/lang py-1">
-            <button
-              type="button"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold 
-             text-text-primary bg-[#EBF5FF] hover:bg-gray-100 
-             border border-border-default transition-all duration-200"
-              aria-label="Language selection dropdown"
-            >
-              {/* Clean Flag - No extra background */}
-              <div className="p-0.5">
-                {locale === 'ja' ? (
-                  <Jp size={20} className="block" />
-                ) : locale === 'bn' ? (
-                  <Bd size={20} className="block" />
-                ) : (
-                  <Us size={20} className="block" />
-                )}
-              </div>
+          {/* Language Flags Container */}
+          <div className="hidden lg:flex items-center gap-3 pr-4 bg-[#EBF5FF] px-4 py-.5 rounded-2xl border border-gray-200">
+            {prioritizedLocales.map((loc) => {
+              const isCurrentLocale = locale === loc
 
-              <span className="uppercase tracking-wider text-xs font-bold">{locale}</span>
-
-              <svg
-                className="h-3 w-3 text-text-muted transition-transform duration-200 group-hover/lang:rotate-180"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={3}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-
-            <div className="absolute right-0 top-full pt-1.5 min-w-[160px] z-50 opacity-0 invisible group-hover/lang:opacity-100 group-hover/lang:visible transition-all duration-150 origin-top-right pointer-events-none group-hover/lang:pointer-events-auto">
-              <ul className="rounded-xl bg-white shadow-xl border border-border-default py-1.5 overflow-hidden">
-                {prioritizedLocales.map((loc) => {
-                  const isCurrentLocale = locale === loc
-
-                  return (
-                    <li key={loc}>
-                      <Link
-                        href={strippedPath}
-                        locale={loc}
-                        className={[
-                          'flex items-center gap-3 w-full px-4 py-2.5 text-sm transition-colors text-left font-semibold',
-                          isCurrentLocale
-                            ? 'text-brand-primary bg-brand-primary/5 font-bold'
-                            : 'text-text-secondary hover:text-brand-primary hover:bg-bg-secondary',
-                        ].join(' ')}
-                      >
-                        {/* Proper Flag Icons */}
-                        {loc === 'ja' ? (
-                          <Jp size={24} className="rounded-sm" />
-                        ) : loc === 'bn' ? (
-                          <Bd size={24} className="rounded-sm" />
-                        ) : (
-                          <Us size={24} className="rounded-sm" />
-                        )}
-
-                        <span className="uppercase text-[12px] tracking-wider font-bold">
-                          {loc === 'en' ? 'English' : loc === 'ja' ? '日本語' : 'বাংলা'}
-                        </span>
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
+              return (
+                <Link
+                  key={loc}
+                  href={strippedPath}
+                  locale={loc}
+                  aria-label={`Change language to ${loc}`}
+                  className={[
+                    "transition-all duration-200 p-1.5 rounded-xl",
+                    isCurrentLocale
+                      ? "scale-110"
+                      : "hover:scale-105 opacity-75 hover:opacity-100"
+                  ].join(" ")}
+                >
+                  {loc === 'ja' ? (
+                    <Jp size={isCurrentLocale ? 26 : 22} className="block" />
+                  ) : loc === 'bn' ? (
+                    <Bd size={isCurrentLocale ? 26 : 22} className="block" />
+                  ) : (
+                    <Us size={isCurrentLocale ? 26 : 22} className="block" />
+                  )}
+                </Link>
+              )
+            })}
           </div>
 
           {/* CTA Button remains the same */}
@@ -273,6 +270,8 @@ export function HeaderClient({
             ctaHref={ctaHref}
             locales={locales}
             localeLabels={localeLabels}
+            locale={locale}                    // ← Added
+            strippedPath={strippedPath}        // ← Added
             scrolled={true}
             onOpenChange={setIsMobileMenuOpen}
           />
