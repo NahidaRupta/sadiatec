@@ -12,8 +12,10 @@ export default function FrontendRootLayout({
       <body className="antialiased">
         {children}
         <link rel="stylesheet" href="https://sadiatec-assistant.vercel.app/widget-dist/widget.css" />
+        {/* <link rel="stylesheet" href="http://localhost:3001/widget-dist/widget.css" /> */}
         <Script
           src="https://sadiatec-assistant.vercel.app/widget-dist/widget.js"
+          // src="http://localhost:3001/widget-dist/widget.js"
           strategy="lazyOnload"
           data-whatsapp="8801XXXXXXXXX"
           data-color="#4f46e5"
