@@ -29,7 +29,7 @@ function Logo({ dark, imageUrl }: { dark: boolean; imageUrl?: string | null | un
     )
   }
   return (
-    <div className="relative flex items-center h-16 w-54 sm:h-20 sm:w-70 transition-all duration-300">
+    <div className="relative flex items-center h-12 w-32 sm:h-16 sm:w-56 lg:h-20 lg:w-70 transition-all duration-300">
       <Image
         src={imageUrl}
         alt="Sadia Tec Logo"
@@ -167,17 +167,16 @@ export function HeaderClient({
       scrolled ? 'border-b border-border-default shadow-sm' : 'border-b border-transparent shadow-none',
     ].join(' ')}>
       <div className={[
-        'flex items-center justify-between w-full px-6 lg:px-20 transition-all duration-300',
-        'h-19 md:h-20'
+        'flex items-center justify-between w-full px-4 sm:px-6 lg:px-6 xl:px-12 2xl:px-20 transition-all duration-300',
+        'h-16 md:h-18 lg:h-20'
       ].join(' ')}>
-
         <Link href="/" aria-label="Sadia Tec Home" className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded-sm">
           <Logo dark={true} imageUrl={cmsLogoUrl} />
         </Link>
 
         {/* Navigation remains unchanged */}
         <nav aria-label="Main navigation" className="hidden lg:block h-full">
-          <ul className="flex items-center gap-1 h-full">
+          <ul className="flex items-center gap-0.5 xl:gap-1 h-full">
             {navItems.map((item) => {
               const hasMega = item.megaMenu && (item.megaColumns ?? []).length > 0
               const hasDropdown = !hasMega && (item.children ?? []).length > 0
@@ -190,7 +189,7 @@ export function HeaderClient({
                     href={item.href}
                     aria-current={active && isLeaf ? 'page' : undefined}
                     className={[
-                      'inline-flex items-center gap-1 px-3 text-sm font-semibold tracking-wide',
+                      'inline-flex items-center gap-1 px-2 xl:px-3 text-xs xl:text-sm font-semibold tracking-wide whitespace-nowrap',
                       'h-[40px] border-b-2 transition-colors duration-200',
                       active
                         ? 'text-brand-primary border-brand-primary'
@@ -216,9 +215,9 @@ export function HeaderClient({
           </ul>
         </nav>
 
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-2 xl:gap-4">
           {/* Language Flags Container */}
-          <div className="hidden lg:flex items-center gap-3 pr-4 bg-[#EBF5FF] px-4 py-.5 rounded-2xl border border-gray-200">
+          <div className="hidden lg:flex items-center gap-1.5 xl:gap-3 bg-[#EBF5FF] px-2.5 xl:px-4 py-1 rounded-2xl border border-gray-200">
             {prioritizedLocales.map((loc) => {
               const isCurrentLocale = locale === loc
 
@@ -229,18 +228,25 @@ export function HeaderClient({
                   locale={loc}
                   aria-label={`Change language to ${loc}`}
                   className={[
-                    "transition-all duration-200 p-1.5 rounded-xl",
+                    "transition-all duration-200 p-1 xl:p-1.5 rounded-xl",
                     isCurrentLocale
                       ? "scale-110"
                       : "hover:scale-105 opacity-75 hover:opacity-100"
                   ].join(" ")}
                 >
                   {loc === 'ja' ? (
-                    <Jp size={isCurrentLocale ? 26 : 22} className="block" />
+                    <Jp size={isCurrentLocale ? 22 : 18} className="block xl:hidden" />
                   ) : loc === 'bn' ? (
-                    <Bd size={isCurrentLocale ? 26 : 22} className="block" />
+                    <Bd size={isCurrentLocale ? 22 : 18} className="block xl:hidden" />
                   ) : (
-                    <Us size={isCurrentLocale ? 26 : 22} className="block" />
+                    <Us size={isCurrentLocale ? 22 : 18} className="block xl:hidden" />
+                  )}
+                  {loc === 'ja' ? (
+                    <Jp size={isCurrentLocale ? 26 : 22} className="hidden xl:block" />
+                  ) : loc === 'bn' ? (
+                    <Bd size={isCurrentLocale ? 26 : 22} className="hidden xl:block" />
+                  ) : (
+                    <Us size={isCurrentLocale ? 26 : 22} className="hidden xl:block" />
                   )}
                 </Link>
               )
@@ -250,7 +256,7 @@ export function HeaderClient({
           {/* CTA Button remains the same */}
           {ctaLabel && (
             <Link href={ctaHref}>
-              <button className="inline-flex items-center justify-center gap-1.5 rounded-full bg-brand-accent px-5 py-2 text-sm font-semibold tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-brand-accent-hover hover:shadow-md lowercase">
+              <button className="inline-flex items-center justify-center gap-1.5 rounded-full bg-brand-accent px-4 xl:px-5 py-2 text-sm font-semibold tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-brand-accent-hover hover:shadow-md lowercase">
                 <span>{ctaLabel}</span>
                 <svg className="h-3.5 w-3.5 shrink-0 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />

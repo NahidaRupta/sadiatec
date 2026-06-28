@@ -203,10 +203,11 @@ export function MobileMenu({
 
   return (
     <>
+
       {/* Mobile Header: Flags + Hamburger - Fixed Layout */}
-      <div className="flex lg:hidden items-center gap-2">
+      <div className="flex lg:hidden items-center gap-1">
         {/* Flags Container - Made compact */}
-        <div className="flex items-center gap-1.5 bg-[#EBF5FF] px-3 py-.5 rounded-2xl border border-gray-200">
+        <div className="flex items-center gap-1 bg-[#EBF5FF] px-2 py-1 rounded-2xl border border-gray-200">
           {['ja', 'en', 'bn'].map((loc) => {
             const isCurrentLocale = locale === loc
             return (
@@ -215,16 +216,16 @@ export function MobileMenu({
                 href={strippedPath}
                 locale={loc}
                 className={[
-                  "transition-all duration-200 p-1 rounded-xl",
+                  "transition-all duration-200 p-0.5 rounded-lg",
                   isCurrentLocale ? "scale-110" : "hover:scale-105 opacity-75 hover:opacity-100"
                 ].join(" ")}
               >
                 {loc === 'ja' ? (
-                  <Jp size={isCurrentLocale ? 24 : 20} className="block" />
+                  <Jp size={isCurrentLocale ? 20 : 18} className="block" />
                 ) : loc === 'bn' ? (
-                  <Bd size={isCurrentLocale ? 24 : 20} className="block" />
+                  <Bd size={isCurrentLocale ? 20 : 18} className="block" />
                 ) : (
-                  <Us size={isCurrentLocale ? 24 : 20} className="block" />
+                  <Us size={isCurrentLocale ? 20 : 18} className="block" />
                 )}
               </Link>
             )
