@@ -1,5 +1,6 @@
 'use client'
 
+import { useLocale } from 'next-intl'
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -25,11 +26,16 @@ function ChevronRight() {
 export function HeroBlock({
   eyebrow,
   headline,
+  subheadline,
   heading,
   heroSlides,
   backgroundImageUrl,
   heroImageUrl,
-}: HeroBlockProps) {
+
+}: HeroBlockProps & {
+  subheadline?: string
+  locale?: string
+}) {
   const [current, setCurrent] = useState(0)
 
   const resolvedHeadline = headline ?? heading ?? ''
@@ -79,6 +85,10 @@ export function HeroBlock({
     },
   }
 
+  const locale = useLocale();
+  const isJapanese = locale === 'ja';
+  const isBangla = locale === 'bn';
+
   return (
     <div aria-label="Hero" role="region" className="flex flex-col bg-white overflow-hidden">
 
@@ -99,18 +109,40 @@ export function HeroBlock({
             </motion.p>
           )}
 
+          {/* Headline */}
           <motion.h1
             id="hero-heading"
             variants={fadeInUp}
-            className="ml-auto max-w-[700px] text-[22px] leading-tight font-medium tracking-tight text-text-primary 
-                       md:text-3xl lg:text-4xl break-words"
+            className="ml-auto whitespace-nowrap text-[26px] font-medium tracking-tight text-text-primary md:text-3xl lg:text-[42px]"
           >
             {resolvedHeadline}
           </motion.h1>
+
+          {/* Subheadline - Same style for Japanese & Bangla */}
+          {subheadline && (
+            <motion.p
+              variants={fadeInUp}
+              className={`ml-auto mb-6 
+      ${isJapanese || isBangla
+                  ? 'max-w-[380px] sm:max-w-[450px] md:max-w-[500px] text-[16px] md:text-[18px] lg:text-[20px]'
+                  : 'max-w-[500px] sm:max-w-[550px] md:max-w-[650px] text-[16px] md:text-[18px] lg:text-[20px]'
+                } 
+      leading-tight md:leading-[1.35] 
+      text-text-secondary tracking-[-0.1px] break-words`}
+              style={{
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+              }}
+            >
+              {subheadline}
+            </motion.p>
+          )}
         </motion.div>
       </div>
 
-      {/* Image Slider */}
+      {/* Image Slider - unchanged */}
       {slides.length > 0 && (
         <div className="w-full px-4 pb-4 md:px-6 md:pb-6 lg:px-10 lg:pb-8">
           <div className="relative w-full overflow-hidden bg-bg-secondary rounded-2xl md:rounded-3xl aspect-[4/3] sm:aspect-[16/10] md:h-[calc(100vh-160px)] md:min-h-[500px]">
