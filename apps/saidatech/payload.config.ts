@@ -22,7 +22,7 @@ const db =
     : postgresAdapter({
       pool: {
         connectionString: uri,
-        max: 80,
+        max: 5,
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 60000,   // ← Increased to 60 seconds
         maxLifetime: 600000,              // 10 minutes
